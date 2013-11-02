@@ -1,0 +1,10 @@
+{
+    "unused": false,
+    "quotmark": false,
+    "globals": {
+        "console": true,
+        "angular": true,
+        "app": true,
+        "Firebase": true
+    }
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="tradeshift-mobile">
+  <head>
+    <title ng-bind="pageTitle"></title>
+    <!-- Vendors -->
+    <script src='vendors/angular.min.js'></script>
+    <script src='https://cdn.firebase.com/v0/firebase.js'></script>
+    <script src='https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js'></script>
+
+    <!-- Tradeshift Mobile -->
+    <script src='app.js'></script>
+    <script src='components/business-intelligence/controller.js'></script>
+  </head>
+  <body ng-controller="BusinessIntelligenceController">
+    <div id="messagesDiv">
+      <div ng-repeat="msg in messages"><em>{{msg.from}}</em>: {{msg.body}}</div>
+    </div>
+
+
+  </body>
+</html>
