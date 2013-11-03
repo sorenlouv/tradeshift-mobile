@@ -22,6 +22,8 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   // Prepare scope variables
   $scope.company = {};
   $scope.activities = {};
+  $scope.product = null;
+  $scope.product_price = {};
 
   // Bind firebase to scope
   angularFire(company, $scope, 'company');
@@ -48,7 +50,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   };
 
   $scope.save = function() {
-    alert('saved!');
+    
   }
 
 }]);
