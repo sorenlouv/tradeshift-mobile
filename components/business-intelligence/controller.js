@@ -1,7 +1,10 @@
-app.controller('BusinessIntelligenceController', ['$scope', function ($scope) {
+app.controller('BusinessIntelligenceController', ['$scope', 'angularFire', function ($scope, angularFire) {
   'use strict';
 
-  // Main app
-  var appRef = new Firebase("https://tradeshift-mobile.firebaseio.com");
+  // Companies
+  var companiesRef = new Firebase("https://tradeshift-mobile.firebaseio.com/companies");
+
+  $scope.companies = {};
+  angularFire(companiesRef, $scope, 'companies');
 
 }]);

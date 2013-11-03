@@ -15,7 +15,7 @@ app.config(function ($routeProvider) {
 
     // Transactions
     when('/transactions', {templateUrl: '/components/transactions/overview.html', controller: 'OverviewController'}).
-    when('/transactions_old', {templateUrl: '/components/transactions/template.html', controller: 'TransactionsControllerOld'}).
+    // when('/transactions_old', {templateUrl: '/components/transactions/template.html', controller: 'TransactionsControllerOld'}).
     when('/transactions/:company_id', {templateUrl: '/components/transactions/companyTransactions.html', controller: 'CompanyTransactionsController'}).
     when('/transactions/:company_id/:transaction_id', {templateUrl: '/components/transactions/transaction.html', controller: 'TransactionController'}).
 
