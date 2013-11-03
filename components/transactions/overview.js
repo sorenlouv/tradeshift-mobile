@@ -1,9 +1,9 @@
-app.controller('OverviewController', ['$scope', 'angularFire', 'angularFireCollection', function ($scope, angularFire, angularFireCollection) {
+app.controller('OverviewController', ['$scope', 'angularFire', function ($scope, angularFire) {
   'use strict';
 
-  var companiesRef = new Firebase("https://tradeshift-mobile.firebaseio.com/companies");
-  
-  $scope.companies = {};
-  angularFire(companiesRef, $scope, 'companies');
+  var companyRef = new Firebase("https://tradeshift-mobile.firebaseio.com/companies").child();
+
+  $scope.company = {};
+  angularFire(companyRef, $scope, 'company');
 
 }]);
