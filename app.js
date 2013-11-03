@@ -34,7 +34,7 @@ app.run( function($rootScope, $location) {
     if ( $rootScope.loggedIn !== true && next.match('/#/login') === null) {
       console.log("Redirecting to login page");
       var redirect = next.slice((next.indexOf('/#/') + 3));
-      $location.path( "/login/" + redirect );
+      $location.path( "/login/" + encodeURIComponent( redirect ) );
     }
   });
 });

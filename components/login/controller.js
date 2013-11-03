@@ -73,8 +73,9 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
     // redirect to original page if user has filled out everything correctly
     if(validateUserInfo(currentUser)){
       $rootScope.loggedIn = true;
-      console.log("Logged in and redirecting to", $routeParams.redirect);
-      $location.path($routeParams.redirect);
+      var redirect = decodeURIComponent($routeParams.redirect);
+      console.log("Logged in and redirecting to", redirect);
+      $location.path(redirect);
     }
   });
 
