@@ -1,4 +1,4 @@
-app.controller('TransactionsController', ['$scope', 'angularFire', 'angularFireCollection', function ($scope, angularFire, angularFireCollection) {
+app.controller('TransactionsControllerOld', ['$scope', 'angularFire', 'angularFireCollection', function ($scope, angularFire, angularFireCollection) {
   'use strict';
 
   $scope.addItem = function() {

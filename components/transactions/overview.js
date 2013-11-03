@@ -6,7 +6,4 @@ app.controller('OverviewController', ['$scope', 'angularFire', 'angularFireColle
   $scope.companies = {};
   angularFire(companiesRef, $scope, 'companies');
 
-
-
-
 }]);

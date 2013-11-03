@@ -1,5 +1,125 @@
-<h1>Transactions</h1>
+<header>
+	<div class="back">
+		<a href="/#/business-intelligence">
+			<i class="fa fa-arrow-left"></i>
+		</a>
+	</div>
+	<div>
+		<h3>Customer 1</h3>
+		<span>120.000 · ( 30.000 ) </span>
+	</div>
+	<div class="add" >
+		<a ng-click="addItem()">
+			<i class="fa fa-plus-circle"></i>
+		</a>
+	</div>
+</header>
 
-<div ng-repeat="(id, company) in companies">
-	<a ng-href="/#/transactions/{{id}}">{{company.name}}</a>
-</div>
+<section class="transaction">
+	<!-- <img scr="/images/sqren.jpg"> -->
+	<div class="update">
+		<div class="object">
+			<span class="primary">4 * Product 3</span>
+			<span class="secondary">1000 pr. piece</span>
+		</div>
+		<div class="price">
+			<span class="primary">2000 DKK</span>
+			<span class="secondary">Total</span>
+		</div>
+	</div>
+	<div class="comments">
+		<div class="comment">
+			<span class="person"><a href="#">Søren L.</a></span>
+			<span class="comment">Hey, that looks awesome</span>
+		</div>
+		<div class="comment">
+			<span class="person"><a href="#">Frank</a></span>
+			<span class="comment">Srsly</span>
+		</div>
+	</div>
+</section>
+
+<section class="picker" >
+	<div class="picker-bg" ng-click="hidePicker()"></div>
+	<div class="add-picker">
+		<div class="picker-content">
+			<div class="picker-header">
+				<h1>Actions</h1>
+				<a ng-click="hidePicker()">
+					<i class="fa fa-times"></i>
+				</a>
+			</div>
+			<div class="picker-data">
+				<h3>Add &hellip;</h3>
+				<ul>
+					<li ng-click="addProduct()">
+						<span>Product</span>
+						<i class="fa fa-chevron-right"></i>
+					</li>
+					<li>
+						<span>Quote</span>
+						<i class="fa fa-chevron-right"></i>
+					</li>
+					<li>
+						<span>Expense</span>
+						<i class="fa fa-chevron-right"></i>
+					</li>
+				</ul>
+				<h3>Settle</h3>
+				<ul>
+					<li>Settle transactions</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="product-picker">
+		<div class="picker-content">
+			<div class="picker-header">
+				<h1>Add product</h1>
+				<a ng-click="hidePicker()">
+					<i class="fa fa-times"></i>
+				</a>
+			</div>
+			<div class="picker-data">
+				<ul>
+					<li ng-click="selectProduct()">Product 1</li>
+					<li>Product 2</li>
+				</ul>
+			</div>
+		</div>		
+	</div>
+
+	<div class="select-picker">
+		<div class="picker-content">
+			<div class="picker-header">
+				<h1>Product 1</h1>
+				<a ng-click="hidePicker()">
+					<i class="fa fa-times"></i>
+				</a>
+			</div>
+			<div class="picker-data">
+				<h4>Select price</h4>
+				
+				<ul>
+					<li>1000</li>
+					<li>900<span class="discount">10% discount</span></li>
+					<li ng-click="selectProduct()">800 <span class="discount">20% discount</span></li>
+					<li ng-click="selectProduct()">700 <span class="discount">30% discount</span></li>			
+
+					<li><a href="">New price</a></li>
+				</ul>
+				
+				<fieldset class="uniform">
+					<label><span>Add comment</span></label>
+					<input type="text" placeholder="Comment" class="_textual">
+				</fieldset>
+				
+				<a class="button" ng-click="hidePicker()">Done</a>
+			</div>
+		</div>		
+	</div>
+
+</section>
+
+
