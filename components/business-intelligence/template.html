@@ -1,5 +1,6 @@
+
 <h1>Business</h1>
 Companies you are doing business with:
 <ul ng-repeat="(company_id, company) in companies">
-  <a ng-href="/#/activity/{{company_id}}/" ng-bind="company.name"></a>
+  <li><a ng-href="/#/activity/{{company_id}}/" ng-bind="company.name"></a></li>
 </ul>

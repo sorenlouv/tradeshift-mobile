@@ -1,4 +1,4 @@
-app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$routeParams', '$location', '$q', function ($scope, $rootScope, angularFire, $routeParams, $location, $q) {
+app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$routeParams', '$location', '$q', 'safeApply', function ($scope, $rootScope, angularFire, $routeParams, $location, $q, safeApply) {
   'use strict';
 
   // Users collection
@@ -19,7 +19,7 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
       } : authenticatedUserSnapshot.val();
 
       // resolve promise
-      $scope.$apply(function(){
+      safeApply($scope, function(){
         deferred.resolve(currentUser);
       });
     });
@@ -41,7 +41,7 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
       } : companySnapshot.val();
 
       // resolve promise
-      $scope.$apply(function(){
+      safeApply($scope, function(){
         deferred.resolve(currentCompany);
       });
     });
@@ -73,8 +73,9 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
     // redirect to original page if user has filled out everything correctly
     if(validateUserInfo(currentUser)){
       $rootScope.loggedIn = true;
-      console.log("Logged in and redirecting to", $routeParams.redirect);
-      $location.path($routeParams.redirect);
+      var redirect = decodeURIComponent($routeParams.redirect);
+      console.log("Logged in and redirecting to", redirect);
+      $location.path(redirect);
     }
   });
 

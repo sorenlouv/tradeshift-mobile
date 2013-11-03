@@ -12,10 +12,44 @@ body {
 
 a {
 	text-decoration: none;
-	color: @tsblue;
+	color: @black;
 	font-weight: 400;
 	cursor: pointer;
 }
+
+ul {
+		padding: 0px;
+		margin: 0px 0px 22px 0px;
+
+		li {
+			color: @tsblue;
+			padding: 11px;
+			margin-bottom: 1px;
+			height: 22px;
+			list-style: none;
+			margin-left: 0px;
+			font-size: 14px;
+			background-color: @activelitest;
+
+			i {
+				float: right;
+				margin-top: 4px;
+			}
+			.discount {
+				float: right;
+				color: lighten(@active, 25%);
+				font-weight: 300;
+			}
+			
+
+			input {
+				margin: -11px -11px -11px 0;
+				height: 33px;
+				border: none;
+				background-color: transparent;
+			}
+		}
+	}
 
 header {
 	height: 44px;
@@ -71,47 +105,92 @@ header {
 	}
 }
 
-.transaction {
-	position: relative;
-	font-size: 18px;
-	font-weight: 300;
-	padding: 11px;
+.transactions {
+	background-color: #eee;
+	padding-top: 6px;
+	height: 100%;
 
-	.update {
-		display: block;
-		overflow: hidden;
-		.object {
-			float: left;
-			height: 44px;
-			width: 67%;
-		}
-		.price {
+	.transaction {
+		position: relative;
+		font-size: 16px;
+		font-weight: 300;
+		padding:11px 11px 0px 11px;
+		// border-bottom: 3px double #eee;
+		background-color: white;
+		margin: 0px 5px -5px 5px;
+
+		.update {
 			display: block;
-			width: 30%;
-			float: right;
-			text-align: right;
+			overflow: hidden;
+			
+			.object {
+				float: left;
+				height: 44px;
+				width: 67%;
+
+
+				.secondary {
+					float: left;
+				}
+			}
+			.price {
+				display: block;
+				width: 30%;
+				float: right;
+				text-align: right;
+
+				.secondary {
+					float: right;
+				}
+			}
+			.primary {
+				font-size: 18px;
+				display: block;
+				line-height: 20px;
+				font-weight: 400;
+			}
+			.secondary {
+				line-height: 18px;
+				font-size: 14px;
+			}
 		}
-		.primary {
+
+		.comments {
+			margin-left:0px;
 			display: block;
-			line-height: 14px;
-		}
-		.secondary {
-			line-height: 12px;
-			font-size: 12px;
+			font-size: 12px !important;
+			margin-bottom: 11px;
+
+			.comment {
+				border-top: 1px dotted #eee;
+				
+				.rounded(3px);
+				padding:11px 0px;
+
+				.person{
+					display: inline-block;
+					min-width: 60px;
+					a {
+						font-weight: 300;
+						color: #999;
+					}
+				}
+				.content {
+					font-weight: 400;
+				}
+			}
 		}
 	}
-
-	.comments {
-		margin-left: 11px;
-		display: block;
-		font-size: 12px;
-
-		.person{
-			margin-right: 11px;
-		}
-	}
-
 }
+
+.business-intelligence {
+	h3 {
+		margin-top: 0px;
+	}
+	padding: 11px;
+}
+
+
 
 .picker {
 	z-index: 10;
@@ -122,29 +201,11 @@ header {
 	height: 100%;
 	width: 100%;
 
-	ul {
-		padding: 0px;
-		margin: 0px;
-		li {
-			color: @tsblue;
-			padding: 11px;
-			margin-bottom: 1px;
-			height: 22px;
-			list-style: none;
-			margin-left: 0px;
-			font-size: 14px;
-			background-color: @activelitest;
-			i {
-				float: right;
-				margin-top: 4px;
-			}
-			.discount {
-				float: right;
-				color: lighten(@active, 25%);
-				font-weight: 300;
-				
-			}
-		}
+	h3 {
+		margin: 0px 0px 5px 0px;
+		font-size: 11px;
+		text-transform: uppercase;
+		font-weight: 600;
 	}
 
 	.picker-bg {
@@ -155,6 +216,7 @@ header {
 	.picker-data {
 		display: block;
 		padding: 11px;
+
 	}
 	.picker-content {
 		z-index: 11;
@@ -204,37 +266,3 @@ header {
 	}
 }
 
-/* TEMP */
-/* ====== media ====== */
-.media {margin:10px;}
-.media, .bd {overflow:hidden; _overflow:visible; zoom:1;}
-.media .img {float:left; margin-right: 10px;}
-.media .img img{display:block;}
-.media .img.avatar img{display:block; border-radius: 25px; width: 50px; height: 50px;}
-.media .imgExt{float:right; margin-left: 10px;}
-.media .line_item {
-  background-color: #b4d8e7;
-  border: 1px solid #56BAEC;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.media.transaction {
-  background-color: #eee;
-  padding: 10px;
-}
-
-.media .line_item div {
-  float: left;
-}
-
-.media .line_item .fa-check-circle {
-  color: #a4c8d7;
-  cursor: pointer;
-  font-size: 20px;
-  float: right;
-}
-
-.media .line_item .fa-check-circle.approved {
-  color: #b0e57c;
-}

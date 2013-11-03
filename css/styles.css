@@ -1374,9 +1374,38 @@ body {
 }
 a {
   text-decoration: none;
-  color: #20a0e9;
+  color: #1e1e1e;
   font-weight: 400;
   cursor: pointer;
+}
+ul {
+  padding: 0px;
+  margin: 0px 0px 22px 0px;
+}
+ul li {
+  color: #20a0e9;
+  padding: 11px;
+  margin-bottom: 1px;
+  height: 22px;
+  list-style: none;
+  margin-left: 0px;
+  font-size: 14px;
+  background-color: #ecf7fd;
+}
+ul li i {
+  float: right;
+  margin-top: 4px;
+}
+ul li .discount {
+  float: right;
+  color: #94d1f4;
+  font-weight: 300;
+}
+ul li input {
+  margin: -11px -11px -11px 0;
+  height: 33px;
+  border: none;
+  background-color: transparent;
 }
 header {
   height: 44px;
@@ -1427,42 +1456,77 @@ header i {
   margin-top: 15px;
   color: white;
 }
-.transaction {
-  position: relative;
-  font-size: 18px;
-  font-weight: 300;
-  padding: 11px;
+.transactions {
+  background-color: #eee;
+  padding-top: 6px;
+  height: 100%;
 }
-.transaction .update {
+.transactions .transaction {
+  position: relative;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 11px 11px 0px 11px;
+  background-color: white;
+  margin: 0px 5px -5px 5px;
+}
+.transactions .transaction .update {
   display: block;
   overflow: hidden;
 }
-.transaction .update .object {
+.transactions .transaction .update .object {
   float: left;
   height: 44px;
   width: 67%;
 }
-.transaction .update .price {
+.transactions .transaction .update .object .secondary {
+  float: left;
+}
+.transactions .transaction .update .price {
   display: block;
   width: 30%;
   float: right;
   text-align: right;
 }
-.transaction .update .primary {
+.transactions .transaction .update .price .secondary {
+  float: right;
+}
+.transactions .transaction .update .primary {
+  font-size: 18px;
   display: block;
-  line-height: 14px;
+  line-height: 20px;
+  font-weight: 400;
 }
-.transaction .update .secondary {
-  line-height: 12px;
-  font-size: 12px;
+.transactions .transaction .update .secondary {
+  line-height: 18px;
+  font-size: 14px;
 }
-.transaction .comments {
-  margin-left: 11px;
+.transactions .transaction .comments {
+  margin-left: 0px;
   display: block;
-  font-size: 12px;
+  font-size: 12px !important;
+  margin-bottom: 11px;
 }
-.transaction .comments .person {
-  margin-right: 11px;
+.transactions .transaction .comments .comment {
+  border-top: 1px dotted #eee;
+  border-radius: 3px;
+  padding: 11px 0px;
+}
+.transactions .transaction .comments .comment .person {
+  display: inline-block;
+  min-width: 60px;
+}
+.transactions .transaction .comments .comment .person a {
+  font-weight: 300;
+  color: #999;
+}
+.transactions .transaction .comments .comment .content {
+  font-weight: 400;
+}
+.business-intelligence {
+  padding: 11px;
+}
+.business-intelligence h3 {
+  margin-top: 0px;
 }
 .picker {
   z-index: 10;
@@ -1473,28 +1537,11 @@ header i {
   height: 100%;
   width: 100%;
 }
-.picker ul {
-  padding: 0px;
-  margin: 0px;
-}
-.picker ul li {
-  color: #20a0e9;
-  padding: 11px;
-  margin-bottom: 1px;
-  height: 22px;
-  list-style: none;
-  margin-left: 0px;
-  font-size: 14px;
-  background-color: #ecf7fd;
-}
-.picker ul li i {
-  float: right;
-  margin-top: 4px;
-}
-.picker ul li .discount {
-  float: right;
-  color: #94d1f4;
-  font-weight: 300;
+.picker h3 {
+  margin: 0px 0px 5px 0px;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 .picker .picker-bg {
   width: 100%;
@@ -1549,4 +1596,3 @@ header i {
   position: relative;
   z-index: 13;
 }
-
