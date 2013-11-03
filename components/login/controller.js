@@ -1,4 +1,4 @@
-app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$routeParams', '$location', function ($scope, $rootScope, angularFire, $routeParams, $location) {
+app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$routeParams', '$location', '$q', function ($scope, $rootScope, angularFire, $routeParams, $location, $q) {
   'use strict';
 
   // Users collection
@@ -6,6 +6,8 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
 
   // Fetch the logged in user from DB. If he doesn't exist, create him
   var getOrCreateCurrentUser = function(facebookUser){
+    var deferred = $q.defer();
+
     var currentUserRef = usersRef.child(facebookUser.id);
     currentUserRef.once('value', function(currentUserSnapshot){
       // Create user if not exists, or fetch from DB
@@ -16,7 +18,12 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
 
       // create 2-way binding between FireBase and angular models
       angularFire(currentUserRef, $scope, "currentUser");
+      deferred.resolve($scope.currentUser);
+
+      $scope.$apply();
     });
+
+    return deferred.promise;
   };
 
   //
@@ -26,14 +33,24 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
 
     }else if(facebookUser){
       // user signed in with Facebook
-      getOrCreateCurrentUser(facebookUser);
+      var userInforReady = getOrCreateCurrentUser(facebookUser);
       $rootScope.loggedIn = true;
-      $location.path($routeParams.redirect);
 
+      // make sure all required info is filled out
+      userInforReady.then(function(user){
+        if(validateUserInfo(user)){
+          $location.path($routeParams.redirect);
+        }
+      });
 
     }else{
       // user signed out
     }
+  };
+
+  // the user must fill in email, name and company
+  var validateUserInfo = function(user){
+    return (user.email && user.name && user.company);
   };
 
   // get login status
@@ -41,6 +58,12 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
 
 
   /************* Click events ************/
+
+  $scope.updateUserInfo = function(){
+    if(validateUserInfo($scope.currentUser)){
+      $location.path($routeParams.redirect);
+    }
+  };
 
   // login with facebook
   $scope.login = function(){
