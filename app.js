@@ -18,7 +18,7 @@ app.run( function($rootScope, $location) {
   // register listener to watch route changes
   $rootScope.$on( "$locationChangeStart", function(event, next, current) {
     // user is not logged in, and should be redirected to login page
-    if ( !$rootScope.loggedUser && next.match('/#/login$') === null) {
+    if ( $rootScope.loggedIn !== true && next.match('/#/login$') === null) {
       $location.path( "/login" );
     }
   });
