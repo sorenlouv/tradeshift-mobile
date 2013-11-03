@@ -14,33 +14,9 @@
 		</a>
 	</div>
 </header>
-	
-<div class="transactions"  ng-repeat="activity in activities">
-	<div class="transaction">
-		<!-- <img scr="/images/sqren.jpg"> -->
-		<div class="update">
-			<div class="object">
-				<span class="primary">4 * Product 3</span>
-				<span class="secondary">1000 pr. piece</span>
-			</div>
-			<div class="price">
-				<span class="primary">2000 DKK</span>
-				<span class="secondary">Total</span>
-			</div>
-		</div>
-		<div class="comments">
-			<div class="comment">
-				<span class="person"><a href="#">Søren L.</a></span>
-				<span class="content">Hey, thats way too expensive</span>
-			</div>
-			<div class="comment">
-				<span class="person"><a href="#">Frank</a></span>
-				<span class="content">Srsly</span>
-			</div>
-		</div>
-	</div>
-	<div class="transaction">
-		<!-- <img scr="/images/sqren.jpg"> -->
+
+<div class="transactions">
+	<div class="transaction" ng-repeat="line in activity.lines">
 		<div class="update">
 			<div class="object">
 				<span class="primary">4 * Product 3</span>
@@ -63,6 +39,7 @@
 		</div>
 	</div>
 </div>
+
 <section class="picker" >
 	<div class="picker-bg" ng-click="hidePicker()"></div>
 	<div class="add-picker">
@@ -111,7 +88,7 @@
 					<li>Product 2</li>
 				</ul>
 			</div>
-		</div>		
+		</div>
 	</div>
 
 	<div class="select-picker">
@@ -128,7 +105,7 @@
 					<li>1000</li>
 					<li>900<span class="discount">10% discount</span></li>
 					<li ng-click="selectProduct()">800 <span class="discount">20% discount</span></li>
-					<li ng-click="selectProduct()">700 <span class="discount">30% discount</span></li>			
+					<li ng-click="selectProduct()">700 <span class="discount">30% discount</span></li>
 
 					<li><input type="text" placeholder="New price"></li>
 				</ul>
@@ -139,7 +116,7 @@
 				</fieldset>
 				<a class="button" ng-click="hidePicker()">Done</a>
 			</div>
-		</div>		
+		</div>
 	</div>
 
 </section>
