@@ -18,7 +18,7 @@ Feature set:
 			- Add new price
 			- Add discount
 			- Add comment
-		- Add offer
+		- Add quote
 		- Add expense
 			- Take photo, Cloudscan 
 			- Price

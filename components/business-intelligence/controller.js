@@ -1,14 +1,7 @@
-app.controller('BusinessIntelligenceController', ['$scope', function ($scope, angularFire) {
+app.controller('BusinessIntelligenceController', ['$scope', function ($scope) {
   'use strict';
 
-  var database = new Firebase("https://ir2qox768r2.firebaseio-demo.com/");
-  $scope.messages = [];
-  angularFire(database, $scope, "messages");
+  // Main app
+  var appRef = new Firebase("https://tradeshift-mobile.firebaseio.com");
 
-  $scope.sendMessage = function(){
-    $scope.messages.push({
-      from: $scope.name,
-      body: $scope.msg
-    });
-  };
 }]);
