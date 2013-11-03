@@ -1,4 +1,4 @@
-app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$routeParams', '$location', '$q', function ($scope, $rootScope, angularFire, $routeParams, $location, $q) {
+app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$routeParams', '$location', '$q', 'safeApply', function ($scope, $rootScope, angularFire, $routeParams, $location, $q, safeApply) {
   'use strict';
 
   // Users collection
@@ -19,7 +19,7 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
       } : authenticatedUserSnapshot.val();
 
       // resolve promise
-      $scope.$apply(function(){
+      safeApply($scope, function(){
         deferred.resolve(currentUser);
       });
     });
@@ -41,7 +41,7 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
       } : companySnapshot.val();
 
       // resolve promise
-      $scope.$apply(function(){
+      safeApply($scope, function(){
         deferred.resolve(currentCompany);
       });
     });
