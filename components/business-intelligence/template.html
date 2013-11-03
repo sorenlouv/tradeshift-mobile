@@ -1,8 +1,6 @@
-<div class="business-intelligence">
-	<h3>Business intelligence</h3>
-	<ul>
-		<a href="/#/transactions"><li>Customer 1</li></a>
-		<a href="/#/transactions"><li>Customer 2</li></a>
-		<a href="/#/transactions"><li>Customer 3</li></a>
-	<ul>
-</div>
+
+<h1>Business</h1>
+Companies you are doing business with:
+<ul ng-repeat="(company_id, company) in companies">
+  <li><a ng-href="/#/activity/{{company_id}}/" ng-bind="company.name"></a></li>
+</ul>

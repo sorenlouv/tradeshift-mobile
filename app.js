@@ -6,7 +6,20 @@ app.config(function ($routeProvider) {
   $routeProvider.
     when('/business-intelligence', {templateUrl: '/components/business-intelligence/template.html', controller: 'BusinessIntelligenceController'}).
     when('/contacts', {templateUrl: '/components/contacts/template.html', controller: 'ContactsController'}).
-    when('/transactions', {templateUrl: '/components/transactions/template.html', controller: 'TransactionsController'}).
+
+    // Settings
+    when('/settings', {templateUrl: '/components/settings/template.html', controller: 'SettingsController'}).
+
+    // Activity
+    when('/activity/:company_id', {templateUrl: '/components/activity/activity.html', controller: 'ActivityController'}).
+
+    // Transactions
+    when('/transactions', {templateUrl: '/components/transactions/overview.html', controller: 'OverviewController'}).
+    // when('/transactions_old', {templateUrl: '/components/transactions/template.html', controller: 'TransactionsControllerOld'}).
+    when('/transactions/:company_id', {templateUrl: '/components/transactions/companyTransactions.html', controller: 'CompanyTransactionsController'}).
+    when('/transactions/:company_id/:transaction_id', {templateUrl: '/components/transactions/transaction.html', controller: 'TransactionController'}).
+
+    // Login
     when('/login/:redirect', {templateUrl: '/components/login/template.html', controller: 'LoginController'}).
     otherwise({redirectTo: '/business-intelligence'});
 });
@@ -19,8 +32,9 @@ app.run( function($rootScope, $location) {
   $rootScope.$on( "$locationChangeStart", function(event, next, current) {
     // user is not logged in, and should be redirected to login page
     if ( $rootScope.loggedIn !== true && next.match('/#/login') === null) {
+      console.log("Redirecting to login page");
       var redirect = next.slice((next.indexOf('/#/') + 3));
-      $location.path( "/login/" + redirect );
+      $location.path( "/login/" + encodeURIComponent( redirect ) );
     }
   });
 });
