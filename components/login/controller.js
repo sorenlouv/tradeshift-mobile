@@ -1,4 +1,4 @@
-app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', function ($scope, $rootScope, angularFire) {
+app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$routeParams', '$location', function ($scope, $rootScope, angularFire, $routeParams, $location) {
   'use strict';
 
   // Users collection
@@ -28,6 +28,8 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', functi
       // user signed in with Facebook
       getOrCreateCurrentUser(facebookUser);
       $rootScope.loggedIn = true;
+      $location.path($routeParams.redirect);
+
 
     }else{
       // user signed out
