@@ -5,7 +5,7 @@
 		</a>
 	</div>
 	<div>
-		<h3>Customer 1</h3>
+		<h3 ng-bind="company.name"></h3>
 		<span>120.000 · ( 30.000 ) </span>
 	</div>
 	<div class="add" >
@@ -15,7 +15,7 @@
 	</div>
 </header>
 
-<section class="transaction">
+<section class="transaction" ng-repeat="activity in activities">
 	<!-- <img scr="/images/sqren.jpg"> -->
 	<div class="update">
 		<div class="object">
