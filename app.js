@@ -19,6 +19,7 @@ app.run( function($rootScope, $location) {
   $rootScope.$on( "$locationChangeStart", function(event, next, current) {
     // user is not logged in, and should be redirected to login page
     if ( $rootScope.loggedIn !== true && next.match('/#/login') === null) {
+      console.log("Checking login");
       var redirect = next.slice((next.indexOf('/#/') + 3));
       $location.path( "/login/" + redirect );
     }
