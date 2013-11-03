@@ -5,20 +5,13 @@
 
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
-  </head>
-  <body>
-    
-    <nav>
-      <a href="/#/business-intelligence">Business Intelligence</a> |
-      <a href="/#/contacts">Contacts</a> |
-      <a href="/#/transactions">Transactions</a>
-    </nav>
-
-    <ng-view></ng-view>
+    <link rel="stylesheet" type="text/css" href="css/ts-forms.css" />
 
     <!-- Vendors -->
     <script src='vendors/angular.min.js'></script>
     <script src='vendors/angular-route.min.js'></script>
+    <script src='vendors/jquery-2.0.3.min.js'></script>
+    <script src='vendors/fastclick.js'></script>
     <script src='https://cdn.firebase.com/v0/firebase.js'></script>
     <script src='https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js'></script>
     <script type='text/javascript' src='https://cdn.firebase.com/v0/firebase-simple-login.js'></script>
@@ -31,5 +24,28 @@
     <script src='components/transactions/companyTransactions.js'></script>
     <script src='components/transactions/transaction.js'></script>
     <script src='components/login/controller.js'></script>
+
+    <script type="text/javascript" src="http://livejs.com/live.js"></script>
+    
+
+    <!-- Meta data -->
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  </head>
+  <body>
+<!--     <nav>
+      <a href="/#/business-intelligence">Business Intelligence</a> |
+      <a href="/#/contacts">Contacts</a> |
+      <a href="/#/transactions">Transactions</a>
+    </nav> -->
+    <ng-view></ng-view>
+
+    <script type="text/javascript">
+      $(function() {
+          FastClick.attach(document.body);
+      });
+    </script>
+
   </body>
 </html>
