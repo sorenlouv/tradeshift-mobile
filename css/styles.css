@@ -1,0 +1,15 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
+/* Colors .................................................... */
+/* Mixins .................................................................................. */
+/* height of the navigation/search bar containers */
+/* width of the aside panel */
+/* min view width */
+/* Units (paddings/margins) ................................................................ */
+/* Z-index ................................................................................. */
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+p {
+  font-size: 66px;
+  color: #20a0e9;
+}
