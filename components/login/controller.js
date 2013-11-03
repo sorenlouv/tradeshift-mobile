@@ -30,7 +30,6 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
       $rootScope.loggedIn = true;
       $location.path($routeParams.redirect);
 
-
     }else{
       // user signed out
     }
