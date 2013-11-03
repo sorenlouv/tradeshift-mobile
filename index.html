@@ -5,6 +5,16 @@
 
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
+  </head>
+  <body>
+    
+    <nav>
+      <a href="/#/business-intelligence">Business Intelligence</a> |
+      <a href="/#/contacts">Contacts</a> |
+      <a href="/#/transactions">Transactions</a>
+    </nav>
+
+    <ng-view></ng-view>
 
     <!-- Vendors -->
     <script src='vendors/angular.min.js'></script>
@@ -19,14 +29,5 @@
     <script src='components/contacts/controller.js'></script>
     <script src='components/transactions/controller.js'></script>
     <script src='components/login/controller.js'></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/#/business-intelligence">Business Intelligence</a> |
-      <a href="/#/contacts">Contacts</a> |
-      <a href="/#/transactions">Transactions</a>
-    </nav>
-    <ng-view></ng-view>
-
   </body>
 </html>
