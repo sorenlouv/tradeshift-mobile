@@ -4,7 +4,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
 
   var createActivityHandle = function(company1, company2) {
     return (company1 < company2 ? ""+company1+"-"+company2 : company2+"-"+company1);
-  }
+  };
 
   var company_id      = $routeParams.company_id,
       my_company_id   = $rootScope.currentUser.company,
@@ -53,20 +53,22 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
 
   // Sune's stuff
   $scope.addItem = function() {
-  	$('.picker').show();
-  }
+    $('.picker').show();
+  };
 
   $scope.hidePicker = function() {
-  	$('.picker').hide();
-  	$('.product-picker').hide()
-  	$('.select-picker').hide();
-  }
+    $('.picker').hide();
+    $('.product-picker').hide();
+    $('.select-picker').hide();
+  };
+
   $scope.addProduct = function() {
-  	$('.product-picker').show();
-  }
+    $('.product-picker').show();
+  };
+  
   $scope.selectProduct = function() {
-  	$('.select-picker').show();
-  }
+    $('.select-picker').show();
+  };
 
 }]);
 
