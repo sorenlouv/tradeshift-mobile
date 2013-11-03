@@ -14,10 +14,10 @@
 		</a>
 	</div>
 </header>
-	
+
+
 <div class="transactions">
-	<div class="transaction" ng-repeat="activity in activities">
-		<!-- <img scr="/images/sqren.jpg"> -->
+	<div class="transaction" ng-repeat="line in activity.lines">
 		<div class="update">
 			<div class="object">
 				<span class="primary">4 * Product 3</span>
@@ -40,6 +40,7 @@
 		</div>
 	</div>
 </div>
+
 <section class="picker" >
 	<div class="picker-bg" ng-click="hidePicker()"></div>
 	<div class="add-picker">
@@ -88,7 +89,7 @@
 					<li>Product 2</li>
 				</ul>
 			</div>
-		</div>		
+		</div>
 	</div>
 
 	<div class="select-picker">
@@ -106,7 +107,6 @@
 					<li ng-click="selectPrice()">900<span class="discount">10% discount</span></li>
 					<li ng-click="selectPrice()">800 <span class="discount">20% discount</span></li>
 					<li ng-click="selectPrice()">700 <span class="discount">30% discount</span></li>			
-
 					<li><input type="text" placeholder="New price"></li>
 				</ul>
 				<h3>Comment</h3>
@@ -116,7 +116,7 @@
 				</fieldset>
 				<a class="button" ng-click="save()">Done</a>
 			</div>
-		</div>		
+		</div>
 	</div>
 
 </section>
