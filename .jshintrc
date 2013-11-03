@@ -5,6 +5,7 @@
         "console": true,
         "angular": true,
         "app": true,
-        "Firebase": true
+        "Firebase": true,
+        "FirebaseSimpleLogin": true
     }
 }
