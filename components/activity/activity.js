@@ -15,6 +15,10 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
       my_company      = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + my_company_id),
       activities      = new Firebase("https://tradeshift-mobile.firebaseio.com/transactions/" + handle);
 
+
+  
+  
+
   // Prepare scope variables
   $scope.company = {};
   $scope.activities = {};
@@ -23,34 +27,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   angularFire(company, $scope, 'company');
   angularFire(activities, $scope, 'activities');
   
-  console.log($scope.company);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
   // Sune's stuff
   $scope.addItem = function() {
   	$('.picker').show();
@@ -66,6 +43,10 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   }
   $scope.selectProduct = function() {
   	$('.select-picker').show();
+  }
+
+  $scope.save = function() {
+    alert('saved!');
   }
 
 }]);
