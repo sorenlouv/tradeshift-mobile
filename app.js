@@ -10,6 +10,9 @@ app.config(function ($routeProvider) {
     // Settings
     when('/settings', {templateUrl: '/components/settings/template.html', controller: 'SettingsController'}).
 
+    // Activity
+    when('/activity/:company_id', {templateUrl: '/components/activity/activity.html', controller: 'ActivityController'}).
+
     // Transactions
     when('/transactions', {templateUrl: '/components/transactions/overview.html', controller: 'OverviewController'}).
     when('/transactions_old', {templateUrl: '/components/transactions/template.html', controller: 'TransactionsControllerOld'}).
