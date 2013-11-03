@@ -1,14 +1,10 @@
-app.controller('LoginController', ['$scope', 'angularFire', function ($scope, angularFire) {
+app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', function ($scope, $rootScope, angularFire) {
   'use strict';
 
-  // Main app
-  var appRef = new Firebase("https://tradeshift-mobile.firebaseio.com");
+  // Users collection
+  var usersRef = new Firebase("https://tradeshift-mobile.firebaseio.com/users");
 
-  // users
-  var usersRef = appRef.child('users');
-  $scope.users = null;
-  angularFire(usersRef, $scope, "users");
-
+  // Fetch the logged in user from DB. If he doesn't exist, create him
   var getOrCreateCurrentUser = function(facebookUser){
     var currentUserRef = usersRef.child(facebookUser.id);
     currentUserRef.once('value', function(currentUserSnapshot){
@@ -18,23 +14,28 @@ app.controller('LoginController', ['$scope', 'angularFire', function ($scope, an
         email: facebookUser.email
       } : currentUserSnapshot.val();
 
-      // automagic updates
+      // create 2-way binding between FireBase and angular models
       angularFire(currentUserRef, $scope, "currentUser");
     });
   };
 
   //
-  var onFacebookLogin = function(error, facebookUser) {
-    if(error) console.log("Auth error", error);
+  var onAuthenticationChange = function(error, facebookUser) {
+    if(error){
+      console.log("Authentication error", error);
 
-    // user signed in with Facebook
-    if(facebookUser){
+    }else if(facebookUser){
+      // user signed in with Facebook
       getOrCreateCurrentUser(facebookUser);
+      $rootScope.loggedIn = true;
+
+    }else{
+      // user signed out
     }
   };
 
   // get login status
-  var auth = new FirebaseSimpleLogin(usersRef, onFacebookLogin);
+  var auth = new FirebaseSimpleLogin(usersRef, onAuthenticationChange);
 
 
   /************* Click events ************/
