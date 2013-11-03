@@ -1370,3 +1370,30 @@
 body {
   font-family: 'Open Sans', sans-serif;
 }
+header {
+  height: 44px;
+  background-color: #1e1e1e;
+}
+header h3 {
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  padding-top: 11px;
+  display: block;
+}
+.transaction {
+  height: 44px;
+  position: relative;
+  font-size: 18px;
+  font-weight: 300;
+  padding: 11px 0;
+}
+.transaction .object {
+  width: 70%;
+}
+.transaction .price {
+  width: 30%;
+  float: right;
+  text-align: right;
+}
