@@ -1,0 +1,39 @@
+<h1>Transaction #<span ng-bind="transaction_id"></span></h1>
+
+<div><b>Buyer</b> <span ng-bind="transaction.buyer"></span></div>
+<div><b>Supplier</b> <span ng-bind="transaction.supplier"></span></div>
+
+<hr />
+
+<div ng-repeat="line in transaction.lines">
+
+  <div class="media transaction">
+
+    <div class="img avatar">
+      <img src="http://lorempixel.com/100/100/cats/" alt="me" />
+    </div>
+
+    <div class="bd">
+      <a href="#" ng-bind="line.user_name"></a> {{line.description}}
+
+      <div class="line_item">
+        <div><b ng-bind="line.name"></b></div>
+        <div>{{line.amount}}{{line.unit}} at {{line.unit_price | currency: line.currenct}}</div>
+        <i class="fa fa-check-circle"></i>
+      </div>
+
+      <a href="#">{{line.comments.count}} comments</a>
+
+      <div class="comments" ng-repeat="comment in line.comments">
+        <div class="media">
+          <div class="img avatar">
+            <img src="http://lorempixel.com/100/100/cats/" alt="me" />
+          </div>
+          <div class="bd">
+            <a href="#" ng-bind="comment.user_name"></a> {{comment.comment}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

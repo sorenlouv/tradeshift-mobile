@@ -6,7 +6,9 @@ app.config(function ($routeProvider) {
   $routeProvider.
     when('/business-intelligence', {templateUrl: '/components/business-intelligence/template.html', controller: 'BusinessIntelligenceController'}).
     when('/contacts', {templateUrl: '/components/contacts/template.html', controller: 'ContactsController'}).
-    when('/transactions', {templateUrl: '/components/transactions/template.html', controller: 'TransactionsController'}).
+    when('/transactions', {templateUrl: '/components/transactions/overview.html', controller: 'OverviewController'}).
+    when('/transactions/:company_id', {templateUrl: '/components/transactions/companyTransactions.html', controller: 'CompanyTransactionsController'}).
+    when('/transactions/:company_id/:transaction_id', {templateUrl: '/components/transactions/transaction.html', controller: 'TransactionController'}).
     when('/login/:redirect', {templateUrl: '/components/login/template.html', controller: 'LoginController'}).
     otherwise({redirectTo: '/business-intelligence'});
 });
