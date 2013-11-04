@@ -100,15 +100,14 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
       var companyName = $scope.currentCompany.name;
       var companyId = getValidIdentifier($scope.currentCompany.name);
 
-      getOrCreateCurrentCompany(companyName).then(function(currentCompany){
-        var currentCompanyRef = companiesRef.child(companyId);
+      // create 2-way binding between FireBase and angular models
+      angularFire(companiesRef.child(companyId), $scope, "currentCompany").then(function(){
+        getOrCreateCurrentCompany(companyName).then(function(currentCompany){
+          $scope.currentCompany = currentCompany;
 
-        // create 2-way binding between FireBase and angular models
-        $scope.currentCompany = currentCompany;
-        angularFire(currentCompanyRef, $scope, "currentCompany");
-
-        // update users company
-        $rootScope.currentUser.company = companyId;
+          // update users company
+          $rootScope.currentUser.company = companyId;
+        });
       });
     }
   };
