@@ -17,6 +17,8 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
       var currentUser = (currentUserSnapshot.val() === null) ? {
         id: facebookUser.id,
         name: facebookUser.name,
+        first_name: facebookUser.first_name,
+        last_name: facebookUser.last_name,
         email: facebookUser.email
       } : currentUserSnapshot.val();
 

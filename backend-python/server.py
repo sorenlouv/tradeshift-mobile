@@ -1,23 +1,26 @@
-from bottle import Bottle, route, run, template, request, put, get, response
+from bottle import route, run, template, request, put, get, response
 import requests, uuid, json, random
 
-app = Bottle()
+# the decorator
+def enable_cors(fn):
+    def _enable_cors(*args, **kwargs):
+        # set CORS headers
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, OPTIONS'
+        response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
 
-@app.hook('after_request')
-def enable_cors():
-    """
-    You need to add some headers to each request.
-    Don't use the wildcard '*' for Access-Control-Allow-Origin in production.
-    """
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS'
-    response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
+        if request.method != 'OPTIONS':
+            # actual request; reply with the actual response
+            return fn(*args, **kwargs)
+
+    return _enable_cors
 
 @route('/hello/<name>')
 def index(name='World'):
     return template('<b>Hello {{name}}</b>!', name=name)
 
-@put('/sendDocument')
+@route('/sendDocument', method=['OPTIONS', 'PUT'])
+@enable_cors
 def sendDocument():
 	documentJson = request.json
 	docUUID = uuid.uuid1()

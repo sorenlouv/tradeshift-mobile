@@ -16,7 +16,12 @@
 </header>
 
 <div class="business-intelligence">
-    <h3>Current business</h3>
+
+  <div class="chart">
+    <canvas id="chart" chart type="Line" options="chartOptions" data="chartData" width="400" height="200"></canvas>
+  </div>
+
+  <h3>Current business</h3>
     <ul class="current-business">
         <li ng-repeat="(company_id, company) in companies" ng-show="company_id !== currentUserCompany" >
           <a ng-href="/#/activity/{{company_id}}/">
