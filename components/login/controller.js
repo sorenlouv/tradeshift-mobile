@@ -19,8 +19,6 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
         email: facebookUser.email
       } : currentUserSnapshot.val();
 
-      console.log(currentUser);
-
       // resolve promise
       safeApply($scope, function(){
         deferred.resolve(currentUser);
@@ -41,8 +39,6 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
       var currentCompany = (companySnapshot.val() === null) ? {
         name: companyName
       } : companySnapshot.val();
-
-      console.log(currentCompany);
 
       // resolve promise
       safeApply($scope, function(){
@@ -103,21 +99,21 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
       var companyId = getValidIdentifier($scope.currentCompany.name);
 
       getOrCreateCurrentCompany(companyName).then(function(currentCompany){
-        // var currentCompanyRef = companiesRef.child(companyId);
+        var currentCompanyRef = companiesRef.child(companyId);
 
-        // // create 2-way binding between FireBase and angular models
-        // $scope.currentCompany = currentCompany;
-        // angularFire(currentCompanyRef, $scope, "currentCompany");
+        // create 2-way binding between FireBase and angular models
+        $scope.currentCompany = currentCompany;
+        angularFire(currentCompanyRef, $scope, "currentCompany");
 
-        // // update users company
-        // $rootScope.currentUser.company = companyId;
+        // update users company
+        $rootScope.currentUser.company = companyId;
       });
     }
   };
 
   // login with facebook
   var auth = new FirebaseSimpleLogin(usersRef, onAuthenticationChange);
-  $scope.login = function(){
+  $scope.facebookLogin = function(){
     auth.login('facebook', {
       rememberMe: true,
       scope: 'email,user_likes'
