@@ -1,10 +1,10 @@
-app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '$rootScope', function ($scope, $routeParams, angularFire, $rootScope) {
+app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '$rootScope', 'helpers', function ($scope, $routeParams, angularFire, $rootScope, helpers) {
 
   'use strict';
 
   var companyId             = $routeParams.company_id,
       currentUserCompany    = $rootScope.currentUser.company,
-      activityId            = getActivityId($rootScope.currentUser.company, companyId),
+      activityId            = helpers.getActivityId($rootScope.currentUser.company, companyId),
 
       // Get Firebase data
       companyRef            = new Firebase($rootScope.fireBaseUrl + "/companies/" + companyId),
