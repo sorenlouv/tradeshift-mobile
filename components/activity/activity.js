@@ -78,7 +78,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
 
   $scope.setQuantity = function(val) {
     $scope.newActivity.product.quantity = val;
-  }
+  };
 
   $scope.lineAction = function() {
     $('.picker').show();
@@ -96,4 +96,10 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $('.newProduct input').val('');
     $('.newProduct-picker').hide();
   };
+
+  $scope.addCompany = function() {
+    console.log(this);
+    console.log("hmm");
+  };
+
 }]);

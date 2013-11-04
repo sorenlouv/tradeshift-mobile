@@ -205,7 +205,7 @@ header {
 
 .business-intelligence {
 	padding: 11px;
-	min-height: 600px;
+	min-height: 500px;
 	h3 {
 		margin: 0px;
 		padding-top: 0px;
@@ -219,19 +219,25 @@ header {
 			width: 100%;
 			padding-bottom: 5px;
 			list-style: none;
+			border-bottom: 1px dotted #eee;
 			.img {
-				max-width: 200px;
-				width: 50%;
-				float: left;
+				max-width: 100px;
+				float: right;
 				img {
 					width: 96%;
 				}
 			}
 			.details {
+				font-size: 14px;
 				float: left;
-				width: 50%;
+				margin-top: -2px;
 				a {
+					text-transform: capitalize;
+					font-weight: 600;
 					display: block;
+				}
+				span {
+					font-weight: 300;
 				}
 			}
 		}
@@ -349,7 +355,6 @@ header {
 		width: calc(~" 100% - 8px ");
 		margin-bottom: 11px;
 	}
-
 	.picker-bg {
 		position: relative;
 		z-index: 9;
@@ -368,7 +373,6 @@ header {
 		.comment {
 			margin-bottom: 22px;
 		}
-
 	}
 	.picker-content {
 		z-index: 11;
