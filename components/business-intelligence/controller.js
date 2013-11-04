@@ -2,7 +2,7 @@ app.controller('BusinessIntelligenceController', ['$scope', 'angularFire', '$roo
   'use strict';
 
   // Companies
-  var companiesRef = new Firebase("https://tradeshift-mobile.firebaseio.com/companies"),
+  var companiesRef = new Firebase($rootScope.fireBaseUrl + "/companies"),
       currentUserCompany    = $rootScope.currentUser.company;
 
   $scope.companies = {};
