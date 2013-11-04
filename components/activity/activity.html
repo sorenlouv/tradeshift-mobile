@@ -17,8 +17,8 @@
 
 <div class="transactions">
   <div class="transaction" ng-repeat="line in activity.lines" ng-click="lineAction()">
-    <div class="creator"><img src="{{line.user.image}}" alt=""></div>
-
+    <div class="creator"><img ng-src="{{line.user.image}}?width=80&height=80" alt=""></div>
+    <input type="checkbox" class="to-be-settled"/>
     <div class="update">
       <div class="object">
         <span class="primary">{{line.product.quantity}} * {{line.product.title}}</span>
@@ -72,6 +72,7 @@
     </div>
   </div>
 
+
   <div class="product-picker">
     <div class="picker-content">
       <div class="picker-header">
@@ -98,6 +99,7 @@
     </div>
   </div>
 
+  <!-- Sidebar: Add product to activity -->
   <div class="select-picker">
     <div class="picker-content">
       <div class="picker-header">
@@ -159,6 +161,7 @@
     </div>
   </div>
 
+  <!-- Sidebar: Create new product -->
   <div class="newProduct-picker">
     <div class="picker-content">
       <div class="picker-header">
@@ -194,6 +197,7 @@
     </div>
   </div>
 
+  <!-- Sidebar: Add comment  -->
   <div class="lineActions-picker">
     <div class="picker-content">
       <div class="picker-header">
