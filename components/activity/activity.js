@@ -7,27 +7,26 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   };
 
   var company_id      = $routeParams.company_id,
-      my_company_id   = $rootScope.currentUser.company,
-      handle          = createActivityHandle($rootScope.currentUser.company, company_id),
+      currentCompany   = $rootScope.currentUser.company,
+      activityId          = createActivityHandle($rootScope.currentUser.company, company_id),
 
       // Get Firebase data
-      company         = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + company_id),
-      my_company      = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + my_company_id),
-      activity      = new Firebase("https://tradeshift-mobile.firebaseio.com/activities/" + handle);
-
-
-
-
+      companyRef         = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + company_id),
+      currentCompanyRef  = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + currentCompany),
+      productsRef        = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + my_company_id + "/products"),
+      activityRef        = new Firebase("https://tradeshift-mobile.firebaseio.com/activities/" + activityId);
 
   // Prepare scope variables
   $scope.company = {};
-  $scope.activities = {};
-  $scope.product = null;
-  $scope.product_price = {};
+  $scope.activity = {};
+  $scope.products = {};
+  $scope.new_activity = {};
+  
 
   // Bind firebase to scope
-  angularFire(company, $scope, 'company');
-  angularFire(activity, $scope, 'activity');
+  angularFire(companyRef, $scope, 'company');
+  angularFire(activityRef, $scope, 'activity');
+  angularFire(productsRef, $scope, 'products');
 
   // Sune's stuff
   $scope.addItem = function() {
@@ -44,30 +43,17 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $('.product-picker').show();
   };
 
-  $scope.selectProduct = function() {
+  $scope.selectProduct = function(product) {
+    $scope.new_activity.product = product;
     $('.select-picker').show();
   };
 
+  $scope.selectPrice = function(price) {
+    $scope.new_activity.product.custom_price = price;
+  }
+
   $scope.save = function() {
-    alert('saved!');
+    $scope.activities.push($scope.new_activity);
   };
 
 }]);
-
-
-
-
-
-// app.controller('TransactionController', ['$scope', 'angularFire', '$routeParams', function ($scope, angularFire, $routeParams) {
-//   'use strict';
-
-//   var company_id      = $routeParams.company_id,
-//       transaction_id  = $routeParams.transaction_id,
-//       transaction     = new Firebase("https://tradeshift-mobile.firebaseio.com/transactions/" + transaction_id);
-
-//   $scope.transaction = {};
-//   angularFire(transaction, $scope, 'transaction');
-
-//   $scope.transaction_id = transaction_id;
-
-// }]);
