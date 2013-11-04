@@ -1403,19 +1403,6 @@ fieldset {
   float: right;
   margin-top: 3px;
 }
-fieldset.uniform {
-  border: 0;
-  padding: 0;
-}
-fieldset.uniform label > span:first-child {
-  color: #1e1e1e;
-}
-fieldset.uniform label input {
-  padding: 0;
-  border: 0;
-  border-bottom: 1px solid #ddd;
-  outline: 0;
-}
 header {
   height: 44px;
   background-color: #1e1e1e;
