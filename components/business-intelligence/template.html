@@ -1,4 +1,9 @@
 <header>
+  <div class="back">
+    <a>
+      <i class="fa fa-align-justify"></i>
+    </a>
+  </div>
     <div>
         <h3>220.000 unsettled</h3>
         <span>It's a good day today!</span>
@@ -17,22 +22,19 @@
   </div>
 
   <h3>Current business</h3>
-  <ul class="current-business">
-      <li ng-repeat="(company_id, company) in companies" ng-show="company_id !== currentUserCompany" class="current-business">
-        <div class="details">
-            <a ng-href="/#/activity/{{company_id}}/" ng-bind="company.name" class="company-name"></a>
-            <span>DKK 4,000.00</span>
-        </div>
-        <div class="img">
-            <a ng-href="/#/activity/{{company_id}}/">
-                <img src="/images/top-logo.png">
-            </a>
-        </div>
-     </li>
-  </ul>
+    <ul class="current-business">
+        <li ng-repeat="(company_id, company) in companies" ng-show="company_id !== currentUserCompany" class="current-business">
+          <a ng-href="/#/activity/{{company_id}}/">
+              <span><i class="fa fa-exchange"></i></span>
+              <span ng-bind="company.name" class="company-name"></span>
+              <span class="amount">50.000 DKK</span>
+              <span class="img"><img src="/images/top-logo.png"></span>
+          </a>
+       </li>
+    </ul>
 
   <ul class="past-business">
-      <h3>Past business</h3>
+      <h3>Invoices</h3>
       <li>
           <a href="#">
               <span><i class="fa fa-long-arrow-left"></i></span>

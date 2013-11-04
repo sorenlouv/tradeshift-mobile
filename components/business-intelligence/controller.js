@@ -1,4 +1,4 @@
-app.controller('BusinessIntelligenceController', ['$scope', 'angularFire', '$rootScope', function ($scope, angularFire, $rootScope) {
+app.controller('BusinessIntelligenceController', ['$scope', 'angularFire', '$rootScope', 'documentService', function ($scope, angularFire, $rootScope, documentService) {
   'use strict';
 
   // Companies

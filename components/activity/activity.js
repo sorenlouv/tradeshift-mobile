@@ -52,19 +52,20 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $('.newProduct-picker').show();
   };
 
-  $scope.generateInvoice = function() {
+  $scope.clickSelectLinesForInvoice = function() {
+    $scope.selectLinesForInvoice = true;
+    $scope.selectedLines = [];
+
     $scope.hidePickers();
-    $('.creator').html("<input type='checkbox' checked value='test'>");
-    $('.transactions').prepend("<div class='generate'><p>5 items worth 120.000 excl tax (150.000 incl) selected</p><a class='button' >Generate invoice <i class='fa fa-cogs'></i></a></div");
   };
 
   /*********** New Activity ***************/
-  $scope.selectProduct = function(product) {
+  $scope.setProduct = function(product) {
     $scope.newActivity.product = angular.copy(product);
     $('.select-picker').show();
   };
 
-  $scope.selectPrice = function(price, e) {
+  $scope.setCustomPrice = function(price, e) {
     $scope.newActivity.product.custom_price = price;
   };
 
@@ -80,9 +81,24 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
 
 
   $scope.clickLine = function(lineId) {
-    $scope.clickedLineId = lineId;
-    $('.picker').show();
-    $('.lineActions-picker').show();
+    // click line to select/unselect for invoice
+    if($scope.selectLinesForInvoice){
+
+      var selectedIndex = $scope.selectedLines.indexOf(lineId);
+      // the line was already selected - de-select it!
+      if(selectedIndex > -1){
+        $scope.selectedLines.splice(selectedIndex, 1);
+      // select the line
+      }else{
+        $scope.selectedLines.push(lineId);
+      }
+
+    // click line to edit/add comment
+    }else{
+      $scope.clickedLineId = lineId;
+      $('.picker').show();
+      $('.lineActions-picker').show();
+    }
   };
 
   $scope.addNewProduct = function() {
