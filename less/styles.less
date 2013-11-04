@@ -17,14 +17,28 @@ a {
 	cursor: pointer;
 }
 
+h3 {
+	margin-top: 11px;
+	padding-bottom: 5px;
+	font-weight: 600;
+	font-size: 11px;
+	text-transform: uppercase;
+	border-bottom: 1px dotted #333;
+}
+
+fieldset {
+	border: none;
+}
+
 .button {
 	font-size: 14px;
 	color: white;
 	padding: 11px;
 	background-color: @tsblue;
-	width: calc(~" 100% - 22px ");
+	width: 100%;
 	display: inline-block;
 	.rounded();
+	border: none;
 
 	i {
 		float: right;
@@ -223,14 +237,7 @@ header {
 
 		}
 	}
-	h3 {
-		margin-top: 11px;
-		padding-bottom: 5px;
-		font-weight: 600;
-		font-size: 11px;
-		text-transform: uppercase;
-		border-bottom: 1px dotted #333;
-	}
+
 	.current-business {
 		padding-top: 11px;
 	}
@@ -257,6 +264,10 @@ header {
 		text-align: center;
 		padding-top: 11px;
 		display: block;
+
+		a {
+			width: calc(~" 100% - 22px ");
+		}
 	}
 }
 
@@ -276,6 +287,15 @@ header {
 		text-transform: uppercase;
 		font-weight: 600;
 	}
+	.quantity {
+
+		li {
+			display: inline-block;
+			height: 22px;
+			margin-bottom: 5px;
+		}
+	}
+
 
 	ul {
 		padding: 0px;
@@ -296,6 +316,7 @@ header {
 				float: right;
 				margin-top: 4px;
 			}
+
 			.discount {
 				float: right;
 				color: lighten(@active, 25%);
@@ -321,6 +342,11 @@ header {
 	.picker-data {
 		display: block;
 		padding: 11px;
+
+		input {
+			background-color: @xliteliter;
+			border: none;
+		}
 
 	}
 	.picker-content {

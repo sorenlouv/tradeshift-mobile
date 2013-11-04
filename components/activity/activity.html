@@ -121,18 +121,31 @@
 							<span class="discount">30% discount</span>
 						</li>
 						<li>
-							<input type="text" placeholder="New price" ng-bind="newActivity.product.custom_price">
+							<input type="text" placeholder="Other price" ng-bind="newActivity.product.custom_price">
 						</li>
 					</ul>
 
-					<h3>Quantity</h3>
-					<input type="text" placeholder="1" ng-model="newActivity.product.quantity" />
+					<h3>Select quantity</h3>
+					<ul class="quantity">
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+						<li>4</li>
+						<li>5</li>
+						<li>6</li>
+						<li>7</li>
+						<li>8</li>
+						<li>9</li>
+						<li>10</li>
+						<li>
+							<input type="text" placeholder="Other quantity" ng-model="newActivity.product.quantity">
+						</li>
+					</ul>
 
 					<h3>Comment</h3>
-					<fieldset class="uniform">
-						<label><span>Add comment</span></label>
-						<input type="text" placeholder="Comment" ng-model="newActivity.description" class="_textual">
-					</fieldset>
+					<input type="text" placeholder="Optional comment" ng-model="newActivity.description" class="_textual">
+
+					<br><br>
 
 					<button class="button" type="submit">Done</button>
 				</form>
