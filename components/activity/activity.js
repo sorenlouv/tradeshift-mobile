@@ -6,14 +6,14 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     return (company1 < company2 ? company1 + "-" + company2 : company2 + "-" + company1);
   };
 
-  var company_id      = $routeParams.company_id,
+  var companyId      = $routeParams.company_id,
       currentUserCompany   = $rootScope.currentUser.company,
-      activityId          = getActivityId($rootScope.currentUser.company, company_id),
+      activityId          = getActivityId($rootScope.currentUser.company, companyId),
 
       // Get Firebase data
-      companyRef         = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + company_id),
+      companyRef         = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + companyId),
       currentUserCompanyRef  = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + currentUserCompany),
-      productsRef        = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + my_company_id + "/products"),
+      productsRef        = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + currentUserCompany + "/products"),
       activityRef        = new Firebase("https://tradeshift-mobile.firebaseio.com/activities/" + activityId);
 
   // Prepare scope variables
@@ -50,7 +50,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
 
   $scope.selectPrice = function(price) {
     $scope.new_activity.product.custom_price = price;
-  }
+  };
 
   $scope.save = function() {
     $scope.activities.push($scope.new_activity);
