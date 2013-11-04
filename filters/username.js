@@ -11,6 +11,7 @@ angular.module('usernameFilter', []).filter('username', function($timeout, $root
 
   function realFilter(input){
     var user = users[input];
+    if(user === undefined) return;
     return user.name;
   }
 

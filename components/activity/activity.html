@@ -15,7 +15,7 @@
   </div>
 </header>
 <div class="transactions">
-  <div class="transaction" ng-repeat="(lineId, line) in activity.lines" ng-click="lineAction(lineId)">
+  <div class="transaction" ng-repeat="(lineId, line) in activity.lines" ng-click="clickLine(lineId)">
     <div class="creator"><img ng-src="{{line.user.image}}?width=80&height=80" alt=""></div>
     <!-- <input type="checkbox" class="to-be-settled"/> -->
     <div class="update">
@@ -34,7 +34,7 @@
         <span class="content">{{line.description}}</span>
       </div>
       <div class="comment" ng-repeat="comment in line.comments">
-        <span class="person"><a href="#">{{comment.user.name.split(' ')[0]}}</a></span>
+        <span class="person"><a href="#">{{comment.user | username}}</a></span>
         <span class="content">{{comment.comment}}</span>
       </div>
     </div>
@@ -201,7 +201,7 @@
   </div>
 
 <!-- Sidebar: Add comment  -->
-  <div class="lineActions-picker" ng-controller="CommentController">
+  <div class="lineActions-picker">
     <div class="picker-content">
       <div class="picker-header">
         <h1>Options</h1>
@@ -212,7 +212,7 @@
       <div class="picker-data">
         <ul>
           <h3>Comment</h3>
-            <form class="comment-form" ng-submit="postComment(lineId)">
+            <form class="comment-form" ng-submit="postComment()">
               <textarea></textarea>
               <button type="submit">Post comment</button>
             </form>

@@ -76,7 +76,8 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $scope.newActivity.product.quantity = val;
   };
 
-  $scope.lineAction = function(lineId) {
+  $scope.clickLine = function(lineId) {
+    $scope.clickedLineId = lineId;
     $('.picker').show();
     $('.lineActions-picker').show();
   };
@@ -92,6 +93,16 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
 
     $('.newProduct input').val('');
     $('.newProduct-picker').hide();
+  };
+
+  $scope.postComment = function() {
+    var comment = $('.comment-form textarea').val();
+    activityRef.child('lines').child($scope.clickedLineId).child('comments').push({
+      comment: comment,
+      user: $rootScope.currentUser.id
+    });
+
+    $('.picker').hide();
   };
 
 }]);
