@@ -38,12 +38,12 @@
 </div>
 
 <section class="picker" >
-	<div class="picker-bg" ng-click="hidePicker()"></div>
+	<div class="picker-bg" ng-click="hidePickers()"></div>
 	<div class="add-picker">
 		<div class="picker-content">
 			<div class="picker-header">
 				<h1>Actions</h1>
-				<a ng-click="hidePicker()">
+				<a ng-click="hidePickers()">
 					<i class="fa fa-times"></i>
 				</a>
 			</div>
@@ -75,7 +75,7 @@
 		<div class="picker-content">
 			<div class="picker-header">
 				<h1>Add product</h1>
-				<a ng-click="hidePicker()">
+				<a ng-click="hidePickers()">
 					<i class="fa fa-times"></i>
 				</a>
 			</div>
@@ -91,7 +91,7 @@
 		<div class="picker-content">
 			<div class="picker-header">
 				<h1>{{new_activity.product.name}}</h1>
-				<a ng-click="hidePicker()">
+				<a ng-click="hidePickers()">
 					<i class="fa fa-times"></i>
 				</a>
 			</div>
@@ -101,7 +101,7 @@
 					<li ng-click="selectPrice(new_activity.product.price)">{{new_activity.product.price | currency: new_activity.product.currency}}</li>
 					<li ng-click="selectPrice(new_activity.product.price * 0.9)">{{(new_activity.product.price * 0.9) | currency: new_activity.product.currency}}<span class="discount">10% discount</span></li>
 					<li ng-click="selectPrice(new_activity.product.price * 0.8)">{{(new_activity.product.price * 0.8) | currency: new_activity.product.currency}}<span class="discount">20% discount</span></li>
-					<li ng-click="selectPrice(new_activity.product.price * 0.7)">{{(new_activity.product.price * 0.7) | currency: new_activity.product.currency}}<span class="discount">30% discount</span></li>			
+					<li ng-click="selectPrice(new_activity.product.price * 0.7)">{{(new_activity.product.price * 0.7) | currency: new_activity.product.currency}}<span class="discount">30% discount</span></li>
 					<li><input type="text" placeholder="New price" ng-bind="new_activity.product.custom_price"></li>
 				</ul>
 				<h3>Comment</h3>

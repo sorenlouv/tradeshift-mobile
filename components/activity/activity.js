@@ -20,7 +20,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   $scope.company = {};
   $scope.activity = {};
   $scope.products = {};
-  $scope.new_activity = {};
+  $scope.newActivity = {};
 
 
   // Bind firebase to scope
@@ -33,7 +33,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $('.picker').show();
   };
 
-  $scope.hidePicker = function() {
+  $scope.hidePickers = function() {
     $('.picker').hide();
     $('.product-picker').hide();
     $('.select-picker').hide();
@@ -44,16 +44,16 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   };
 
   $scope.selectProduct = function(product) {
-    $scope.new_activity.product = product;
+    $scope.newActivity.product = product;
     $('.select-picker').show();
   };
 
   $scope.selectPrice = function(price) {
-    $scope.new_activity.product.custom_price = price;
+    $scope.newActivity.product.custom_price = price;
   };
 
   $scope.save = function() {
-    $scope.activities.push($scope.new_activity);
+    $scope.activities.push($scope.newActivity);
   };
 
 }]);
