@@ -1389,6 +1389,11 @@ h3 {
 fieldset {
   border: none;
 }
+canvas {
+  width: 100% !important;
+  max-width: 800px;
+  height: auto !important;
+}
 .button {
   font-size: 14px;
   color: white;
@@ -1396,6 +1401,7 @@ fieldset {
   background-color: #20a0e9;
   width: 100%;
   display: inline-block;
+  cursor: pointer;
   border-radius: 3px;
   border: none;
 }
@@ -1410,15 +1416,16 @@ header {
   display: block;
 }
 header h3 {
-  text-transform: lowercase;
+  text-transform: capitalize;
   color: white;
   font-size: 14px;
   font-weight: 400;
   text-align: center;
   display: block;
   line-height: 0px;
-  padding: 17px 0px 0 0;
+  padding: 22px 0px 0 0;
   margin: 0px;
+  border-bottom: none;
 }
 header span {
   display: inline;
@@ -1547,6 +1554,16 @@ header i {
 .transactions .transaction .comments .comment .content {
   font-weight: 400;
 }
+.transactions .total h2 {
+  border-bottom: 3px double #ccc;
+  margin-right: 11px;
+  float: right;
+  font-size: 18px;
+}
+.transactions .total span {
+  font-size: 14px;
+  margin-right: 5px;
+}
 .business-intelligence {
   padding: 11px;
   min-height: 500px;
@@ -1561,66 +1578,45 @@ header i {
   margin: 0px;
 }
 .business-intelligence .current-business li {
-  width: 100%;
-  list-style: none;
+  height: 44px;
   border-bottom: 1px dotted #eee;
-  float: left;
-  margin-top: 11px;
-  padding: 1px 0px;
 }
-.business-intelligence .current-business li .img {
+.business-intelligence .current-business li .amount {
   float: right;
 }
-.business-intelligence .current-business li .img img {
-  margin-top: -5px;
-  max-height: 30px;
-}
 .business-intelligence .current-business li span {
-  font-weight: 400;
-  width: 30%;
   display: inline-block;
+  margin-top: 11px;
 }
 .business-intelligence .current-business li span:first-child {
-  width: 6%;
+  width: 20px;
 }
-.business-intelligence .current-business li span:last-child {
-  text-align: right;
+.business-intelligence .current-business .total h2 {
+  margin: 8px 0px 0px 0px;
+  border-bottom: 3px double #ccc;
+  float: right;
+  font-size: 18px;
 }
-.business-intelligence .current-business li span:nth-child(3) {
-  text-align: center;
+.business-intelligence .current-business .total span {
   font-size: 14px;
-  font-weight: 300;
-  color: #999;
-  font-style: italic;
+  margin-right: 5px;
 }
 .business-intelligence .past-business {
   margin-top: 22px;
 }
 .business-intelligence .past-business li {
-  padding-top: 11px;
-  height: 30px;
+  height: 44px;
   border-bottom: 1px dotted #eee;
 }
+.business-intelligence .past-business li .amount {
+  float: right;
+}
 .business-intelligence .past-business li span {
-  font-weight: 400;
-  width: 30%;
   display: inline-block;
+  margin-top: 11px;
 }
 .business-intelligence .past-business li span:first-child {
-  width: 6%;
-}
-.business-intelligence .past-business li span:last-child {
-  text-align: right;
-}
-.business-intelligence .past-business li span:nth-child(3) {
-  text-align: center;
-}
-.business-intelligence .past-business li .total,
-.business-intelligence .past-business li .date {
-  font-size: 14px;
-  font-weight: 300;
-  color: #999;
-  font-style: italic;
+  width: 20px;
 }
 .business-intelligence .load-more {
   text-align: center;
@@ -1761,4 +1757,7 @@ header i {
   display: none;
   z-index: 14;
   position: relative;
+}
+.picker .newProduct-picker input {
+  width: 100%;
 }

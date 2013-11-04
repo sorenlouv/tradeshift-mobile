@@ -6,7 +6,7 @@
   </div>
   <div>
     <h3 ng-bind="company.name"></h3>
-    <span>To be invoiced: 4.000</span>
+<!--     <span>To be invoiced: 4.000</span> -->
   </div>
   <div class="add" >
     <a ng-click="addItem()">
@@ -39,7 +39,11 @@
       </div>
     </div>
   </div>
+  <div class="total">
+    <h2><span>Total due </span> 40.000</h2>
+  </div>
 </div>
+
 
 <section class="picker" >
   <div class="picker-bg" ng-click="hidePickers()"></div>
@@ -203,24 +207,19 @@
         <form ng-submit="addNewProduct()" class="newProduct">
           <ul>
             <li>
-              <h3>Title</h3>
-              <input type="text" name="title" placeholder="Title">
+              <input type="text" name="title" placeholder="Name">
             </li>
             <li>
-              <h3>Price</h3>
               <input type="number" name="price" placeholder="Price">
             </li>
             <li>
-              <h3>Currency</h3>
               <input type="text" name="currency" placeholder="Currency">
             </li>
             <li>
-              <h3>Select tax</h3>
-              <input type="number" placeholder="25" name="tax">
-              <span>%</span>
+                <input type="number" name="tax" placeholder="Tax %">
             </li>
           </ul>
-          <button type="submit">Save</button>
+          <button type="submit" class="button">Save</button>
         </form>
       </div>
     </div>

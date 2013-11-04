@@ -30,6 +30,11 @@ fieldset {
 	border: none;
 }
 
+canvas{
+    width: 100% !important;
+    max-width: 800px;
+    height: auto !important;
+}
 
 .button {
 	font-size: 14px;
@@ -38,6 +43,7 @@ fieldset {
 	background-color: @tsblue;
 	width: 100%;
 	display: inline-block;
+	cursor: pointer;
 	.rounded();
 	border: none;
 
@@ -54,15 +60,16 @@ header {
 	display: block;
 
 	h3 {
-		text-transform: lowercase;
+		text-transform: capitalize;
 		color: white;
 		font-size: 14px;
 		font-weight: 400;
 		text-align: center;
 		display: block;
 		line-height: 0px;
-		padding: 17px 0px 0 0;
+		padding: 22px 0px 0 0;
 		margin: 0px;
+		border-bottom: none;
 	}
 	span {
 		display: inline;
@@ -203,6 +210,18 @@ header {
 			}
 		}
 	}
+	.total {
+		h2 {
+			border-bottom: 3px double #ccc;
+			margin-right: 11px;
+			float: right;
+			font-size: 18px;
+		}
+		span {
+			font-size: 14px;
+			margin-right: 5px;
+		}
+	}
 }
 
 .business-intelligence {
@@ -212,7 +231,6 @@ header {
 		margin: 0px;
 		padding-top: 0px;
 	}
-
 	ul {
 		overflow: hidden;
 		padding: 0px;
@@ -221,69 +239,47 @@ header {
 
 	.current-business {
 		li {
-			width: 100%;
-			list-style: none;
+			height: 44px;
 			border-bottom: 1px dotted #eee;
-			float: left;
-			margin-top: 11px;
-			padding: 1px 0px;
-			.img {
+			.amount {
 				float: right;
-				img {
-
-					margin-top: -5px;
-					max-height: 30px;
+			}
+			span {
+				display: inline-block;
+				margin-top: 11px;
+				&:first-child {
+					width: 20px;
 				}
 			}
-
+		}
+		.total {
+			h2 {
+				margin: 8px 0px 0px 0px;
+				border-bottom: 3px double #ccc;
+				float: right;
+				font-size: 18px;
+			}
 			span {
-				font-weight: 400;
-				width: 30%;
-				display: inline-block;
-				&:first-child {
-					width: 6%;
-				}
-				&:last-child {
-					text-align: right;
-				}
-				&:nth-child(3) {
-					text-align: center;
-					font-size: 14px;
-					font-weight: 300;
-					color: #999;
-					font-style: italic;
-				}
+				font-size: 14px;
+				margin-right: 5px;
 			}
 		}
 	}
 
 	.past-business {
 		margin-top: 22px;
-
 		li {
-			padding-top: 11px;
-			height: 30px;
+			height: 44px;
 			border-bottom: 1px dotted #eee;
-			span {
-				font-weight: 400;
-				width: 30%;
-				display: inline-block;
-				&:first-child {
-					width: 6%;
-				}
-
-				&:last-child {
-					text-align: right;
-				}
-				&:nth-child(3) {
-					text-align: center;
-				}
+			.amount {
+				float: right;
 			}
-			.total, .date {
-				font-size: 14px;
-				font-weight: 300;
-				color: #999;
-				font-style: italic;
+			span {
+				display: inline-block;
+				margin-top: 11px;
+				&:first-child {
+					width: 20px;
+				}
 			}
 		}
 	}
@@ -442,6 +438,9 @@ header {
 		display: none;
 		z-index: 14;
 		position: relative;
+		input {
+			width: 100%;
+		}
 	}
 }
 

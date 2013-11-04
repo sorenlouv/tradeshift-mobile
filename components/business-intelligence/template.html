@@ -5,9 +5,9 @@
     </a>
   </div>
     <div>
-        <h3>220.000 unsettled</h3>
-        <span>It's a good day today!</span>
-    </div>
+        <h3>Overview</h3>
+<!--         <span>It's a good day today!</span>
+ -->    </div>
     <div class="add" >
       <a ng-click="addCompany()">
         <i class="fa fa-plus-circle" ></i>
@@ -16,17 +16,18 @@
 </header>
 
 <div class="business-intelligence">
-
     <h3>Current business</h3>
     <ul class="current-business">
-        <li ng-repeat="(company_id, company) in companies" ng-show="company_id !== currentUserCompany" class="current-business">
+        <li ng-repeat="(company_id, company) in companies" ng-show="company_id !== currentUserCompany" >
           <a ng-href="/#/activity/{{company_id}}/">
               <span><i class="fa fa-exchange"></i></span>
               <span ng-bind="company.name" class="company-name"></span>
               <span class="amount">50.000 DKK</span>
-              <span class="img"><img src="/images/top-logo.png"></span>
           </a>
        </li>
+      <div class="total">
+        <h2><span>Total </span> 40.000</h2>
+      </div>
     </ul>
 
   <ul class="past-business">
@@ -34,33 +35,15 @@
       <li>
           <a href="#">
               <span><i class="fa fa-long-arrow-left"></i></span>
-              <span>YayArt</span>
-              <span class="total">50.000 DKK</span>
-              <span class="date">12.01.13</span>
-          </a>
-      </li>
-       <li>
-          <a href="#">
-          <span><i class="fa fa-long-arrow-right"></i></span>
-              <span>YayArt</span>
-              <span class="total">50.000 DKK</span>
-              <span class="date">12.01.13</span>
+              <span>YayArt, 12.01.13</span>
+              <span class="amount">50.000 DKK</span>
           </a>
       </li>
       <li>
           <a href="#">
-              <span><i class="fa fa-long-arrow-left"></i></span>
-              <span>YayArt</span>
-              <span class="total">50.000 DKK</span>
-              <span class="date">12.01.13</span>
-          </a>
-      </li>
-      <li>
-          <a href="#">
-              <span><i class="fa fa-long-arrow-left"></i></span>
-              <span>YayArt</span>
-              <span class="total">50.000 DKK</span>
-              <span class="date">12.01.13</span>
+              <span><i class="fa fa-long-arrow-right"></i></span>
+              <span>YayArt, 12.01.13</span>
+              <span class="amount">50.000 DKK</span>
           </a>
       </li>
   </ul>
