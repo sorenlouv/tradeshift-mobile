@@ -1,6 +1,16 @@
+<header>
+    <div>
+        <h3>Current business</h3>
+        <span>To be invoiced: 220.000</span>
+    </div>
+</header>
 
-<h1>Business</h1>
-Companies you are doing business with:
-<ul ng-repeat="(company_id, company) in companies">
-  <li><a ng-href="/#/activity/{{company_id}}/" ng-bind="company.name"></a></li>
-</ul>
+<div class="business-intelligence">
+    <ul ng-repeat="(company_id, company) in companies">
+        <li>
+<!--             <a ng-href="/#/activity/{{company_id}}/" ng-bind="company.name"></a> -->
+            <img src="/images/top-logo.png">
+           
+        </li>
+    </ul>
+</div>

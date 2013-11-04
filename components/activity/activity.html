@@ -6,7 +6,7 @@
 	</div>
 	<div>
 		<h3 ng-bind="company.name"></h3>
-		<span>120.000 · ( 30.000 ) </span>
+		<span>To be invoiced: 4.000</span>
 	</div>
 	<div class="add" >
 		<a ng-click="addItem()">
@@ -15,17 +15,19 @@
 	</div>
 </header>
 	
-<div class="transactions"  ng-repeat="activity in activities">
+<div class="transactions" >
 	<div class="transaction">
-		<!-- <img scr="/images/sqren.jpg"> -->
+		<div class="creator">
+			<img src="/images/sqren.jpg" class="person"/>
+		</div>
 		<div class="update">
 			<div class="object">
 				<span class="primary">4 * Product 3</span>
 				<span class="secondary">1000 pr. piece</span>
 			</div>
 			<div class="price">
-				<span class="primary">2000 DKK</span>
-				<span class="secondary">Total</span>
+				<span class="primary">2000</span>
+				<span class="secondary">DKK</span>
 			</div>
 		</div>
 		<div class="comments">
@@ -40,15 +42,17 @@
 		</div>
 	</div>
 	<div class="transaction">
-		<!-- <img scr="/images/sqren.jpg"> -->
+		<div class="creator">
+			<img src="/images/sqren.jpg" class="person" />
+		</div>
 		<div class="update">
 			<div class="object">
 				<span class="primary">4 * Product 3</span>
 				<span class="secondary">1000 pr. piece</span>
 			</div>
 			<div class="price">
-				<span class="primary">2000 DKK</span>
-				<span class="secondary">Total</span>
+				<span class="primary">2000 </span>
+				<span class="secondary">DKK</span>
 			</div>
 		</div>
 		<div class="comments">
@@ -89,9 +93,9 @@
 						<i class="fa fa-chevron-right"></i>
 					</li>
 				</ul>
-				<h3>Settle</h3>
+				<h3>Other</h3>
 				<ul>
-					<li>Transactions</li>
+					<li ng-click="generaInvoice()">Generate invoice </li>
 				</ul>
 			</div>
 		</div>
@@ -107,8 +111,18 @@
 			</div>
 			<div class="picker-data">
 				<ul>
-					<li ng-click="selectProduct()">Product 1</li>
-					<li>Product 2</li>
+					<li ng-click="selectProduct()">
+						Product 1
+						<i class="fa fa-chevron-right"></i>
+					</li>
+					<li ng-click="selectProduct()">
+						Product 2
+						<i class="fa fa-chevron-right"></i>
+					</li>
+					<li>
+						New product
+						<i class="fa fa-chevron-right"></i>
+					</li>
 				</ul>
 			</div>
 		</div>		
@@ -129,14 +143,17 @@
 					<li>900<span class="discount">10% discount</span></li>
 					<li ng-click="selectProduct()">800 <span class="discount">20% discount</span></li>
 					<li ng-click="selectProduct()">700 <span class="discount">30% discount</span></li>			
-
 					<li><input type="text" placeholder="New price"></li>
 				</ul>
 				<h3>Comment</h3>
-				<fieldset class="uniform">
-					<label><span>Add comment</span></label>
-					<input type="text" placeholder="Comment" class="_textual">
-				</fieldset>
+			<fieldset class="uniform">
+		          <p>
+		            <label class="_textual">
+		              <span class="t">Company name</span>
+		              <input ng-model="rest.accountInfo.CompanyName" autocomplete="off" type="text" class="_textual ng-pristine ng-valid">
+		            </label>
+		          </p>
+		        </fieldset>
 				<a class="button" ng-click="hidePicker()">Done</a>
 			</div>
 		</div>		

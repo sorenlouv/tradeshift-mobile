@@ -2,7 +2,7 @@
 @import "_mixins.less";
 @import "_variables.less";
 @import "font-awesome/font-awesome.less";
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600);
 
 body {
 	font-family: 'Open Sans', sans-serif;
@@ -17,39 +17,6 @@ a {
 	cursor: pointer;
 }
 
-ul {
-		padding: 0px;
-		margin: 0px 0px 22px 0px;
-
-		li {
-			color: @tsblue;
-			padding: 11px;
-			margin-bottom: 1px;
-			height: 22px;
-			list-style: none;
-			margin-left: 0px;
-			font-size: 14px;
-			background-color: @activelitest;
-
-			i {
-				float: right;
-				margin-top: 4px;
-			}
-			.discount {
-				float: right;
-				color: lighten(@active, 25%);
-				font-weight: 300;
-			}
-			
-
-			input {
-				margin: -11px -11px -11px 0;
-				height: 33px;
-				border: none;
-				background-color: transparent;
-			}
-		}
-	}
 
 header {
 	height: 44px;
@@ -72,6 +39,7 @@ header {
 		font-size: 11px;
 		color: white;
 		font-weight: 300;
+		color: #ccc;
 	}
 	.back {
 		position: absolute;
@@ -100,7 +68,6 @@ header {
 	}
 	i {
 		margin-top: 15px;
-
 		color: white;
 	}
 }
@@ -109,6 +76,33 @@ header {
 	background-color: #eee;
 	padding-top: 6px;
 	height: 100%;
+
+	.generate {
+		background-color: @info;
+		margin: 11px;
+		padding:22px;
+		margin-top: 5px;
+
+		p {
+			margin: 0px;
+			font-size: 14px;
+			margin-bottom: 11px;
+		}
+		.button {
+			font-size: 14px;
+			color: white;
+			padding: 11px;
+			background-color: @tsblue;
+			width: calc(~" 100% - 22px ");
+			display: inline-block;
+			.rounded();
+
+			i {
+				float: right;
+				margin-top: 3px;
+			}
+		}
+	}
 
 	.transaction {
 		position: relative;
@@ -119,6 +113,22 @@ header {
 		background-color: white;
 		margin: 0px 5px -5px 5px;
 
+		.creator {
+			float: left;
+			height: 50px;
+			width: 60px;
+			img {
+				position: absolute;
+				left: 11px;
+				top:7px;
+				height: 45px;
+				.rounded(25px);
+				margin-right: 22px;
+			}
+			input {
+			}
+		}
+
 		.update {
 			display: block;
 			overflow: hidden;
@@ -127,8 +137,6 @@ header {
 				float: left;
 				height: 44px;
 				width: 67%;
-
-
 				.secondary {
 					float: left;
 				}
@@ -164,7 +172,7 @@ header {
 			.comment {
 				border-top: 1px dotted #eee;
 				
-				.rounded(3px);
+				
 				padding:11px 0px;
 
 				.person{
@@ -184,12 +192,38 @@ header {
 }
 
 .business-intelligence {
-	h3 {
-		margin-top: 0px;
-	}
 	padding: 11px;
-}
 
+	h3 {
+		margin: 0px;
+		padding-top: 0px;
+	}
+
+	ul {
+		padding: 0px;
+		margin: 0px;
+		li {
+			float: left;
+			width: 50%;
+			img {
+				width: 96%;
+			}
+
+			padding-bottom: 11px;
+			list-style: none;
+
+			span {
+				display: block;
+
+				margin-top: 1px;
+				font-size: 14px;
+				font-style: italic;
+				font-weight: 300;
+				color: #ccc;
+			}
+		}
+	}	
+}
 
 
 .picker {
@@ -208,7 +242,43 @@ header {
 		font-weight: 600;
 	}
 
+	ul {
+		padding: 0px;
+		margin: 0px 0px 22px 0px;
+
+		li {
+			color: @tsblue;
+			padding: 11px;
+			margin-bottom: 1px;
+			height: 22px;
+			list-style: none;
+			margin-left: 0px;
+			font-size: 14px;
+			background-color: @activelitest;
+			cursor: pointer;
+
+			i {
+				float: right;
+				margin-top: 4px;
+			}
+			.discount {
+				float: right;
+				color: lighten(@active, 25%);
+				font-weight: 300;
+			}
+		
+			input {
+				margin: -11px -11px -11px 0;
+				height: 33px;
+				border: none;
+				background-color: transparent;
+			}
+		}
+	}
+
 	.picker-bg {
+		position: relative;
+		z-index: 9;
 		width: 100%;
 		height: 100%;
 		background-color:rgba(50,50,50,0.8);
@@ -226,6 +296,7 @@ header {
 		right: 0;
 		background-color: white;
 		height: 100%;
+		overflow: scroll;
 
 		.picker-header {
 			background-color: @tsblue;

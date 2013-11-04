@@ -47,10 +47,6 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
 
 
 
-
-
-
-
   // Sune's stuff
   $scope.addItem = function() {
     $('.picker').show();
@@ -65,10 +61,25 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   $scope.addProduct = function() {
     $('.product-picker').show();
   };
-  
+
   $scope.selectProduct = function() {
     $('.select-picker').show();
   };
+
+  $scope.generaInvoice = function() {
+    console.log("cik");
+    $('.picker').hide();
+    $('.product-picker').hide();
+    $('.select-picker').hide();
+    $('.creator').html("<input type='checkbox' checked value='test'>");
+    $('.transactions').prepend("<div class='generate'><p>5 items worth 120.000 excl tax (150.000 incl) selected</p><a class='button' >Generate invoice <i class='fa fa-cogs'></i></a></div");
+  };
+
+  $scope.generate = function() {
+    console.log("test");
+    $('.generate').hide();
+  };
+
 
 }]);
 

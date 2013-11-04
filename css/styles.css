@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600);
 /* Colors .................................................... */
 /* Mixins .................................................................................. */
 /* height of the navigation/search bar containers */
@@ -1378,35 +1378,6 @@ a {
   font-weight: 400;
   cursor: pointer;
 }
-ul {
-  padding: 0px;
-  margin: 0px 0px 22px 0px;
-}
-ul li {
-  color: #20a0e9;
-  padding: 11px;
-  margin-bottom: 1px;
-  height: 22px;
-  list-style: none;
-  margin-left: 0px;
-  font-size: 14px;
-  background-color: #ecf7fd;
-}
-ul li i {
-  float: right;
-  margin-top: 4px;
-}
-ul li .discount {
-  float: right;
-  color: #94d1f4;
-  font-weight: 300;
-}
-ul li input {
-  margin: -11px -11px -11px 0;
-  height: 33px;
-  border: none;
-  background-color: transparent;
-}
 header {
   height: 44px;
   background-color: #1e1e1e;
@@ -1428,6 +1399,7 @@ header span {
   font-size: 11px;
   color: white;
   font-weight: 300;
+  color: #ccc;
 }
 header .back {
   position: absolute;
@@ -1461,6 +1433,30 @@ header i {
   padding-top: 6px;
   height: 100%;
 }
+.transactions .generate {
+  background-color: #fdfed5;
+  margin: 11px;
+  padding: 22px;
+  margin-top: 5px;
+}
+.transactions .generate p {
+  margin: 0px;
+  font-size: 14px;
+  margin-bottom: 11px;
+}
+.transactions .generate .button {
+  font-size: 14px;
+  color: white;
+  padding: 11px;
+  background-color: #20a0e9;
+  width: calc( 100% - 22px );
+  display: inline-block;
+  border-radius: 3px;
+}
+.transactions .generate .button i {
+  float: right;
+  margin-top: 3px;
+}
 .transactions .transaction {
   position: relative;
   font-size: 16px;
@@ -1468,6 +1464,19 @@ header i {
   padding: 11px 11px 0px 11px;
   background-color: white;
   margin: 0px 5px -5px 5px;
+}
+.transactions .transaction .creator {
+  float: left;
+  height: 50px;
+  width: 60px;
+}
+.transactions .transaction .creator img {
+  position: absolute;
+  left: 11px;
+  top: 7px;
+  height: 45px;
+  border-radius: 25px;
+  margin-right: 22px;
 }
 .transactions .transaction .update {
   display: block;
@@ -1508,7 +1517,6 @@ header i {
 }
 .transactions .transaction .comments .comment {
   border-top: 1px dotted #eee;
-  border-radius: 3px;
   padding: 11px 0px;
 }
 .transactions .transaction .comments .comment .person {
@@ -1526,7 +1534,29 @@ header i {
   padding: 11px;
 }
 .business-intelligence h3 {
-  margin-top: 0px;
+  margin: 0px;
+  padding-top: 0px;
+}
+.business-intelligence ul {
+  padding: 0px;
+  margin: 0px;
+}
+.business-intelligence ul li {
+  float: left;
+  width: 50%;
+  padding-bottom: 11px;
+  list-style: none;
+}
+.business-intelligence ul li img {
+  width: 96%;
+}
+.business-intelligence ul li span {
+  display: block;
+  margin-top: 1px;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 300;
+  color: #ccc;
 }
 .picker {
   z-index: 10;
@@ -1543,7 +1573,39 @@ header i {
   text-transform: uppercase;
   font-weight: 600;
 }
+.picker ul {
+  padding: 0px;
+  margin: 0px 0px 22px 0px;
+}
+.picker ul li {
+  color: #20a0e9;
+  padding: 11px;
+  margin-bottom: 1px;
+  height: 22px;
+  list-style: none;
+  margin-left: 0px;
+  font-size: 14px;
+  background-color: #ecf7fd;
+  cursor: pointer;
+}
+.picker ul li i {
+  float: right;
+  margin-top: 4px;
+}
+.picker ul li .discount {
+  float: right;
+  color: #94d1f4;
+  font-weight: 300;
+}
+.picker ul li input {
+  margin: -11px -11px -11px 0;
+  height: 33px;
+  border: none;
+  background-color: transparent;
+}
 .picker .picker-bg {
+  position: relative;
+  z-index: 9;
   width: 100%;
   height: 100%;
   background-color: rgba(50, 50, 50, 0.8);
@@ -1560,6 +1622,7 @@ header i {
   right: 0;
   background-color: white;
   height: 100%;
+  overflow: scroll;
 }
 .picker .picker-content .picker-header {
   background-color: #20a0e9;
