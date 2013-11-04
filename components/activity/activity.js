@@ -13,21 +13,21 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
       // Get Firebase data
       company         = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + company_id),
       my_company      = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + my_company_id),
-      activity      = new Firebase("https://tradeshift-mobile.firebaseio.com/transactions/" + handle);
-
-
-
+      activity        = new Firebase("https://tradeshift-mobile.firebaseio.com/transactions/" + handle),
+      products        = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + my_company_id + "/products");
 
 
   // Prepare scope variables
   $scope.company = {};
   $scope.activities = {};
-  $scope.product = null;
-  $scope.product_price = {};
+  $scope.products = {};
+  $scope.new_activity = {};
+
 
   // Bind firebase to scope
   angularFire(company, $scope, 'company');
-  angularFire(activity, $scope, 'activity');
+  angularFire(activities, $scope, 'activities');
+  angularFire(products, $scope, 'products');
 
   // Sune's stuff
   $scope.addItem = function() {
@@ -44,30 +44,17 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $('.product-picker').show();
   };
 
-  $scope.selectProduct = function() {
+  $scope.selectProduct = function(product) {
+    $scope.new_activity.product = product;
     $('.select-picker').show();
   };
 
+  $scope.selectPrice = function(price) {
+    $scope.new_activity.product.custom_price = price;
+  }
+
   $scope.save = function() {
-    alert('saved!');
+    $scope.activities.push($scope.new_activity);
   };
 
 }]);
-
-
-
-
-
-// app.controller('TransactionController', ['$scope', 'angularFire', '$routeParams', function ($scope, angularFire, $routeParams) {
-//   'use strict';
-
-//   var company_id      = $routeParams.company_id,
-//       transaction_id  = $routeParams.transaction_id,
-//       transaction     = new Firebase("https://tradeshift-mobile.firebaseio.com/transactions/" + transaction_id);
-
-//   $scope.transaction = {};
-//   angularFire(transaction, $scope, 'transaction');
-
-//   $scope.transaction_id = transaction_id;
-
-// }]);
