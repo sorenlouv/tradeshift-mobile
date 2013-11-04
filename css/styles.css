@@ -1560,38 +1560,44 @@ header i {
   padding: 0px;
   margin: 0px;
 }
-.business-intelligence ul li {
-  float: left;
+.business-intelligence .current-business li {
   width: 100%;
-  padding: 8px 0px 3px 0px;
   list-style: none;
   border-bottom: 1px dotted #eee;
+  float: left;
+  margin-top: 11px;
+  padding: 1px 0px;
 }
-.business-intelligence ul li .img {
-  max-width: 100px;
+.business-intelligence .current-business li .img {
   float: right;
 }
-.business-intelligence ul li .img img {
-  width: 96%;
+.business-intelligence .current-business li .img img {
+  margin-top: -5px;
+  max-height: 30px;
 }
-.business-intelligence ul li .details {
+.business-intelligence .current-business li span {
+  font-weight: 400;
+  width: 30%;
+  display: inline-block;
+}
+.business-intelligence .current-business li span:first-child {
+  width: 6%;
+}
+.business-intelligence .current-business li span:last-child {
+  text-align: right;
+}
+.business-intelligence .current-business li span:nth-child(3) {
+  text-align: center;
   font-size: 14px;
-  float: left;
-  margin-top: -2px;
-}
-.business-intelligence ul li .details a {
-  text-transform: capitalize;
-  font-weight: 600;
-  display: block;
-}
-.business-intelligence ul li .details span {
   font-weight: 300;
+  color: #999;
+  font-style: italic;
 }
 .business-intelligence .past-business {
   margin-top: 22px;
 }
 .business-intelligence .past-business li {
-  padding-top: 13px;
+  padding-top: 11px;
   height: 30px;
   border-bottom: 1px dotted #eee;
 }
