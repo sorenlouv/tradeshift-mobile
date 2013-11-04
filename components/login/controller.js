@@ -34,7 +34,7 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
   var getOrCreateCurrentCompany = function(companyName){
     var deferred = $q.defer();
 
-    var companyId = getValidIdentifier($scope.currentCompany.name);
+    var companyId = getValidIdentifier(companyName);
     companiesRef.child(companyId).once('value', function(companySnapshot){
 
       // Create user if not exists, or fetch from DB
