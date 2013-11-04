@@ -13,8 +13,9 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
       // Get Firebase data
       company         = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + company_id),
       my_company      = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + my_company_id),
-      activity        = new Firebase("https://tradeshift-mobile.firebaseio.com/transactions/" + handle),
       products        = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + my_company_id + "/products");
+      activity      = new Firebase("https://tradeshift-mobile.firebaseio.com/activities/" + handle);
+
 
 
   // Prepare scope variables
