@@ -19,10 +19,10 @@
 		<div class="update">
 			<div class="object">
 				<span class="primary">{{line.product.quantity}} * {{line.product.title}}</span>
-				<span class="secondary">{{line.product.unit_price}} pr. piece</span>
+				<span class="secondary">{{line.product.custom_price | currency: line.product.currency}} pr. piece</span>
 			</div>
 			<div class="price">
-				<span class="primary">{{(line.product.unit_price * line.product.quantity) | currency: line.product.currency}}</span>
+				<span class="primary">{{(line.product.custom_price * line.product.quantity) | currency: line.product.currency}}</span>
 				<span class="secondary">Total</span>
 			</div>
 		</div>
@@ -33,6 +33,7 @@
 			</div>
 		</div>
 	</div>
+
 </div>
 
 <section class="picker" >
