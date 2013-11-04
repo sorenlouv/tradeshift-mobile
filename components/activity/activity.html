@@ -131,18 +131,27 @@
             </li>
           </ul>
 
+          <h3>Select tax</h3>
+          <ul>
+            <li>
+              <input type="text" placeholder="25" class="tax-input" ng-model="newActivity.product.tax">
+              <span>%</span>
+              <span class="discount"><span ng-bind="(((newActivity.product.tax / 100) * newActivity.product.price) | currency: newActivity.product.currency)">
+            </li>
+          </ul>
+
           <h3>Quantity</h3>
           <ul class="quantity">
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-            <li>6</li>
-            <li>7</li>
-            <li>8</li>
-            <li>9</li>
-            <li>10</li>
+            <li ng-click="setQuantity(1)">1</li>
+            <li ng-click="setQuantity(2)">2</li>
+            <li ng-click="setQuantity(3)">3</li>
+            <li ng-click="setQuantity(4)">4</li>
+            <li ng-click="setQuantity(5)">5</li>
+            <li ng-click="setQuantity(6)">6</li>
+            <li ng-click="setQuantity(7)">7</li>
+            <li ng-click="setQuantity(8)">8</li>
+            <li ng-click="setQuantity(9)">9</li>
+            <li ng-click="setQuantity(10)">10</li>
             <li>
               <input type="text" placeholder="Other quantity" ng-model="newActivity.product.quantity">
             </li>

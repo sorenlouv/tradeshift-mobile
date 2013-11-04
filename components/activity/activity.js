@@ -66,8 +66,11 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   $scope.saveNewActivity = function() {
     activityRef.child('lines').push(angular.copy($scope.newActivity));
     $scope.hidePickers();
-
   };
+
+  $scope.setQuantity = function(val) {
+    $scope.newActivity.product.quantity = val;
+  }
 
 
   $scope.addNewProduct = function() {
