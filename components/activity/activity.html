@@ -99,11 +99,10 @@
 			<div class="picker-data">
 				<h3>Select price</h3>
 				<ul>
-					<li>1000</li>
-					<li>900<span class="discount">10% discount</span></li>
-					<li ng-click="selectProduct()">800 <span class="discount">20% discount</span></li>
-					<li ng-click="selectProduct()">700 <span class="discount">30% discount</span></li>
-
+					<li ng-click="selectPrice()">1000</li>
+					<li ng-click="selectPrice()">900<span class="discount">10% discount</span></li>
+					<li ng-click="selectPrice()">800 <span class="discount">20% discount</span></li>
+					<li ng-click="selectPrice()">700 <span class="discount">30% discount</span></li>			
 					<li><input type="text" placeholder="New price"></li>
 				</ul>
 				<h3>Comment</h3>
@@ -111,7 +110,7 @@
 					<label><span>Add comment</span></label>
 					<input type="text" placeholder="Comment" class="_textual">
 				</fieldset>
-				<a class="button" ng-click="hidePicker()">Done</a>
+				<a class="button" ng-click="save()">Done</a>
 			</div>
 		</div>
 	</div>
