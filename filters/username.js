@@ -22,7 +22,7 @@ angular.module('usernameFilter', []).filter('username', function($timeout) {
         $timeout(function() {
           console.log("Loaded names 2!");
           users = usersSnapshot.val();
-        }, 2000);
+        }, 0);
       });
       return "Loading name...";
     }else{
