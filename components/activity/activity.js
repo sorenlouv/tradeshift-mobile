@@ -24,10 +24,12 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   $scope.products = {};
   $scope.users = {};
   $scope.newActivity = {
-    user: angular.copy($rootScope.currentUser)
+    user: angular.copy($rootScope.currentUser),
   };
   $scope.selectedPrice = 0;
   $scope.currentUser = $rootScope.currentUser;
+  $scope.activeActivity = null;
+  $scope.activityId = activityId;
 
   // Bind firebase to scope
   angularFire(companyRef, $scope, 'company');
@@ -80,7 +82,8 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $scope.newActivity.product.quantity = val;
   }
 
-  $scope.lineAction = function() {
+  $scope.lineAction = function(activityId) {
+    $scope.activeActivity = activityId;
     $('.picker').show();
     $('.lineActions-picker').show();
   };
