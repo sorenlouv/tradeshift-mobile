@@ -213,34 +213,39 @@ header {
 		margin: 0px;
 		padding-top: 0px;
 	}
+
 	ul {
 		overflow: hidden;
 		padding: 0px;
 		margin: 0px;
+	}
+
+	.current-business {
 		li {
+			height: 44px;
 			float: left;
 			width: 100%;
-			padding: 8px 0px 3px 0px;
 			list-style: none;
 			border-bottom: 1px dotted #eee;
-			.img {
-				max-width: 100px;
-				float: right;
-				img {
-					width: 96%;
-				}
+			img {
+				max-height: 30px;
 			}
-			.details {
-				font-size: 14px;
-				float: left;
-				margin-top: -2px;
-				a {
-					text-transform: capitalize;
-					font-weight: 600;
-					display: block;
+			span {
+				font-weight: 400;
+				width: 30%;
+				display: inline-block;
+				&:first-child {
+					width: 6%;
 				}
-				span {
+				&:last-child {
+					text-align: right;
+				}
+				&:nth-child(3) {
+					text-align: center;
+					font-size: 14px;
 					font-weight: 300;
+					color: #999;
+					font-style: italic;
 				}
 			}
 		}
