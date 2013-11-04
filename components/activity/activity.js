@@ -1,14 +1,10 @@
-app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '$rootScope', function ($scope, $routeParams, angularFire, $rootScope) {
+app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '$rootScope', 'helpers', function ($scope, $routeParams, angularFire, $rootScope, helpers) {
 
   'use strict';
 
-  var getActivityId = function(company1, company2) {
-    return (company1 < company2 ? company1 + "-" + company2 : company2 + "-" + company1);
-  };
-
   var companyId             = $routeParams.company_id,
       currentUserCompany    = $rootScope.currentUser.company,
-      activityId            = getActivityId($rootScope.currentUser.company, companyId),
+      activityId            = helpers.getActivityId($rootScope.currentUser.company, companyId),
 
       // Get Firebase data
       companyRef            = new Firebase($rootScope.fireBaseUrl + "/companies/" + companyId),
@@ -24,10 +20,12 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   $scope.products = {};
   $scope.users = {};
   $scope.newActivity = {
-    user: angular.copy($rootScope.currentUser)
+    user: angular.copy($rootScope.currentUser),
   };
   $scope.selectedPrice = 0;
   $scope.currentUser = $rootScope.currentUser;
+  $scope.activeActivity = null;
+  $scope.activityId = activityId;
 
   // Bind firebase to scope
   angularFire(companyRef, $scope, 'company');
@@ -80,7 +78,8 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $scope.newActivity.product.quantity = val;
   };
 
-  $scope.lineAction = function() {
+  $scope.lineAction = function(activityId) {
+    $scope.activeActivity = activityId;
     $('.picker').show();
     $('.lineActions-picker').show();
   };

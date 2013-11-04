@@ -15,8 +15,10 @@
   </div>
 </header>
 <div class="transactions">
-  <div class="transaction" ng-repeat="line in activity.lines" ng-click="lineAction()">
-    <div class="creator"><img ng-src="{{line.user.image}}?width=80&height=80" alt=""></div>
+
+  <div class="transaction" ng-repeat="(activityId, line) in activity.lines" ng-click="lineAction(activityId)">
+    <div class="creator"><img src="{{line.user.image}}?width=80&height=80" alt=""></div>
+    <!-- <input type="checkbox" class="to-be-settled"/> -->
     <div class="update">
       <div class="object">
         <span class="primary">{{line.product.quantity}} * {{line.product.title}}</span>
@@ -28,8 +30,12 @@
       </div>
     </div>
     <div class="comments">
+      <div class="comment">
+        <span class="person"><a href="#">{{line.user.name.split(' ')[0]}}</a></span>
+        <span class="content">{{line.description}}</span>
+      </div>
       <div class="comment" ng-repeat="comment in line.comments">
-        <span class="person"><a href="#">{{comment.user | username}}</a></span>
+        <span class="person"><a href="#">{{comment.user.name.split(' ')[0]}}</a></span>
         <span class="content">{{comment.comment}}</span>
       </div>
     </div>
@@ -195,8 +201,8 @@
     </div>
   </div>
 
-  <!-- Sidebar: Add comment  -->
-  <div class="lineActions-picker">
+<!-- Sidebar: Add comment  -->
+  <div class="lineActions-picker" ng-controller="CommentController">
     <div class="picker-content">
       <div class="picker-header">
         <h1>Options</h1>
@@ -205,24 +211,24 @@
         </a>
       </div>
       <div class="picker-data">
-        <form class="newProduct">
-          <ul>
-            <h3>Comment</h3>
+        <ul>
+          <h3>Comment</h3>
+            <form class="comment-form" ng-submit="postComment(activeActivity, activityId)">
               <textarea></textarea>
-              <a href="#" class="button">Post comment</a>
-            <br><br>
+              <button type="submit">Post comment</button>
+            </form>
+          <br><br>
 
-            <h3>Actions</h3>
-            <li>
-              <span>Edit</span>
-              <i class="fa fa-chevron-right"></i>
-            </li>
-            <li>
-              <span>Delete</span>
-              <i class="fa fa-ban"></i>
-            </li>
-          </ul>
-        </form>
+          <h3>Actions</h3>
+          <li>
+            <span>Edit</span>
+            <i class="fa fa-chevron-right"></i>
+          </li>
+          <li>
+            <span>Delete</span>
+            <i class="fa fa-ban"></i>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
