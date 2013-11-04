@@ -17,8 +17,7 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
       var currentUser = (currentUserSnapshot.val() === null) ? {
         id: facebookUser.id,
         name: facebookUser.name,
-        email: facebookUser.email,
-        image: 'https://graph.facebook.com/'+facebookUser.username+'/picture'
+        email: facebookUser.email
       } : currentUserSnapshot.val();
 
       // resolve promise
