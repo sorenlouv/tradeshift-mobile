@@ -15,7 +15,6 @@
 	</div>
 </header>
 
-
 <div class="transactions">
 	<div class="transaction" ng-repeat="line in activity.lines">
 		<input type="checkbox" class="to-be-settled"/>
@@ -36,6 +35,7 @@
 			</div>
 		</div>
 	</div>
+
 </div>
 
 <section class="picker" >
@@ -102,25 +102,40 @@
 				</a>
 			</div>
 			<div class="picker-data">
-				<h3>Select price</h3>
-				<ul>
-					<li ng-click="selectPrice(newActivity.product.price)">{{newActivity.product.price | currency: newActivity.product.currency}}</li>
-					<li ng-click="selectPrice(newActivity.product.price * 0.9)">{{(newActivity.product.price * 0.9) | currency: newActivity.product.currency}}<span class="discount">10% discount</span></li>
-					<li ng-click="selectPrice(newActivity.product.price * 0.8)">{{(newActivity.product.price * 0.8) | currency: newActivity.product.currency}}<span class="discount">20% discount</span></li>
-					<li ng-click="selectPrice(newActivity.product.price * 0.7)">{{(newActivity.product.price * 0.7) | currency: newActivity.product.currency}}<span class="discount">30% discount</span></li>
-					<li><input type="text" placeholder="New price" ng-bind="newActivity.product.custom_price"></li>
-				</ul>
+				<form ng-submit="saveNewActivity()">
+					<h3>Select price</h3>
+					<ul>
+						<li ng-click="selectPrice(newActivity.product.price)">
+							{{newActivity.product.price | currency: newActivity.product.currency}}
+						</li>
+						<li ng-click="selectPrice(newActivity.product.price * 0.9)">
+							{{(newActivity.product.price * 0.9) | currency: newActivity.product.currency}}
+							<span class="discount">10% discount</span>
+						</li>
+						<li ng-click="selectPrice(newActivity.product.price * 0.8)">
+							{{(newActivity.product.price * 0.8) | currency: newActivity.product.currency}}
+							<span class="discount">20% discount</span>
+						</li>
+						<li ng-click="selectPrice(newActivity.product.price * 0.7)">
+							{{(newActivity.product.price * 0.7) | currency: newActivity.product.currency}}
+							<span class="discount">30% discount</span>
+						</li>
+						<li>
+							<input type="text" placeholder="New price" ng-bind="newActivity.product.custom_price">
+						</li>
+					</ul>
 
-				<h3>Quantity</h3>
-				<input type="text" placeholder="1" ng-model="new_activity.product.quantity" />
+					<h3>Quantity</h3>
+					<input type="text" placeholder="1" ng-model="newActivity.product.quantity" />
 
-				<h3>Comment</h3>
-				<fieldset class="uniform">
-					<label><span>Add comment</span></label>
-					<input type="text" placeholder="Comment" ng-model="newActivity.description" class="_textual">
-				</fieldset>
+					<h3>Comment</h3>
+					<fieldset class="uniform">
+						<label><span>Add comment</span></label>
+						<input type="text" placeholder="Comment" ng-model="newActivity.description" class="_textual">
+					</fieldset>
 
-				<a class="button" ng-click="save()">Done</a>
+					<button class="button" type="submit">Done</button>
+				</form>
 			</div>
 		</div>
 	</div>

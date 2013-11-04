@@ -28,8 +28,6 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   angularFire(activityRef, $scope, 'activity');
   angularFire(productsRef, $scope, 'products');
 
-  console.log($scope.activity);
-
   // Sune's stuff
   $scope.addItem = function() {
     $('.picker').show();
@@ -46,7 +44,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   };
 
   $scope.selectProduct = function(product) {
-    $scope.newActivity.product = product;
+    $scope.newActivity.product = angular.copy(product);
     $('.select-picker').show();
   };
 
@@ -62,7 +60,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $('.transactions').prepend("<div class='generate'><p>5 items worth 120.000 excl tax (150.000 incl) selected</p><a class='button' >Generate invoice <i class='fa fa-cogs'></i></a></div");
   };
 
-  $scope.save = function() {
+  $scope.saveNewActivity = function() {
     activityRef.child('lines').push(angular.copy($scope.newActivity));
   };
 
