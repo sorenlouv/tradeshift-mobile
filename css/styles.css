@@ -1547,10 +1547,20 @@ header i {
   width: 100%;
   padding-bottom: 5px;
   list-style: none;
-  margin-right: 2%;
 }
-.business-intelligence ul li img {
+.business-intelligence ul li .img {
   width: 50%;
+  float: left;
+}
+.business-intelligence ul li .img img {
+  width: 89%;
+}
+.business-intelligence ul li .details {
+  float: left;
+  width: 50%;
+}
+.business-intelligence ul li .details a {
+  display: block;
 }
 .business-intelligence h3 {
   margin-top: 11px;
