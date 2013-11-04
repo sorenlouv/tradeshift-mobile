@@ -23,7 +23,6 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   $scope.products = {};
   $scope.new_activity = {};
 
-
   // Bind firebase to scope
   angularFire(companyRef, $scope, 'company');
   angularFire(activityRef, $scope, 'activity');
@@ -55,7 +54,15 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $scope.new_activity.product.custom_price = price;
   };
 
-  $scope.save = function() {    
+  $scope.generateInvoice = function() {
+    $('.picker').hide();
+    $('.product-picker').hide();
+    $('.select-picker').hide();
+    $('.creator').html("<input type='checkbox' checked value='test'>");
+    $('.transactions').prepend("<div class='generate'><p>5 items worth 120.000 excl tax (150.000 incl) selected</p><a class='button' >Generate invoice <i class='fa fa-cogs'></i></a></div");
+  };
+
+  $scope.save = function() {
     activityRef.child('lines').push(angular.copy($scope.new_activity));
   };
 
