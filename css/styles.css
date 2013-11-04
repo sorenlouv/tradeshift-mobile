@@ -1474,6 +1474,7 @@ header i {
   font-size: 16px;
   font-weight: 300;
   padding: 11px 11px 0px 11px;
+  cursor: pointer;
   background-color: white;
   margin: 0px 5px -5px 5px;
 }
@@ -1626,6 +1627,10 @@ header i {
   padding: 0px;
   margin: 0px 0px 22px 0px;
 }
+.picker ul .selected {
+  background-color: #20a0e9 !important;
+  color: white !important;
+}
 .picker ul li {
   color: #20a0e9;
   padding: 11px;
@@ -1666,6 +1671,9 @@ header i {
 .picker .picker-data input {
   background-color: #e6f5ff;
   border: none;
+}
+.picker .picker-data .comment {
+  margin-bottom: 22px;
 }
 .picker .picker-content {
   z-index: 11;
@@ -1711,4 +1719,10 @@ header i {
   display: none;
   position: relative;
   z-index: 13;
+}
+.picker .lineActions-picker {
+  display: none;
+}
+.picker .newProduct-picker {
+  display: none;
 }

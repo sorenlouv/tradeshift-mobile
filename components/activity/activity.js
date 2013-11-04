@@ -22,6 +22,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   $scope.activity = {};
   $scope.products = {};
   $scope.newActivity = {};
+  $scope.selectedPrice = 0;
 
   // Bind firebase to scope
   angularFire(companyRef, $scope, 'company');
@@ -38,6 +39,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $('.product-picker').hide();
     $('.select-picker').hide();
     $('.newProduct-picker').hide();
+    $('.lineActions-picker').hide();
   };
 
   $scope.addProduct = function() {
@@ -46,14 +48,13 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
 
   $scope.showAddNewProduct = function() {
     $('.newProduct-picker').show();
-  }
-
+  };
   $scope.selectProduct = function(product) {
     $scope.newActivity.product = angular.copy(product);
     $('.select-picker').show();
   };
 
-  $scope.selectPrice = function(price) {
+  $scope.selectPrice = function(price, e) {
     $scope.newActivity.product.custom_price = price;
   };
 
@@ -66,9 +67,12 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   $scope.saveNewActivity = function() {
     activityRef.child('lines').push(angular.copy($scope.newActivity));
     $scope.hidePickers();
-
   };
 
+  $scope.lineAction = function() {
+    $('.picker').show();
+    $('.lineActions-picker').show();
+  };
 
   $scope.addNewProduct = function() {
 
@@ -80,6 +84,5 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
 
     $('.newProduct input').val('');
     $('.newProduct-picker').hide();
-  }
-
+  };
 }]);

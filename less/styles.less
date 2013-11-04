@@ -47,7 +47,6 @@ fieldset {
 	}
 }
 
-
 header {
 	height: 44px;
 	background-color: @black;
@@ -125,7 +124,7 @@ header {
 		font-size: 16px;
 		font-weight: 300;
 		padding:11px 11px 0px 11px;
-		// border-bottom: 3px double #eee;
+		cursor: pointer;
 		background-color: white;
 		margin: 0px 5px -5px 5px;
 
@@ -300,6 +299,10 @@ header {
 		padding: 0px;
 		margin: 0px 0px 22px 0px;
 
+		.selected {
+			background-color: @tsblue !important;
+			color: white !important;
+		}
 		li {
 			color: @tsblue;
 			padding: 11px;
@@ -315,13 +318,11 @@ header {
 				float: right;
 				margin-top: 4px;
 			}
-
 			.discount {
 				float: right;
 				color: lighten(@active, 25%);
 				font-weight: 300;
 			}
-
 			input {
 				margin: -11px -11px -11px 0;
 				height: 33px;
@@ -345,6 +346,9 @@ header {
 		input {
 			background-color: @xliteliter;
 			border: none;
+		}
+		.comment {
+			margin-bottom: 22px;
 		}
 
 	}
@@ -394,6 +398,12 @@ header {
 		display: none;
 		position: relative;
 		z-index: 13;
+	}
+	.lineActions-picker {
+		display: none;
+	}
+	.newProduct-picker {
+		display: none;
 	}
 }
 
