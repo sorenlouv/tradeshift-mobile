@@ -2,10 +2,6 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
 
   'use strict';
 
-  var getActivityId = function(company1, company2) {
-    return (company1 < company2 ? company1 + "-" + company2 : company2 + "-" + company1);
-  };
-
   var companyId             = $routeParams.company_id,
       currentUserCompany    = $rootScope.currentUser.company,
       activityId            = getActivityId($rootScope.currentUser.company, companyId),
