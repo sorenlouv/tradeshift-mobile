@@ -58,15 +58,15 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   };
 
   $scope.generateInvoice = function() {
-    $('.picker').hide();
-    $('.product-picker').hide();
-    $('.select-picker').hide();
+    $scope.hidePickers();
     $('.creator').html("<input type='checkbox' checked value='test'>");
     $('.transactions').prepend("<div class='generate'><p>5 items worth 120.000 excl tax (150.000 incl) selected</p><a class='button' >Generate invoice <i class='fa fa-cogs'></i></a></div");
   };
 
   $scope.saveNewActivity = function() {
     activityRef.child('lines').push(angular.copy($scope.newActivity));
+    $scope.hidePickers();
+
   };
 
 
