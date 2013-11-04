@@ -23,12 +23,14 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   $scope.activity = {};
   $scope.products = {};
   $scope.new_activity = {};
-  
+
 
   // Bind firebase to scope
   angularFire(companyRef, $scope, 'company');
   angularFire(activityRef, $scope, 'activity');
   angularFire(productsRef, $scope, 'products');
+
+  console.log($scope.activity);
 
   // Sune's stuff
   $scope.addItem = function() {
@@ -54,8 +56,8 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $scope.new_activity.product.custom_price = price;
   }
 
-  $scope.save = function() {
-    $scope.activities.push($scope.new_activity);
+  $scope.save = function() {    
+    activityRef.child('lines').push(angular.copy($scope.new_activity));
   };
 
 }]);
