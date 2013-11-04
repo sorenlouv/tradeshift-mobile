@@ -10,14 +10,3 @@ app.controller('BusinessIntelligenceController', ['$scope', 'angularFire', '$roo
 
   $scope.currentUserCompany = currentUserCompany;
 }]);
-
-
-// app.filter('notEqualTo', function($rootScope) {
-//   'use strict';
-
-//   var currentUserCompany = $rootScope.currentUser.company;
-
-//   return function(company) {
-//     return (currentUserCompany === company) ? false : company;
-//   };
-// }
