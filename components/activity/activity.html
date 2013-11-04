@@ -14,59 +14,30 @@
 		</a>
 	</div>
 </header>
-	
-<div class="transactions" >
-	<div class="transaction">
-		<div class="creator">
-			<img src="/images/sqren.jpg" class="person"/>
-		</div>
+
+
+<div class="transactions">
+	<div class="transaction" ng-repeat="line in activity.lines">
+		<input type="checkbox" class="to-be-settled"/>
 		<div class="update">
 			<div class="object">
-				<span class="primary">4 * Product 3</span>
-				<span class="secondary">1000 pr. piece</span>
+				<span class="primary">{{line.product.amount}} * {{line.product.title}}</span>
+				<span class="secondary">{{line.product.unit_price}} pr. piece</span>
 			</div>
 			<div class="price">
-				<span class="primary">2000</span>
-				<span class="secondary">DKK</span>
+				<span class="primary">{{(line.product.unit_price * line.product.amount) | currency: line.product.currency}}</span>
+				<span class="secondary">Total</span>
 			</div>
 		</div>
 		<div class="comments">
-			<div class="comment">
-				<span class="person"><a href="#">Søren L.</a></span>
-				<span class="content">Hey, thats way too expensive</span>
-			</div>
-			<div class="comment">
-				<span class="person"><a href="#">Frank</a></span>
-				<span class="content">Srsly</span>
-			</div>
-		</div>
-	</div>
-	<div class="transaction">
-		<div class="creator">
-			<img src="/images/sqren.jpg" class="person" />
-		</div>
-		<div class="update">
-			<div class="object">
-				<span class="primary">4 * Product 3</span>
-				<span class="secondary">1000 pr. piece</span>
-			</div>
-			<div class="price">
-				<span class="primary">2000 </span>
-				<span class="secondary">DKK</span>
-			</div>
-		</div>
-		<div class="comments">
-			<div class="comment">
-				<span class="person"><a href="#">Søren L.</a></span>
-				<span class="content">Hey, thats way too expensive</span>
-			</div>
-			<div class="comment">
-				<span class="person"><a href="#">Frank</a></span>
-				<span class="content">Srsly</span>
+			<div class="comment" ng-repeat="comment in line.comments">
+				<span class="person"><a href="#">{{comment.user | username}}</a></span>
+				<span class="content">{{comment.comment}}</span>
 			</div>
 		</div>
 	</div>
 </div>
+
 <section class="picker" >
 	<div class="picker-bg" ng-click="hidePicker()"></div>
 	<div class="add-picker">
@@ -111,27 +82,21 @@
 			</div>
 			<div class="picker-data">
 				<ul>
-					<li ng-click="selectProduct()">
-						Product 1
-						<i class="fa fa-chevron-right"></i>
-					</li>
-					<li ng-click="selectProduct()">
-						Product 2
-						<i class="fa fa-chevron-right"></i>
-					</li>
-					<li>
-						New product
-						<i class="fa fa-chevron-right"></i>
+					<li ng-repeat="product in products">
+						<div ng-click="selectProduct(product)">
+							{{product.name}} 
+							<i class="fa fa-chevron-right"></i>
+						</div>
 					</li>
 				</ul>
 			</div>
-		</div>		
+		</div>
 	</div>
 
 	<div class="select-picker">
 		<div class="picker-content">
 			<div class="picker-header">
-				<h1>Product 1</h1>
+				<h1>{{new_activity.product.name}}</h1>
 				<a ng-click="hidePicker()">
 					<i class="fa fa-times"></i>
 				</a>
@@ -139,26 +104,21 @@
 			<div class="picker-data">
 				<h3>Select price</h3>
 				<ul>
-					<li>1000</li>
-					<li>900<span class="discount">10% discount</span></li>
-					<li ng-click="selectProduct()">800 <span class="discount">20% discount</span></li>
-					<li ng-click="selectProduct()">700 <span class="discount">30% discount</span></li>			
-					<li><input type="text" placeholder="New price"></li>
+					<li ng-click="selectPrice(new_activity.product.price)">{{new_activity.product.price | currency: new_activity.product.currency}}</li>
+					<li ng-click="selectPrice(new_activity.product.price * 0.9)">{{(new_activity.product.price * 0.9) | currency: new_activity.product.currency}}<span class="discount">10% discount</span></li>
+					<li ng-click="selectPrice(new_activity.product.price * 0.8)">{{(new_activity.product.price * 0.8) | currency: new_activity.product.currency}}<span class="discount">20% discount</span></li>
+					<li ng-click="selectPrice(new_activity.product.price * 0.7)">{{(new_activity.product.price * 0.7) | currency: new_activity.product.currency}}<span class="discount">30% discount</span></li>			
+					<li><input type="text" placeholder="New price" ng-bind="new_activity.product.custom_price"></li>
 				</ul>
 				<h3>Comment</h3>
-			<fieldset class="uniform">
-		          <p>
-		            <label class="_textual">
-		              <span class="t">Company name</span>
-		              <input ng-model="rest.accountInfo.CompanyName" autocomplete="off" type="text" class="_textual ng-pristine ng-valid">
-		            </label>
-		          </p>
-		        </fieldset>
-				<a class="button" ng-click="hidePicker()">Done</a>
+				<fieldset class="uniform">
+					<label><span>Add comment</span></label>
+					<input type="text" placeholder="Comment" ng-model="new_activity.description" class="_textual">
+				</fieldset>
+				<a class="button" ng-click="save()">Done</a>
 			</div>
-		</div>		
+		</div>
 	</div>
-
 </section>
 
 

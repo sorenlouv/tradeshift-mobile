@@ -1,4 +1,4 @@
-var app = angular.module("tradeshift-mobile", ["firebase", "ngRoute", "safeApply"]);
+var app = angular.module("tradeshift-mobile", ["firebase", "ngRoute", "safeApply", "usernameFilter"]);
 
 // router
 app.config(function ($routeProvider) {
@@ -12,6 +12,9 @@ app.config(function ($routeProvider) {
 
     // Activity
     when('/activity/:company_id', {templateUrl: '/components/activity/activity.html', controller: 'ActivityController'}).
+
+    // Products
+    when('/products', {templateUrl: '/components/products/template.html', controller: 'ProductController'}).
 
     // Login
     when('/login/:redirect', {templateUrl: '/components/login/template.html', controller: 'LoginController'}).
