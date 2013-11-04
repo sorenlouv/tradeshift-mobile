@@ -63,7 +63,6 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   };
 
   $scope.save = function() {
-    $scope.activities.push($scope.newActivity);
     activityRef.child('lines').push(angular.copy($scope.newActivity));
   };
 
