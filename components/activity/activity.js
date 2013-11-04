@@ -21,21 +21,19 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   $scope.company = {};
   $scope.activity = {};
   $scope.products = {};
-  $scope.new_activity = {};
+  $scope.newActivity = {};
 
   // Bind firebase to scope
   angularFire(companyRef, $scope, 'company');
   angularFire(activityRef, $scope, 'activity');
   angularFire(productsRef, $scope, 'products');
 
-  console.log($scope.activity);
-
   // Sune's stuff
   $scope.addItem = function() {
     $('.picker').show();
   };
 
-  $scope.hidePicker = function() {
+  $scope.hidePickers = function() {
     $('.picker').hide();
     $('.product-picker').hide();
     $('.select-picker').hide();
@@ -46,12 +44,12 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   };
 
   $scope.selectProduct = function(product) {
-    $scope.new_activity.product = product;
+    $scope.newActivity.product = angular.copy(product);
     $('.select-picker').show();
   };
 
   $scope.selectPrice = function(price) {
-    $scope.new_activity.product.custom_price = price;
+    $scope.newActivity.product.custom_price = price;
   };
 
   $scope.generateInvoice = function() {
@@ -62,8 +60,8 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $('.transactions').prepend("<div class='generate'><p>5 items worth 120.000 excl tax (150.000 incl) selected</p><a class='button' >Generate invoice <i class='fa fa-cogs'></i></a></div");
   };
 
-  $scope.save = function() {
-    activityRef.child('lines').push(angular.copy($scope.new_activity));
+  $scope.saveNewActivity = function() {
+    activityRef.child('lines').push(angular.copy($scope.newActivity));
   };
 
 }]);

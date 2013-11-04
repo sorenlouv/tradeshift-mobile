@@ -15,17 +15,16 @@
 	</div>
 </header>
 
-
 <div class="transactions">
 	<div class="transaction" ng-repeat="line in activity.lines">
 		<input type="checkbox" class="to-be-settled"/>
 		<div class="update">
 			<div class="object">
-				<span class="primary">{{line.product.amount}} * {{line.product.title}}</span>
+				<span class="primary">{{line.product.quantity}} * {{line.product.title}}</span>
 				<span class="secondary">{{line.product.unit_price}} pr. piece</span>
 			</div>
 			<div class="price">
-				<span class="primary">{{(line.product.unit_price * line.product.amount) | currency: line.product.currency}}</span>
+				<span class="primary">{{(line.product.unit_price * line.product.quantity) | currency: line.product.currency}}</span>
 				<span class="secondary">Total</span>
 			</div>
 		</div>
@@ -40,12 +39,12 @@
 </div>
 
 <section class="picker" >
-	<div class="picker-bg" ng-click="hidePicker()"></div>
+	<div class="picker-bg" ng-click="hidePickers()"></div>
 	<div class="add-picker">
 		<div class="picker-content">
 			<div class="picker-header">
 				<h1>Actions</h1>
-				<a ng-click="hidePicker()">
+				<a ng-click="hidePickers()">
 					<i class="fa fa-times"></i>
 				</a>
 			</div>
@@ -77,7 +76,7 @@
 		<div class="picker-content">
 			<div class="picker-header">
 				<h1>Add product</h1>
-				<a ng-click="hidePicker()">
+				<a ng-click="hidePickers()">
 					<i class="fa fa-times"></i>
 				</a>
 			</div>
@@ -97,26 +96,46 @@
 	<div class="select-picker">
 		<div class="picker-content">
 			<div class="picker-header">
-				<h1>{{new_activity.product.title}}</h1>
-				<a ng-click="hidePicker()">
+				<h1>{{newActivity.product.title}}</h1>
+				<a ng-click="hidePickers()">
 					<i class="fa fa-times"></i>
 				</a>
 			</div>
 			<div class="picker-data">
-				<h3>Select price</h3>
-				<ul>
-					<li ng-click="selectPrice(new_activity.product.price)">{{new_activity.product.price | currency: new_activity.product.currency}}</li>
-					<li ng-click="selectPrice(new_activity.product.price * 0.9)">{{(new_activity.product.price * 0.9) | currency: new_activity.product.currency}}<span class="discount">10% discount</span></li>
-					<li ng-click="selectPrice(new_activity.product.price * 0.8)">{{(new_activity.product.price * 0.8) | currency: new_activity.product.currency}}<span class="discount">20% discount</span></li>
-					<li ng-click="selectPrice(new_activity.product.price * 0.7)">{{(new_activity.product.price * 0.7) | currency: new_activity.product.currency}}<span class="discount">30% discount</span></li>
-					<li><input type="text" placeholder="New price" ng-bind="new_activity.product.custom_price"></li>
-				</ul>
-				<h3>Comment</h3>
-				<fieldset class="uniform">
-					<label><span>Add comment</span></label>
-					<input type="text" placeholder="Comment" ng-model="new_activity.description" class="_textual">
-				</fieldset>
-				<a class="button" ng-click="save()">Done</a>
+				<form ng-submit="saveNewActivity()">
+					<h3>Select price</h3>
+					<ul>
+						<li ng-click="selectPrice(newActivity.product.price)">
+							{{newActivity.product.price | currency: newActivity.product.currency}}
+						</li>
+						<li ng-click="selectPrice(newActivity.product.price * 0.9)">
+							{{(newActivity.product.price * 0.9) | currency: newActivity.product.currency}}
+							<span class="discount">10% discount</span>
+						</li>
+						<li ng-click="selectPrice(newActivity.product.price * 0.8)">
+							{{(newActivity.product.price * 0.8) | currency: newActivity.product.currency}}
+							<span class="discount">20% discount</span>
+						</li>
+						<li ng-click="selectPrice(newActivity.product.price * 0.7)">
+							{{(newActivity.product.price * 0.7) | currency: newActivity.product.currency}}
+							<span class="discount">30% discount</span>
+						</li>
+						<li>
+							<input type="text" placeholder="New price" ng-bind="newActivity.product.custom_price">
+						</li>
+					</ul>
+
+					<h3>Quantity</h3>
+					<input type="text" placeholder="1" ng-model="newActivity.product.quantity" />
+
+					<h3>Comment</h3>
+					<fieldset class="uniform">
+						<label><span>Add comment</span></label>
+						<input type="text" placeholder="Comment" ng-model="newActivity.description" class="_textual">
+					</fieldset>
+
+					<button class="button" type="submit">Done</button>
+				</form>
 			</div>
 		</div>
 	</div>
