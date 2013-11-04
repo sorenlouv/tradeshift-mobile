@@ -9,4 +9,8 @@ app.controller('BusinessIntelligenceController', ['$scope', 'angularFire', '$roo
   angularFire(companiesRef, $scope, 'companies');
 
   $scope.currentUserCompany = currentUserCompany;
+
+  $scope.addCompany = function() {
+    console.log("hmm");
+  };
 }]);

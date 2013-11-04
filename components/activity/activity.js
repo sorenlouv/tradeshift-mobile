@@ -98,9 +98,4 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $('.newProduct-picker').hide();
   };
 
-  $scope.addCompany = function() {
-    console.log(this);
-    console.log("hmm");
-  };
-
 }]);
