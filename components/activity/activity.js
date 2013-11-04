@@ -19,9 +19,6 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   $scope.activity = {};
   $scope.products = {};
   $scope.users = {};
-  $scope.newActivity = {
-    user: angular.copy($rootScope.currentUser),
-  };
   $scope.selectedPrice = 0;
   $scope.currentUser = $rootScope.currentUser;
 
@@ -33,6 +30,9 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
 
   // Sune's stuff
   $scope.addItem = function() {
+    $scope.newActivity = {
+      user: $rootScope.currentUser.id
+    };
     $('.picker').show();
   };
 
@@ -52,6 +52,13 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $('.newProduct-picker').show();
   };
 
+  $scope.generateInvoice = function() {
+    $scope.hidePickers();
+    $('.creator').html("<input type='checkbox' checked value='test'>");
+    $('.transactions').prepend("<div class='generate'><p>5 items worth 120.000 excl tax (150.000 incl) selected</p><a class='button' >Generate invoice <i class='fa fa-cogs'></i></a></div");
+  };
+
+  /*********** New Activity ***************/
   $scope.selectProduct = function(product) {
     $scope.newActivity.product = angular.copy(product);
     $('.select-picker').show();
@@ -61,20 +68,16 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $scope.newActivity.product.custom_price = price;
   };
 
-  $scope.generateInvoice = function() {
-    $scope.hidePickers();
-    $('.creator').html("<input type='checkbox' checked value='test'>");
-    $('.transactions').prepend("<div class='generate'><p>5 items worth 120.000 excl tax (150.000 incl) selected</p><a class='button' >Generate invoice <i class='fa fa-cogs'></i></a></div");
-  };
-
-  $scope.saveNewActivity = function() {
-    activityRef.child('lines').push(angular.copy($scope.newActivity));
-    $scope.hidePickers();
-  };
-
   $scope.setQuantity = function(val) {
     $scope.newActivity.product.quantity = val;
   };
+
+  $scope.saveNewActivity = function() {
+    // Save the activity
+    activityRef.child('lines').push($scope.newActivity);
+    $scope.hidePickers();
+  };
+
 
   $scope.clickLine = function(lineId) {
     $scope.clickedLineId = lineId;
@@ -83,7 +86,6 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   };
 
   $scope.addNewProduct = function() {
-
     productsRef.push({
       title: $('.newProduct input[name="title"]').val(),
       price: $('.newProduct input[name="price"]').val(),

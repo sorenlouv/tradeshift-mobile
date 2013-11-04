@@ -16,7 +16,7 @@
 </header>
 <div class="transactions">
   <div class="transaction" ng-repeat="(lineId, line) in activity.lines" ng-click="clickLine(lineId)">
-    <div class="creator"><img ng-src="{{line.user.image}}?width=80&height=80" alt=""></div>
+    <div class="creator"><img ng-src="https://graph.facebook.com/{{line.user}}/picture?width=80&height=80" alt=""></div>
     <!-- <input type="checkbox" class="to-be-settled"/> -->
     <div class="update">
       <div class="object">
@@ -30,7 +30,7 @@
     </div>
     <div class="comments">
       <div class="comment">
-        <span class="person"><a href="#">{{line.user.name.split(' ')[0]}}</a></span>
+        <span class="person"><a href="#">{{line.user | username}}</a></span>
         <span class="content">{{line.description}}</span>
       </div>
       <div class="comment" ng-repeat="comment in line.comments">
