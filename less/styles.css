@@ -1378,26 +1378,14 @@ a {
   font-weight: 400;
   cursor: pointer;
 }
-h3 {
-  margin-top: 11px;
-  padding-bottom: 5px;
-  font-weight: 600;
-  font-size: 11px;
-  text-transform: uppercase;
-  border-bottom: 1px dotted #333;
-}
-fieldset {
-  border: none;
-}
 .button {
   font-size: 14px;
   color: white;
   padding: 11px;
   background-color: #20a0e9;
-  width: 100%;
+  width: calc( 100% - 22px );
   display: inline-block;
   border-radius: 3px;
-  border: none;
 }
 .button i {
   float: right;
@@ -1574,6 +1562,14 @@ header i {
 .business-intelligence ul li .details a {
   display: block;
 }
+.business-intelligence h3 {
+  margin-top: 11px;
+  padding-bottom: 5px;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  border-bottom: 1px dotted #333;
+}
 .business-intelligence .current-business {
   padding-top: 11px;
 }
@@ -1598,9 +1594,6 @@ header i {
   padding-top: 11px;
   display: block;
 }
-.business-intelligence .load-more a {
-  width: calc( 100% - 22px );
-}
 .picker {
   z-index: 10;
   display: none;
@@ -1615,11 +1608,6 @@ header i {
   font-size: 11px;
   text-transform: uppercase;
   font-weight: 600;
-}
-.picker .quantity li {
-  display: inline-block;
-  height: 22px;
-  margin-bottom: 5px;
 }
 .picker ul {
   padding: 0px;
@@ -1661,10 +1649,6 @@ header i {
 .picker .picker-data {
   display: block;
   padding: 11px;
-}
-.picker .picker-data input {
-  background-color: #e6f5ff;
-  border: none;
 }
 .picker .picker-content {
   z-index: 11;
