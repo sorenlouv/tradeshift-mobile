@@ -1482,15 +1482,15 @@ header i {
 .transactions .transaction .creator {
   float: left;
   height: 50px;
-  width: 60px;
+  width: 50px;
 }
 .transactions .transaction .creator img {
   position: absolute;
-  left: 11px;
-  top: 7px;
+  left: 5px;
+  top: 5px;
   height: 45px;
   border-radius: 25px;
-  margin-right: 22px;
+  margin-right: 11px;
 }
 .transactions .transaction .update {
   display: block;
@@ -1514,14 +1514,15 @@ header i {
   float: right;
 }
 .transactions .transaction .update .primary {
-  font-size: 18px;
+  font-size: 16px;
   display: block;
-  line-height: 20px;
+  line-height: 18px;
   font-weight: 400;
 }
 .transactions .transaction .update .secondary {
   line-height: 18px;
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 400;
 }
 .transactions .transaction .comments {
   margin-left: 0px;
@@ -1546,7 +1547,7 @@ header i {
 }
 .business-intelligence {
   padding: 11px;
-  min-height: 600px;
+  min-height: 500px;
 }
 .business-intelligence h3 {
   margin: 0px;
@@ -1560,26 +1561,29 @@ header i {
 .business-intelligence ul li {
   float: left;
   width: 100%;
-  padding-bottom: 5px;
+  padding: 8px 0px 3px 0px;
   list-style: none;
+  border-bottom: 1px dotted #eee;
 }
 .business-intelligence ul li .img {
-  max-width: 200px;
-  width: 50%;
-  float: left;
+  max-width: 100px;
+  float: right;
 }
 .business-intelligence ul li .img img {
   width: 96%;
 }
 .business-intelligence ul li .details {
+  font-size: 14px;
   float: left;
-  width: 50%;
+  margin-top: -2px;
 }
 .business-intelligence ul li .details a {
+  text-transform: capitalize;
+  font-weight: 600;
   display: block;
 }
-.business-intelligence .current-business {
-  padding: 11px 0 0px 0px;
+.business-intelligence ul li .details span {
+  font-weight: 300;
 }
 .business-intelligence .past-business {
   margin-top: 22px;

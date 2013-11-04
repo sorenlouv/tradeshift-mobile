@@ -11,11 +11,11 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
       activityId            = getActivityId($rootScope.currentUser.company, companyId),
 
       // Get Firebase data
-      companyRef            = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + companyId),
-      currentUserCompanyRef = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + currentUserCompany),
-      productsRef           = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + currentUserCompany + "/products"),
-      activityRef           = new Firebase("https://tradeshift-mobile.firebaseio.com/activities/" + activityId),
-      usersRef              = new Firebase("https://tradeshift-mobile.firebaseio.com/users/");
+      companyRef            = new Firebase($rootScope.fireBaseUrl + "/companies/" + companyId),
+      currentUserCompanyRef = new Firebase($rootScope.fireBaseUrl + "/companies/" + currentUserCompany),
+      productsRef           = new Firebase($rootScope.fireBaseUrl + "/companies/" + currentUserCompany + "/products"),
+      activityRef           = new Firebase($rootScope.fireBaseUrl + "/activities/" + activityId),
+      usersRef              = new Firebase($rootScope.fireBaseUrl + "/users/");
 
 
   // Prepare scope variables
@@ -80,7 +80,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
 
   $scope.setQuantity = function(val) {
     $scope.newActivity.product.quantity = val;
-  }
+  };
 
   $scope.lineAction = function(activityId) {
     $scope.activeActivity = activityId;
@@ -100,4 +100,5 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $('.newProduct input').val('');
     $('.newProduct-picker').hide();
   };
+
 }]);

@@ -2,8 +2,8 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
   'use strict';
 
   // Users collection
-  var usersRef = new Firebase("https://tradeshift-mobile.firebaseio.com/users");
-  var companiesRef = new Firebase("https://tradeshift-mobile.firebaseio.com/companies");
+  var usersRef = new Firebase($rootScope.fireBaseUrl + "/users");
+  var companiesRef = new Firebase($rootScope.fireBaseUrl + "/companies");
 
   /************* Helper methods ************/
 
@@ -34,7 +34,7 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
   var getOrCreateCurrentCompany = function(companyName){
     var deferred = $q.defer();
 
-    var companyId = getValidIdentifier($scope.currentCompany.name);
+    var companyId = getValidIdentifier(companyName);
     companiesRef.child(companyId).once('value', function(companySnapshot){
 
       // Create user if not exists, or fetch from DB
@@ -100,15 +100,14 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
       var companyName = $scope.currentCompany.name;
       var companyId = getValidIdentifier($scope.currentCompany.name);
 
-      getOrCreateCurrentCompany(companyName).then(function(currentCompany){
-        var currentCompanyRef = companiesRef.child(companyId);
+      // create 2-way binding between FireBase and angular models
+      angularFire(companiesRef.child(companyId), $scope, "currentCompany").then(function(){
+        getOrCreateCurrentCompany(companyName).then(function(currentCompany){
+          $scope.currentCompany = currentCompany;
 
-        // create 2-way binding between FireBase and angular models
-        $scope.currentCompany = currentCompany;
-        angularFire(currentCompanyRef, $scope, "currentCompany");
-
-        // update users company
-        $rootScope.currentUser.company = companyId;
+          // update users company
+          $rootScope.currentUser.company = companyId;
+        });
       });
     }
   };

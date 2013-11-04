@@ -132,14 +132,14 @@ header {
 		.creator {
 			float: left;
 			height: 50px;
-			width: 60px;
+			width: 50px;
 			img {
 				position: absolute;
-				left: 11px;
-				top:7px;
+				left: 5px;
+				top:5px;
 				height: 45px;
 				.rounded(25px);
-				margin-right: 22px;
+				margin-right: 11px;
 			}
 		}
 
@@ -166,14 +166,15 @@ header {
 				}
 			}
 			.primary {
-				font-size: 18px;
+				font-size: 16px;
 				display: block;
-				line-height: 20px;
+				line-height: 18px;
 				font-weight: 400;
 			}
 			.secondary {
 				line-height: 18px;
-				font-size: 14px;
+				font-size: 12px;
+				font-weight: 400;
 			}
 		}
 
@@ -205,7 +206,7 @@ header {
 
 .business-intelligence {
 	padding: 11px;
-	min-height: 600px;
+	min-height: 500px;
 	h3 {
 		margin: 0px;
 		padding-top: 0px;
@@ -217,28 +218,30 @@ header {
 		li {
 			float: left;
 			width: 100%;
-			padding-bottom: 5px;
+			padding: 8px 0px 3px 0px;
 			list-style: none;
+			border-bottom: 1px dotted #eee;
 			.img {
-				max-width: 200px;
-				width: 50%;
-				float: left;
+				max-width: 100px;
+				float: right;
 				img {
 					width: 96%;
 				}
 			}
 			.details {
+				font-size: 14px;
 				float: left;
-				width: 50%;
+				margin-top: -2px;
 				a {
+					text-transform: capitalize;
+					font-weight: 600;
 					display: block;
+				}
+				span {
+					font-weight: 300;
 				}
 			}
 		}
-	}
-
-	.current-business {
-		padding: 11px 0 0px 0px;
 	}
 
 	.past-business {
@@ -349,7 +352,6 @@ header {
 		width: calc(~" 100% - 8px ");
 		margin-bottom: 11px;
 	}
-
 	.picker-bg {
 		position: relative;
 		z-index: 9;
@@ -368,7 +370,6 @@ header {
 		.comment {
 			margin-bottom: 22px;
 		}
-
 	}
 	.picker-content {
 		z-index: 11;
