@@ -16,8 +16,8 @@
 </header>
 
 <div class="transactions">
-  <div class="transaction" ng-repeat="(activityId, line) in activity.lines" ng-click="lineAction(activityId)">
-    <div class="creator"><img src="{{line.user.image}}?width=80&height=80" alt=""></div>
+  <div class="transaction" ng-repeat="(lineId, line) in activity.lines" ng-click="lineAction(lineId)">
+    <div class="creator"><img ng-src="{{line.user.image}}?width=80&height=80" alt=""></div>
     <!-- <input type="checkbox" class="to-be-settled"/> -->
     <div class="update">
       <div class="object">
@@ -213,7 +213,7 @@
       <div class="picker-data">
         <ul>
           <h3>Comment</h3>
-            <form class="comment-form" ng-submit="postComment(activeActivity, activityId)">
+            <form class="comment-form" ng-submit="postComment(lineId)">
               <textarea></textarea>
               <button type="submit">Post comment</button>
             </form>
