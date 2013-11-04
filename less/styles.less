@@ -54,6 +54,7 @@ header {
 	display: block;
 
 	h3 {
+		text-transform: lowercase;
 		color: white;
 		font-size: 14px;
 		font-weight: 400;
@@ -204,6 +205,7 @@ header {
 
 .business-intelligence {
 	padding: 11px;
+	min-height: 600px;
 	h3 {
 		margin: 0px;
 		padding-top: 0px;
@@ -232,29 +234,40 @@ header {
 					display: block;
 				}
 			}
-
-
 		}
 	}
 
 	.current-business {
-		padding: 11px 0;
+		padding: 11px 0 0px 0px;
 	}
+
 	.past-business {
+		margin-top: 22px;
+
 		li {
 			padding-top: 13px;
 			height: 30px;
 			border-bottom: 1px dotted #eee;
 			span {
-				font-weight: 300;
-				width: 32%;
+				font-weight: 400;
+				width: 30%;
 				display: inline-block;
+				&:first-child {
+					width: 6%;
+				}
+
 				&:last-child {
 					text-align: right;
 				}
-				&:nth-child(2) {
+				&:nth-child(3) {
 					text-align: center;
 				}
+			}
+			.total, .date {
+				font-size: 14px;
+				font-weight: 300;
+				color: #999;
+				font-style: italic;
 			}
 		}
 	}
@@ -332,6 +345,11 @@ header {
 		}
 	}
 
+	textarea {
+		width: calc(~" 100% - 8px ");
+		margin-bottom: 11px;
+	}
+
 	.picker-bg {
 		position: relative;
 		z-index: 9;
@@ -401,9 +419,15 @@ header {
 	}
 	.lineActions-picker {
 		display: none;
+
+		.button {
+			width: calc(~" 100% - 22px ");
+		}
 	}
 	.newProduct-picker {
 		display: none;
+		z-index: 14;
+		position: relative;
 	}
 }
 

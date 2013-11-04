@@ -1410,6 +1410,7 @@ header {
   display: block;
 }
 header h3 {
+  text-transform: lowercase;
   color: white;
   font-size: 14px;
   font-weight: 400;
@@ -1545,6 +1546,7 @@ header i {
 }
 .business-intelligence {
   padding: 11px;
+  min-height: 600px;
 }
 .business-intelligence h3 {
   margin: 0px;
@@ -1577,7 +1579,10 @@ header i {
   display: block;
 }
 .business-intelligence .current-business {
-  padding: 11px 0;
+  padding: 11px 0 0px 0px;
+}
+.business-intelligence .past-business {
+  margin-top: 22px;
 }
 .business-intelligence .past-business li {
   padding-top: 13px;
@@ -1585,15 +1590,25 @@ header i {
   border-bottom: 1px dotted #eee;
 }
 .business-intelligence .past-business li span {
-  font-weight: 300;
-  width: 32%;
+  font-weight: 400;
+  width: 30%;
   display: inline-block;
+}
+.business-intelligence .past-business li span:first-child {
+  width: 6%;
 }
 .business-intelligence .past-business li span:last-child {
   text-align: right;
 }
-.business-intelligence .past-business li span:nth-child(2) {
+.business-intelligence .past-business li span:nth-child(3) {
   text-align: center;
+}
+.business-intelligence .past-business li .total,
+.business-intelligence .past-business li .date {
+  font-size: 14px;
+  font-weight: 300;
+  color: #999;
+  font-style: italic;
 }
 .business-intelligence .load-more {
   text-align: center;
@@ -1656,6 +1671,10 @@ header i {
   height: 33px;
   border: none;
   background-color: transparent;
+}
+.picker textarea {
+  width: calc( 100% - 8px );
+  margin-bottom: 11px;
 }
 .picker .picker-bg {
   position: relative;
@@ -1723,7 +1742,11 @@ header i {
 .picker .lineActions-picker {
   display: none;
 }
+.picker .lineActions-picker .button {
+  width: calc( 100% - 22px );
+}
 .picker .newProduct-picker {
   display: none;
   z-index: 14;
+  position: relative;
 }
