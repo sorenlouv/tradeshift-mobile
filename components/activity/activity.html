@@ -8,10 +8,8 @@
 		<h3 ng-bind="company.name"></h3>
 		<span>To be invoiced: 4.000</span>
 	</div>
-	<div class="add" >
-		<a ng-click="addItem()">
+	<div class="add" ng-click="addItem()">
 			<i class="fa fa-plus-circle"></i>
-		</a>
 	</div>
 </header>
 
@@ -81,11 +79,9 @@
 			</div>
 			<div class="picker-data">
 				<ul>
-					<li ng-repeat="product in products">
-						<div ng-click="selectProduct(product)">
-							{{product.title}}
-							<i class="fa fa-chevron-right"></i>
-						</div>
+					<li ng-repeat="product in products" ng-click="selectProduct(product)">
+						{{product.title}}
+						<i class="fa fa-chevron-right"></i>
 					</li>
 				</ul>
 			</div>

@@ -1622,7 +1622,7 @@ header i {
   right: 0;
   background-color: white;
   height: 100%;
-  overflow: scroll;
+  overflow-y: auto;
 }
 .picker .picker-content .picker-header {
   background-color: #20a0e9;
