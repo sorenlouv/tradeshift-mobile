@@ -1,14 +1,14 @@
 <header>
     <div>
-        <h3>Overview</h3>
-        <span>To be invoiced: 220.000</span>
+        <h3>220.000</h3>
+        <span>To be invoiced</span>
     </div>
 </header>
 
 <div class="business-intelligence">
     <h3>Current business</h3>
-    <ul ng-repeat="(company_id, company) in companies" class="current-business">
-        <li>
+    <ul  class="current-business">
+        <li ng-repeat="(company_id, company) in companies">
             <div class="img">
                 <a ng-href="/#/activity/{{company_id}}/">
                     <img src="/images/top-logo.png">

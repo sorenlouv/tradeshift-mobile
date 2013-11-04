@@ -1561,6 +1561,7 @@ header i {
   list-style: none;
 }
 .business-intelligence ul li .img {
+  max-width: 200px;
   width: 50%;
   float: left;
 }
@@ -1575,7 +1576,7 @@ header i {
   display: block;
 }
 .business-intelligence .current-business {
-  padding-top: 11px;
+  padding: 11px 0;
 }
 .business-intelligence .past-business li {
   padding-top: 13px;
@@ -1710,9 +1711,4 @@ header i {
   display: none;
   position: relative;
   z-index: 13;
-}
-.picker .newProduct-picker {
-  display: none;
-  position: relative;
-  z-index: 14;
 }
