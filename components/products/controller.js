@@ -10,7 +10,7 @@ app.controller('ProductController', ['$scope','$rootScope' , 'angularFire', func
 
   $scope.new_product = function() {
     $scope.products.push({
-      name: $('.new_product input[name="name"]').val(),
+      title: $('.new_product input[name="title"]').val(),
       price: $('.new_product input[name="price"]').val(),
       unit: $('.new_product input[name="unit"]').val(),
       currency: $('.new_product input[name="currency"]').val()
