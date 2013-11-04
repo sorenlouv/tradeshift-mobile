@@ -14,20 +14,26 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
       companyRef            = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + companyId),
       currentUserCompanyRef = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + currentUserCompany),
       productsRef           = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + currentUserCompany + "/products"),
-      activityRef           = new Firebase("https://tradeshift-mobile.firebaseio.com/activities/" + activityId);
+      activityRef           = new Firebase("https://tradeshift-mobile.firebaseio.com/activities/" + activityId),
+      usersRef              = new Firebase("https://tradeshift-mobile.firebaseio.com/users/");
 
 
   // Prepare scope variables
   $scope.company = {};
   $scope.activity = {};
   $scope.products = {};
-  $scope.newActivity = {};
+  $scope.users = {};
+  $scope.newActivity = {
+    user: angular.copy($rootScope.currentUser)
+  };
   $scope.selectedPrice = 0;
+  $scope.currentUser = $rootScope.currentUser;
 
   // Bind firebase to scope
   angularFire(companyRef, $scope, 'company');
   angularFire(activityRef, $scope, 'activity');
   angularFire(productsRef, $scope, 'products');
+  angularFire(usersRef, $scope, 'users');
 
   // Sune's stuff
   $scope.addItem = function() {
@@ -49,6 +55,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   $scope.showAddNewProduct = function() {
     $('.newProduct-picker').show();
   };
+
   $scope.selectProduct = function(product) {
     $scope.newActivity.product = angular.copy(product);
     $('.select-picker').show();

@@ -15,8 +15,10 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
 
       // Create user if not exists, or fetch from DB
       var currentUser = (currentUserSnapshot.val() === null) ? {
+        id: facebookUser.id,
         name: facebookUser.name,
-        email: facebookUser.email
+        email: facebookUser.email,
+        image: 'https://graph.facebook.com/'+facebookUser.username+'/picture'
       } : currentUserSnapshot.val();
 
       // resolve promise

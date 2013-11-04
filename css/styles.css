@@ -1725,4 +1725,5 @@ header i {
 }
 .picker .newProduct-picker {
   display: none;
+  z-index: 14;
 }
