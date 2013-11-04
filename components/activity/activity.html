@@ -14,11 +14,9 @@
     </a>
   </div>
 </header>
-
 <div class="transactions">
   <div class="transaction" ng-repeat="line in activity.lines" ng-click="lineAction()">
     <div class="creator"><img ng-src="{{line.user.image}}?width=80&height=80" alt=""></div>
-    <input type="checkbox" class="to-be-settled"/>
     <div class="update">
       <div class="object">
         <span class="primary">{{line.product.quantity}} * {{line.product.title}}</span>

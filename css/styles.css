@@ -1478,6 +1478,7 @@ header i {
   cursor: pointer;
   background-color: white;
   margin: 0px 5px -5px 5px;
+  min-height: 60px;
 }
 .transactions .transaction .creator {
   float: left;
@@ -1486,8 +1487,8 @@ header i {
 }
 .transactions .transaction .creator img {
   position: absolute;
-  left: 5px;
-  top: 5px;
+  left: 11px;
+  top: 11px;
   height: 45px;
   border-radius: 25px;
   margin-right: 11px;
@@ -1495,11 +1496,12 @@ header i {
 .transactions .transaction .update {
   display: block;
   overflow: hidden;
+  margin: 6px 0px 0px 6px;
 }
 .transactions .transaction .update .object {
   float: left;
   height: 44px;
-  width: 67%;
+  margin-left: 6px;
 }
 .transactions .transaction .update .object .secondary {
   float: left;
