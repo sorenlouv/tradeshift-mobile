@@ -15,9 +15,9 @@
 	</div>
 </header>
 
-
 <div class="transactions">
 	<div class="transaction" ng-repeat="line in activity.lines">
+		<input type="checkbox" class="to-be-settled"/>
 		<div class="update">
 			<div class="object">
 				<span class="primary">{{line.product.amount}} * {{line.product.title}}</span>
@@ -30,7 +30,7 @@
 		</div>
 		<div class="comments">
 			<div class="comment" ng-repeat="comment in line.comments">
-				<span class="person"><a href="#">{{comment.user}}</a></span>
+				<span class="person"><a href="#">{{comment.user | username}}</a></span>
 				<span class="content">{{comment.comment}}</span>
 			</div>
 		</div>
