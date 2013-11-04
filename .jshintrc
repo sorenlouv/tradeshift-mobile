@@ -2,6 +2,7 @@
     "unused": false,
     "quotmark": false,
     "globals": {
+        "alert": true,
         "console": true,
         "angular": true,
         "app": true,

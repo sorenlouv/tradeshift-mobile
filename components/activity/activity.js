@@ -2,17 +2,17 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
 
   'use strict';
 
-  var createActivityHandle = function(company1, company2) {
+  var getActivityId = function(company1, company2) {
     return (company1 < company2 ? company1 + "-" + company2 : company2 + "-" + company1);
   };
 
   var company_id      = $routeParams.company_id,
-      currentCompany   = $rootScope.currentUser.company,
-      activityId          = createActivityHandle($rootScope.currentUser.company, company_id),
+      currentUserCompany   = $rootScope.currentUser.company,
+      activityId          = getActivityId($rootScope.currentUser.company, company_id),
 
       // Get Firebase data
       companyRef         = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + company_id),
-      currentCompanyRef  = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + currentCompany),
+      currentUserCompanyRef  = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + currentUserCompany),
       productsRef        = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/" + my_company_id + "/products"),
       activityRef        = new Firebase("https://tradeshift-mobile.firebaseio.com/activities/" + activityId);
 
@@ -21,7 +21,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   $scope.activity = {};
   $scope.products = {};
   $scope.new_activity = {};
-  
+
 
   // Bind firebase to scope
   angularFire(companyRef, $scope, 'company');
