@@ -9,13 +9,18 @@ angular.module('usernameFilter', []).filter('username', function($timeout, $root
     }, 0);
   });
 
-  function realFilter(input){
+  function realFilter(input, full){
     var user = users[input];
     if(user === undefined) return;
-    return user.name;
+    if(full){
+      return user.name;
+    }else{
+      return user.first_name;
+    }
+
   }
 
-  return function(input) {
+  return function(input, full) {
 
     if(users === null){
       usersRef.on('value', function(usersSnapshot){
@@ -25,7 +30,7 @@ angular.module('usernameFilter', []).filter('username', function($timeout, $root
       });
       return "Loading name...";
     }else{
-      return realFilter(input);
+      return realFilter(input, full);
     }
   };
 });
