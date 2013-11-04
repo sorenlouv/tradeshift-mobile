@@ -3,6 +3,7 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
 
   // Users collection
   var usersRef = new Firebase("https://tradeshift-mobile.firebaseio.com/users");
+  var companiesRef = new Firebase("https://tradeshift-mobile.firebaseio.com/companies");
 
   /************* Helper methods ************/
 
@@ -10,13 +11,15 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
   var getOrCreateCurrentUser = function(facebookUser){
     var deferred = $q.defer();
 
-    usersRef.child(facebookUser.id).once('value', function(authenticatedUserSnapshot){
+    usersRef.child(facebookUser.id).once('value', function(currentUserSnapshot){
 
       // Create user if not exists, or fetch from DB
-      var currentUser = (authenticatedUserSnapshot.val() === null) ? {
+      var currentUser = (currentUserSnapshot.val() === null) ? {
         name: facebookUser.name,
         email: facebookUser.email
-      } : authenticatedUserSnapshot.val();
+      } : currentUserSnapshot.val();
+
+      console.log(currentUser);
 
       // resolve promise
       safeApply($scope, function(){
@@ -32,13 +35,14 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
     var deferred = $q.defer();
 
     var companyId = getValidIdentifier($scope.currentCompany.name);
-    var currentCompanyRef = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/").child(companyId);
-    currentCompanyRef.once('value', function(companySnapshot){
+    companiesRef.child(companyId).once('value', function(companySnapshot){
 
       // Create user if not exists, or fetch from DB
       var currentCompany = (companySnapshot.val() === null) ? {
         name: companyName
       } : companySnapshot.val();
+
+      console.log(currentCompany);
 
       // resolve promise
       safeApply($scope, function(){
@@ -99,14 +103,14 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
       var companyId = getValidIdentifier($scope.currentCompany.name);
 
       getOrCreateCurrentCompany(companyName).then(function(currentCompany){
-        var currentCompanyRef = new Firebase("https://tradeshift-mobile.firebaseio.com/companies/").child(companyId);
+        // var currentCompanyRef = companiesRef.child(companyId);
 
-        // create 2-way binding between FireBase and angular models
-        $scope.currentCompany = currentCompany;
-        angularFire(currentCompanyRef, $scope, "currentCompany");
+        // // create 2-way binding between FireBase and angular models
+        // $scope.currentCompany = currentCompany;
+        // angularFire(currentCompanyRef, $scope, "currentCompany");
 
-        // update users company
-        $rootScope.currentUser.company = companyId;
+        // // update users company
+        // $rootScope.currentUser.company = companyId;
       });
     }
   };

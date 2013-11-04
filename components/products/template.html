@@ -1,14 +1,20 @@
 <h1>My Products</h1>
 
 <div class="new_product" style="padding: 20px; background-color: #fafafa">
-  <input type="text" name="title" placeholder="Title">
-  <input type="text" name="price" placeholder="Price">
-  <input type="text" name="currency" placeholder="Currency">
-  <button ng-click="new_product()">Add new product</button>
+  <form ng-submit="new_product()">
+    <input type="text" name="title" placeholder="Title">
+    <input type="text" name="price" placeholder="Price">
+    <input type="text" name="currency" placeholder="Currency">
+    <button type="submit">Add new product</button>
+  </form>
 </div>
 
+
 <div class="product" ng-repeat="product in products">
-  <h2>{{product.title}} <i class="fa fa-angle-down"></i></h2>
+  <h2>
+    {{product.title}}
+    <i class="fa fa-angle-down"></i>
+    </h2>
   <div>
     <input type="text" ng-model="product.title" />
     <input type="text" ng-model="product.price" />
