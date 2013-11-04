@@ -11,9 +11,10 @@
 </header>
 
 <div class="business-intelligence">
-  <h3>Current business</h3>
-  <ul ng-repeat="(company_id, company) in companies | filter: notEqualTo(company)" class="current-business">
-      <li ng-show="company_id !== currentUserCompany">
+
+    <h3>Current business</h3>
+    <ul class="current-business">
+        <li ng-repeat="(company_id, company) in companies" ng-show="company_id !== currentUserCompany" class="current-business">
           <div class="details">
               <a ng-href="/#/activity/{{company_id}}/" ng-bind="company.name" class="company-name"></a>
               <span>DKK 4,000.00</span>
@@ -23,8 +24,8 @@
                   <img src="/images/top-logo.png">
               </a>
           </div>
-     </li>
-  </ul>
+       </li>
+    </ul>
 
   <ul class="past-business">
       <h3>Past business</h3>

@@ -90,7 +90,8 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     productsRef.push({
       title: $('.newProduct input[name="title"]').val(),
       price: $('.newProduct input[name="price"]').val(),
-      currency: $('.newProduct input[name="currency"]').val()
+      currency: $('.newProduct input[name="currency"]').val(),
+      tax: $('.newProduct input[name="tax"]').val()
     });
 
     $('.newProduct input').val('');
