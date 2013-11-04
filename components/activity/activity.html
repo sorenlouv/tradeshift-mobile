@@ -1,144 +1,175 @@
 <header>
-	<div class="back">
-		<a href="/#/business-intelligence">
-			<i class="fa fa-arrow-left"></i>
-		</a>
-	</div>
-	<div>
-		<h3 ng-bind="company.name"></h3>
-		<span>To be invoiced: 4.000</span>
-	</div>
-	<div class="add" >
-		<a ng-click="addItem()">
-			<i class="fa fa-plus-circle"></i>
-		</a>
-	</div>
+  <div class="back">
+    <a href="/#/business-intelligence">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+  </div>
+  <div>
+    <h3 ng-bind="company.name"></h3>
+    <span>To be invoiced: 4.000</span>
+  </div>
+  <div class="add" >
+    <a ng-click="addItem()">
+      <i class="fa fa-plus-circle"></i>
+    </a>
+  </div>
 </header>
 
 <div class="transactions">
-	<div class="transaction" ng-repeat="line in activity.lines">
-		<input type="checkbox" class="to-be-settled"/>
-		<div class="update">
-			<div class="object">
-				<span class="primary">{{line.product.quantity}} * {{line.product.title}}</span>
-				<span class="secondary">{{line.product.custom_price | currency: line.product.currency}} pr. piece</span>
-			</div>
-			<div class="price">
-				<span class="primary">{{(line.product.custom_price * line.product.quantity) | currency: line.product.currency}}</span>
-				<span class="secondary">Total</span>
-			</div>
-		</div>
-		<div class="comments">
-			<div class="comment" ng-repeat="comment in line.comments">
-				<span class="person"><a href="#">{{comment.user | username}}</a></span>
-				<span class="content">{{comment.comment}}</span>
-			</div>
-		</div>
-	</div>
+  <div class="transaction" ng-repeat="line in activity.lines">
+    <input type="checkbox" class="to-be-settled"/>
+    <div class="update">
+      <div class="object">
+        <span class="primary">{{line.product.quantity}} * {{line.product.title}}</span>
+        <span class="secondary">{{line.product.custom_price | currency: line.product.currency}} pr. piece</span>
+      </div>
+      <div class="price">
+        <span class="primary">{{(line.product.custom_price * line.product.quantity) | currency: line.product.currency}}</span>
+        <span class="secondary">Total</span>
+      </div>
+    </div>
+    <div class="comments">
+      <div class="comment" ng-repeat="comment in line.comments">
+        <span class="person"><a href="#">{{comment.user | username}}</a></span>
+        <span class="content">{{comment.comment}}</span>
+      </div>
+    </div>
+  </div>
 
 </div>
 
 <section class="picker" >
-	<div class="picker-bg" ng-click="hidePickers()"></div>
-	<div class="add-picker">
-		<div class="picker-content">
-			<div class="picker-header">
-				<h1>Actions</h1>
-				<a ng-click="hidePickers()">
-					<i class="fa fa-times"></i>
-				</a>
-			</div>
-			<div class="picker-data">
-				<h3>Add &hellip;</h3>
-				<ul>
-					<li ng-click="addProduct()">
-						<span>Product</span>
-						<i class="fa fa-chevron-right"></i>
-					</li>
-					<li>
-						<span>Quote</span>
-						<i class="fa fa-chevron-right"></i>
-					</li>
-					<li>
-						<span>Expense</span>
-						<i class="fa fa-chevron-right"></i>
-					</li>
-				</ul>
-				<h3>Other</h3>
-				<ul>
-					<li ng-click="generateInvoice()">Generate invoice </li>
-				</ul>
-			</div>
-		</div>
-	</div>
+  <div class="picker-bg" ng-click="hidePickers()"></div>
+  <div class="add-picker">
+    <div class="picker-content">
+      <div class="picker-header">
+        <h1>Actions</h1>
+        <a ng-click="hidePickers()">
+          <i class="fa fa-times"></i>
+        </a>
+      </div>
+      <div class="picker-data">
+        <h3>Add &hellip;</h3>
+        <ul>
+          <li ng-click="addProduct()">
+            <span>Product</span>
+            <i class="fa fa-chevron-right"></i>
+          </li>
+          <li>
+            <span>Quote</span>
+            <i class="fa fa-chevron-right"></i>
+          </li>
+          <li>
+            <span>Expense</span>
+            <i class="fa fa-chevron-right"></i>
+          </li>
+        </ul>
+        <h3>Other</h3>
+        <ul>
+          <li ng-click="generateInvoice()">Generate invoice </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-	<div class="product-picker">
-		<div class="picker-content">
-			<div class="picker-header">
-				<h1>Add product</h1>
-				<a ng-click="hidePickers()">
-					<i class="fa fa-times"></i>
-				</a>
-			</div>
-			<div class="picker-data">
-				<ul>
-					<li ng-repeat="product in products">
-						<div ng-click="selectProduct(product)">
-							{{product.title}}
-							<i class="fa fa-chevron-right"></i>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+  <div class="product-picker">
+    <div class="picker-content">
+      <div class="picker-header">
+        <h1>Add product</h1>
+        <a ng-click="hidePickers()">
+          <i class="fa fa-times"></i>
+        </a>
+      </div>
+      <div class="picker-data">
+        <ul>
+          <li ng-repeat="product in products">
+            <div ng-click="selectProduct(product)">
+              {{product.title}}
+              <i class="fa fa-chevron-right"></i>
+            </div>
+          </li>
+          <hr>
+          <li>
+            <div ng-click="showAddNewProduct()">
+              Add new product
+              <i class="fa fa-chevron-right"></i>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-	<div class="select-picker">
-		<div class="picker-content">
-			<div class="picker-header">
-				<h1>{{newActivity.product.title}}</h1>
-				<a ng-click="hidePickers()">
-					<i class="fa fa-times"></i>
-				</a>
-			</div>
-			<div class="picker-data">
-				<form ng-submit="saveNewActivity()">
-					<h3>Select price</h3>
-					<ul>
-						<li ng-click="selectPrice(newActivity.product.price)">
-							{{newActivity.product.price | currency: newActivity.product.currency}}
-						</li>
-						<li ng-click="selectPrice(newActivity.product.price * 0.9)">
-							{{(newActivity.product.price * 0.9) | currency: newActivity.product.currency}}
-							<span class="discount">10% discount</span>
-						</li>
-						<li ng-click="selectPrice(newActivity.product.price * 0.8)">
-							{{(newActivity.product.price * 0.8) | currency: newActivity.product.currency}}
-							<span class="discount">20% discount</span>
-						</li>
-						<li ng-click="selectPrice(newActivity.product.price * 0.7)">
-							{{(newActivity.product.price * 0.7) | currency: newActivity.product.currency}}
-							<span class="discount">30% discount</span>
-						</li>
-						<li>
-							<input type="text" placeholder="New price" ng-bind="newActivity.product.custom_price">
-						</li>
-					</ul>
+  <div class="select-picker">
+    <div class="picker-content">
+      <div class="picker-header">
+        <h1>{{newActivity.product.title}}</h1>
+        <a ng-click="hidePickers()">
+          <i class="fa fa-times"></i>
+        </a>
+      </div>
+      <div class="picker-data">
+        <form ng-submit="saveNewActivity()">
+          <h3>Select price</h3>
+          <ul>
+            <li ng-click="selectPrice(newActivity.product.price)">
+              {{newActivity.product.price | currency: newActivity.product.currency}}
+            </li>
+            <li ng-click="selectPrice(newActivity.product.price * 0.9)">
+              {{(newActivity.product.price * 0.9) | currency: newActivity.product.currency}}
+              <span class="discount">10% discount</span>
+            </li>
+            <li ng-click="selectPrice(newActivity.product.price * 0.8)">
+              {{(newActivity.product.price * 0.8) | currency: newActivity.product.currency}}
+              <span class="discount">20% discount</span>
+            </li>
+            <li ng-click="selectPrice(newActivity.product.price * 0.7)">
+              {{(newActivity.product.price * 0.7) | currency: newActivity.product.currency}}
+              <span class="discount">30% discount</span>
+            </li>
+            <li>
+              <span>{{newActivity.product.currency}}</span>
+              <input type="text" placeholder="New price" ng-model="newActivity.product.custom_price">
+              <span class="discount"><span ng-bind="((1 - (newActivity.product.custom_price/newActivity.product.price)) * 100) | number: 2"></span>% discount</span>
+            </li>
+          </ul>
 
-					<h3>Quantity</h3>
-					<input type="text" placeholder="1" ng-model="newActivity.product.quantity" />
+          <h3>Quantity</h3>
+          <input type="text" placeholder="1" ng-model="newActivity.product.quantity" />
 
-					<h3>Comment</h3>
-					<fieldset class="uniform">
-						<label><span>Add comment</span></label>
-						<input type="text" placeholder="Comment" ng-model="newActivity.description" class="_textual">
-					</fieldset>
+          <h3>Comment</h3>
+          <fieldset class="uniform">
+            <label><span>Add comment</span></label>
+            <input type="text" placeholder="Comment" ng-model="newActivity.description" class="_textual">
+          </fieldset>
 
-					<button class="button" type="submit">Done</button>
-				</form>
-			</div>
-		</div>
-	</div>
+          <button class="button" type="submit">Done</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="newProduct-picker">
+    <div class="picker-content">
+      <div class="picker-header">
+        <h1>New product</h1>
+        <a ng-click="hidePickers()">
+          <i class="fa fa-times"></i>
+        </a>
+      </div>
+      <div class="picker-data">
+        <form ng-submit="addNewProduct()" class="newProduct">
+
+          <input type="text" name="title" placeholder="Title">
+          <input type="text" name="price" placeholder="Price">
+          <input type="text" name="currency" placeholder="Currency">
+
+          <button type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </section>
 
 

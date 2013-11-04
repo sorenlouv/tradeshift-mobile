@@ -1695,3 +1695,8 @@ header i {
   position: relative;
   z-index: 13;
 }
+.picker .newProduct-picker {
+  display: none;
+  position: relative;
+  z-index: 14;
+}

@@ -37,11 +37,16 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $('.picker').hide();
     $('.product-picker').hide();
     $('.select-picker').hide();
+    $('.newProduct-picker').hide();
   };
 
   $scope.addProduct = function() {
     $('.product-picker').show();
   };
+
+  $scope.showAddNewProduct = function() {
+    $('.newProduct-picker').show();
+  }
 
   $scope.selectProduct = function(product) {
     $scope.newActivity.product = angular.copy(product);
@@ -63,5 +68,18 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   $scope.saveNewActivity = function() {
     activityRef.child('lines').push(angular.copy($scope.newActivity));
   };
+
+
+  $scope.addNewProduct = function() {
+
+    productsRef.push({
+      title: $('.newProduct input[name="title"]').val(),
+      price: $('.newProduct input[name="price"]').val(),
+      currency: $('.newProduct input[name="currency"]').val()
+    });
+
+    $('.newProduct input').val('');
+    $('.newProduct-picker').hide();
+  }
 
 }]);
