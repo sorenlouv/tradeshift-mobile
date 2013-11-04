@@ -59,12 +59,12 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   };
 
   /*********** New Activity ***************/
-  $scope.selectProduct = function(product) {
+  $scope.setProduct = function(product) {
     $scope.newActivity.product = angular.copy(product);
     $('.select-picker').show();
   };
 
-  $scope.selectPrice = function(price, e) {
+  $scope.setCustomPrice = function(price, e) {
     $scope.newActivity.product.custom_price = price;
   };
 
