@@ -17,7 +17,7 @@
 
 <div class="transactions">
   <div class="transaction" ng-repeat="line in activity.lines" ng-click="lineAction()">
-    <div class="creator"><img src="{{line.user.image}}" alt=""></div>
+    <div class="creator"><img src="{{line.user.image}}?width=80&height=80" alt=""></div>
     <input type="checkbox" class="to-be-settled"/>
     <div class="update">
       <div class="object">
