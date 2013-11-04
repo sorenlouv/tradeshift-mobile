@@ -12,20 +12,24 @@
 
 <div class="business-intelligence">
 
-    <h3>Current business</h3>
-    <ul class="current-business">
-        <li ng-repeat="(company_id, company) in companies" ng-show="company_id !== currentUserCompany" class="current-business">
-          <div class="details">
-              <a ng-href="/#/activity/{{company_id}}/" ng-bind="company.name" class="company-name"></a>
-              <span>DKK 4,000.00</span>
-          </div>
-          <div class="img">
-              <a ng-href="/#/activity/{{company_id}}/">
-                  <img src="/images/top-logo.png">
-              </a>
-          </div>
-       </li>
-    </ul>
+  <div class="chart">
+    <canvas id="chart" chart type="Line" options="chartOptions" data="chartData" width="400" height="200"></canvas>
+  </div>
+
+  <h3>Current business</h3>
+  <ul class="current-business">
+      <li ng-repeat="(company_id, company) in companies" ng-show="company_id !== currentUserCompany" class="current-business">
+        <div class="details">
+            <a ng-href="/#/activity/{{company_id}}/" ng-bind="company.name" class="company-name"></a>
+            <span>DKK 4,000.00</span>
+        </div>
+        <div class="img">
+            <a ng-href="/#/activity/{{company_id}}/">
+                <img src="/images/top-logo.png">
+            </a>
+        </div>
+     </li>
+  </ul>
 
   <ul class="past-business">
       <h3>Past business</h3>
