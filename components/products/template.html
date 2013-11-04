@@ -1,0 +1,19 @@
+<h1>My Products</h1>
+
+<div class="new_product" style="padding: 20px; background-color: #fafafa">
+  <input type="text" name="name">
+  <input type="text" name="price">
+  <input type="text" name="currency">
+  <input type="text" name="unit">
+  <button ng-click="new_product()">Add new product</button>
+</div>
+
+<div class="product" ng-repeat="product in products">
+  <h2>{{product.name}} <i class="fa fa-angle-down"></i></h2>
+  <div>
+    <input type="text" ng-model="product.name" />
+    <input type="text" ng-model="product.price" />
+    <input type="text" ng-model="product.currency" />
+    <input type="text" ng-model="product.unit" />
+  </div>
+</div>

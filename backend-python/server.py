@@ -1,5 +1,5 @@
 from bottle import route, run, template, request, put, abort
-import requests, uuid, json
+import requests, uuid, json, random
 
 @route('/hello/<name>')
 def index(name='World'):
@@ -20,6 +20,8 @@ def sendDocument():
 def putDraft(docUUID, documentJson):
 	url = 'http://localhost:8888/tradeshift-backend/rest/external/documents/'+str(docUUID)+'?documentProfileId=nes.p5.invoice.ubl.2.1.dk&draft=true'
 	headers = {'X-Tradeshift-TenantId': '3fd7d621-7f89-481f-9647-b2edf2ee9a30', 'X-Tradeshift-ActorId': '5832d481-2e54-4574-9676-0f51fe6513df', 'Content-Type': 'application/json'}
+	randomId = random.choice('abcdefghij') + str(random.randrange(1000,10000))
+	documentJson['ID']['value'] = randomId
 	r = requests.put(url, data=json.dumps(documentJson), headers=headers)
 	return r.status_code
 
