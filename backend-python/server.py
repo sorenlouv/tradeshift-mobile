@@ -16,6 +16,11 @@ def sendDocument():
 	sendResponse = dispatchDraft(docUUID, dispatchUUID)
 	if sendResponse != 201:
 		return sendResponse
+	pdfResponse = getPDF(docUUID)
+	if pdfResponse.status_code != 200:
+		return pdfResponse.status_code
+	print pdfResponse._content
+	return pdfResponse._content
 
 def putDraft(docUUID, documentJson):
 	url = 'http://localhost:8888/tradeshift-backend/rest/external/documents/'+str(docUUID)+'?documentProfileId=nes.p5.invoice.ubl.2.1.dk&draft=true'
@@ -31,5 +36,11 @@ def dispatchDraft(docUUID, dispatchUUID):
     data={'ConnectionId':'94977f3a-0e97-5e76-9f99-2e7d219fce64'}
     r = requests.put(url, data=json.dumps(data), headers=headers)
     return r.status_code
+
+def getPDF(docUUID):
+	url = 'http://localhost:8888/tradeshift-backend/rest/external/documents/'+str(docUUID)
+	headers = {'X-Tradeshift-TenantId': '3fd7d621-7f89-481f-9647-b2edf2ee9a30', 'X-Tradeshift-ActorId': '5832d481-2e54-4574-9676-0f51fe6513df', 'Accept': 'application/pdf'}
+	r = requests.get(url, headers=headers)
+	return r
 
 run(host='0.0.0.0', port=8081, debug=True)
