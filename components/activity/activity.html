@@ -20,22 +20,18 @@
 	<div class="transaction" ng-repeat="line in activity.lines">
 		<div class="update">
 			<div class="object">
-				<span class="primary">4 * Product 3</span>
-				<span class="secondary">1000 pr. piece</span>
+				<span class="primary">{{line.product.amount}} * {{line.product.title}}</span>
+				<span class="secondary">{{line.product.unit_price}} pr. piece</span>
 			</div>
 			<div class="price">
-				<span class="primary">2000 DKK</span>
+				<span class="primary">{{(line.product.unit_price * line.product.amount) | currency: line.product.currency}}</span>
 				<span class="secondary">Total</span>
 			</div>
 		</div>
 		<div class="comments">
-			<div class="comment">
-				<span class="person"><a href="#">Søren L.</a></span>
-				<span class="content">Hey, thats way too expensive</span>
-			</div>
-			<div class="comment">
-				<span class="person"><a href="#">Frank</a></span>
-				<span class="content">Srsly</span>
+			<div class="comment" ng-repeat="comment in line.comments">
+				<span class="person"><a href="#">{{comment.user}}</a></span>
+				<span class="content">{{comment.comment}}</span>
 			</div>
 		</div>
 	</div>
@@ -118,7 +114,6 @@
 			</div>
 		</div>
 	</div>
-
 </section>
 
 
