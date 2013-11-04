@@ -1561,13 +1561,18 @@ header i {
   margin: 0px;
 }
 .business-intelligence .current-business li {
-  height: 44px;
-  float: left;
   width: 100%;
   list-style: none;
   border-bottom: 1px dotted #eee;
+  float: left;
+  margin-top: 11px;
+  padding: 1px 0px;
 }
-.business-intelligence .current-business li img {
+.business-intelligence .current-business li .img {
+  float: right;
+}
+.business-intelligence .current-business li .img img {
+  margin-top: -5px;
   max-height: 30px;
 }
 .business-intelligence .current-business li span {
@@ -1592,7 +1597,7 @@ header i {
   margin-top: 22px;
 }
 .business-intelligence .past-business li {
-  padding-top: 13px;
+  padding-top: 11px;
   height: 30px;
   border-bottom: 1px dotted #eee;
 }
