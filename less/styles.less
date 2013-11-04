@@ -33,6 +33,25 @@ a {
 }
 
 
+fieldset.uniform {
+	border: 0;
+	padding: 0;
+
+	label {
+		& > span:first-child {
+			color: @black;
+		}
+
+		input {
+			padding: 0;
+			border: 0;
+			border-bottom: 1px solid #ddd;
+			outline: 0;
+		}
+	}
+}
+
+
 header {
 	height: 44px;
 	background-color: @black;
@@ -125,8 +144,6 @@ header {
 				height: 45px;
 				.rounded(25px);
 				margin-right: 22px;
-			}
-			input {
 			}
 		}
 
