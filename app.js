@@ -25,6 +25,8 @@ app.config(function ($routeProvider) {
 app.run( function($rootScope, $location) {
   'use strict';
 
+  $rootScope.fireBaseUrl = "https://tradeshift-mobile.firebaseio.com/";
+
   // register listener to watch route changes
   $rootScope.$on( "$locationChangeStart", function(event, next, current) {
     // user is not logged in, and should be redirected to login page

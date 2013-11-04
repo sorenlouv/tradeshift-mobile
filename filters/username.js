@@ -1,7 +1,7 @@
-angular.module('usernameFilter', []).filter('username', function($timeout) {
+angular.module('usernameFilter', []).filter('username', function($timeout, $rootScope) {
   'use strict';
 
-  var usersRef = new Firebase("https://tradeshift-mobile.firebaseio.com/users/");
+  var usersRef = new Firebase($rootScope.fireBaseUrl + "/users/");
   var users = null;
   usersRef.on('value', function(usersSnapshot){
     $timeout(function() {

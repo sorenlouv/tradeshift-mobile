@@ -2,8 +2,8 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
   'use strict';
 
   // Users collection
-  var usersRef = new Firebase("https://tradeshift-mobile.firebaseio.com/users");
-  var companiesRef = new Firebase("https://tradeshift-mobile.firebaseio.com/companies");
+  var usersRef = new Firebase($rootScope.fireBaseUrl + "/users");
+  var companiesRef = new Firebase($rootScope.fireBaseUrl + "/companies");
 
   /************* Helper methods ************/
 
