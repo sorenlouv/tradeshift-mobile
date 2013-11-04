@@ -1553,7 +1553,7 @@ header i {
   float: left;
 }
 .business-intelligence ul li .img img {
-  width: 89%;
+  width: 96%;
 }
 .business-intelligence ul li .details {
   float: left;
@@ -1569,6 +1569,9 @@ header i {
   font-size: 11px;
   text-transform: uppercase;
   border-bottom: 1px dotted #333;
+}
+.business-intelligence .current-business {
+  padding-top: 11px;
 }
 .business-intelligence .past-business li {
   padding-top: 13px;

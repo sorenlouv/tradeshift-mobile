@@ -6,7 +6,8 @@
 </header>
 
 <div class="business-intelligence">
-    <ul ng-repeat="(company_id, company) in companies">
+    <h3>Current business</h3>
+    <ul ng-repeat="(company_id, company) in companies" class="current-business">
         <li>
             <div class="img">
                 <a ng-href="/#/activity/{{company_id}}/">
@@ -20,8 +21,9 @@
        </li>
     </ul>
 
-    <h3>Old invoices</h3>
+
     <ul class="past-business">
+        <h3>Old invoices</h3>
         <li>
             <a href="#">
                 <span>YayArt</span>
