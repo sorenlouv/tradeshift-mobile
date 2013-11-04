@@ -44,7 +44,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   };
 
   $scope.selectProduct = function(product) {
-    $scope.newActivity.product = product;
+    $scope.newActivity.product = angular.copy(product);
     $('.select-picker').show();
   };
 
