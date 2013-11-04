@@ -7,8 +7,8 @@
 
 <div class="business-intelligence">
     <h3>Current business</h3>
-    <ul ng-repeat="(company_id, company) in companies | filter: notEqualTo(company)" class="current-business">
-        <li ng-show="company_id !== currentUserCompany">
+    <ul class="current-business">
+        <li ng-repeat="(company_id, company) in companies" ng-show="company_id !== currentUserCompany">
             <div class="img">
                 <a ng-href="/#/activity/{{company_id}}/">
                     <img src="/images/top-logo.png">
