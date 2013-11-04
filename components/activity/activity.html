@@ -21,11 +21,11 @@
 		<input type="checkbox" class="to-be-settled"/>
 		<div class="update">
 			<div class="object">
-				<span class="primary">{{line.product.amount}} * {{line.product.title}}</span>
+				<span class="primary">{{line.product.quantity}} * {{line.product.title}}</span>
 				<span class="secondary">{{line.product.unit_price}} pr. piece</span>
 			</div>
 			<div class="price">
-				<span class="primary">{{(line.product.unit_price * line.product.amount) | currency: line.product.currency}}</span>
+				<span class="primary">{{(line.product.unit_price * line.product.quantity) | currency: line.product.currency}}</span>
 				<span class="secondary">Total</span>
 			</div>
 		</div>
