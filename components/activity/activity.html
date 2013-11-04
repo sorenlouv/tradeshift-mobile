@@ -81,7 +81,7 @@
 			</div>
 			<div class="picker-data">
 				<ul>
-					<li ng-repeat="product in products"><div ng-click="selectProduct(product)">{{product.name}}</div></li>
+					<li ng-repeat="product in products"><div ng-click="selectProduct(product)">{{product.title}}</div></li>
 				</ul>
 			</div>
 		</div>
@@ -90,7 +90,7 @@
 	<div class="select-picker">
 		<div class="picker-content">
 			<div class="picker-header">
-				<h1>{{new_activity.product.name}}</h1>
+				<h1>{{new_activity.product.title}}</h1>
 				<a ng-click="hidePicker()">
 					<i class="fa fa-times"></i>
 				</a>
