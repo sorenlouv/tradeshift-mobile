@@ -1378,6 +1378,19 @@ a {
   font-weight: 400;
   cursor: pointer;
 }
+.button {
+  font-size: 14px;
+  color: white;
+  padding: 11px;
+  background-color: #20a0e9;
+  width: calc( 100% - 22px );
+  display: inline-block;
+  border-radius: 3px;
+}
+.button i {
+  float: right;
+  margin-top: 3px;
+}
 header {
   height: 44px;
   background-color: #1e1e1e;
@@ -1443,19 +1456,6 @@ header i {
   margin: 0px;
   font-size: 14px;
   margin-bottom: 11px;
-}
-.transactions .generate .button {
-  font-size: 14px;
-  color: white;
-  padding: 11px;
-  background-color: #20a0e9;
-  width: calc( 100% - 22px );
-  display: inline-block;
-  border-radius: 3px;
-}
-.transactions .generate .button i {
-  float: right;
-  margin-top: 3px;
 }
 .transactions .transaction {
   position: relative;
@@ -1538,25 +1538,48 @@ header i {
   padding-top: 0px;
 }
 .business-intelligence ul {
+  overflow: hidden;
   padding: 0px;
   margin: 0px;
 }
 .business-intelligence ul li {
   float: left;
-  width: 50%;
-  padding-bottom: 11px;
+  width: 100%;
+  padding-bottom: 5px;
   list-style: none;
+  margin-right: 2%;
 }
 .business-intelligence ul li img {
-  width: 96%;
+  width: 50%;
 }
-.business-intelligence ul li span {
-  display: block;
-  margin-top: 1px;
-  font-size: 14px;
-  font-style: italic;
+.business-intelligence h3 {
+  margin-top: 11px;
+  padding-bottom: 5px;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  border-bottom: 1px dotted #333;
+}
+.business-intelligence .past-business li {
+  padding-top: 13px;
+  height: 30px;
+  border-bottom: 1px dotted #eee;
+}
+.business-intelligence .past-business li span {
   font-weight: 300;
-  color: #ccc;
+  width: 32%;
+  display: inline-block;
+}
+.business-intelligence .past-business li span:last-child {
+  text-align: right;
+}
+.business-intelligence .past-business li span:nth-child(2) {
+  text-align: center;
+}
+.business-intelligence .load-more {
+  text-align: center;
+  padding-top: 11px;
+  display: block;
 }
 .picker {
   z-index: 10;

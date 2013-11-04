@@ -17,6 +17,21 @@ a {
 	cursor: pointer;
 }
 
+.button {
+	font-size: 14px;
+	color: white;
+	padding: 11px;
+	background-color: @tsblue;
+	width: calc(~" 100% - 22px ");
+	display: inline-block;
+	.rounded();
+
+	i {
+		float: right;
+		margin-top: 3px;
+	}
+}
+
 
 header {
 	height: 44px;
@@ -88,20 +103,6 @@ header {
 			font-size: 14px;
 			margin-bottom: 11px;
 		}
-		.button {
-			font-size: 14px;
-			color: white;
-			padding: 11px;
-			background-color: @tsblue;
-			width: calc(~" 100% - 22px ");
-			display: inline-block;
-			.rounded();
-
-			i {
-				float: right;
-				margin-top: 3px;
-			}
-		}
 	}
 
 	.transaction {
@@ -132,7 +133,7 @@ header {
 		.update {
 			display: block;
 			overflow: hidden;
-			
+
 			.object {
 				float: left;
 				height: 44px;
@@ -171,8 +172,6 @@ header {
 
 			.comment {
 				border-top: 1px dotted #eee;
-				
-				
 				padding:11px 0px;
 
 				.person{
@@ -193,36 +192,57 @@ header {
 
 .business-intelligence {
 	padding: 11px;
-
 	h3 {
 		margin: 0px;
 		padding-top: 0px;
 	}
-
 	ul {
+		overflow: hidden;
 		padding: 0px;
 		margin: 0px;
 		li {
 			float: left;
-			width: 50%;
-			img {
-				width: 96%;
-			}
-
-			padding-bottom: 11px;
+			width: 100%;
+			padding-bottom: 5px;
 			list-style: none;
-
-			span {
-				display: block;
-
-				margin-top: 1px;
-				font-size: 14px;
-				font-style: italic;
-				font-weight: 300;
-				color: #ccc;
+			margin-right: 2%;
+			img {
+				width: 50%;
 			}
 		}
-	}	
+	}
+	h3 {
+		margin-top: 11px;
+		padding-bottom: 5px;
+		font-weight: 600;
+		font-size: 11px;
+		text-transform: uppercase;
+		border-bottom: 1px dotted #333;
+	}
+	.past-business {
+		li {
+			padding-top: 13px;
+			height: 30px;
+			border-bottom: 1px dotted #eee;
+			span {
+				font-weight: 300;
+				width: 32%;
+				display: inline-block;
+				&:last-child {
+					text-align: right;
+				}
+				&:nth-child(2) {
+					text-align: center;
+				}
+			}
+		}
+
+	}
+	.load-more {
+		text-align: center;
+		padding-top: 11px;
+		display: block;
+	}
 }
 
 
@@ -266,7 +286,7 @@ header {
 				color: lighten(@active, 25%);
 				font-weight: 300;
 			}
-		
+
 			input {
 				margin: -11px -11px -11px 0;
 				height: 33px;
