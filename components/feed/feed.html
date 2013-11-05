@@ -81,9 +81,9 @@
 </div>
 <div class="total-feed">
   <h2>
-    <span>Sales: 30.000</span>
-    <span>Purchases: 50.000</span>
-    Total {{getTotal() | currency: 'USD'}}
+    <span>Sales: {{getTotalSales() | currency: '$'}}</span>
+    <span>Purchases: {{getTotalPurchases() | currency: '$'}}</span>
+    Total {{getTotal() | currency: '$'}}
   </h2>
 </div>
 
