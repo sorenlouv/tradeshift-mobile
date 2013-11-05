@@ -11,27 +11,27 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
   var getOrCreateCurrentUser = function(facebookUser){
     var deferred = $q.defer();
 
-    usersRef.child(facebookUser.id).once('value', function(currentUserSnapshot){
+    usersRef.child(facebookUser.id).once('value', function(activeUserSnapshot){
 
       // Create user if not exists, or fetch from DB
-      var currentUser = (currentUserSnapshot.val() === null) ? {
+      var activeUser = (activeUserSnapshot.val() === null) ? {
         id: facebookUser.id,
         name: facebookUser.name,
         first_name: facebookUser.first_name,
         last_name: facebookUser.last_name,
         email: facebookUser.email
-      } : currentUserSnapshot.val();
+      } : activeUserSnapshot.val();
 
       // resolve promise
       safeApply($scope, function(){
-        deferred.resolve(currentUser);
+        deferred.resolve(activeUser);
       });
     });
 
     return deferred.promise;
   };
 
-  // get company data for the authenticated user (currentUser)
+  // get company data for the authenticated user (activeUser)
   var getOrCreateCurrentCompany = function(companyName){
     var deferred = $q.defer();
 
@@ -39,13 +39,13 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
     companiesRef.child(companyId).once('value', function(companySnapshot){
 
       // Create user if not exists, or fetch from DB
-      var currentCompany = (companySnapshot.val() === null) ? {
+      var activeCompany = (companySnapshot.val() === null) ? {
         name: companyName
       } : companySnapshot.val();
 
       // resolve promise
       safeApply($scope, function(){
-        deferred.resolve(currentCompany);
+        deferred.resolve(activeCompany);
       });
     });
 
@@ -59,11 +59,11 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
 
     }else if(facebookUser){
       // user signed in with Facebook
-      getOrCreateCurrentUser(facebookUser).then(function(currentUser){
+      getOrCreateCurrentUser(facebookUser).then(function(activeUser){
 
         // create 2-way binding between FireBase and angular models
-        $rootScope.currentUser = currentUser;
-        angularFire(usersRef.child(facebookUser.id), $rootScope, "currentUser");
+        $rootScope.activeUser = activeUser;
+        angularFire(usersRef.child(facebookUser.id), $rootScope, "activeUser");
       });
 
     }else{
@@ -71,10 +71,10 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
     }
   };
 
-  // watch for changes to currentUser and redirect if it passes validations
-  $scope.$watch('currentUser', function(currentUser){
+  // watch for changes to activeUser and redirect if it passes validations
+  $scope.$watch('activeUser', function(activeUser){
     // redirect to original page if user has filled out everything correctly
-    if(validateUserInfo(currentUser)){
+    if(validateUserInfo(activeUser)){
       $rootScope.loggedIn = true;
       var redirect = decodeURIComponent($routeParams.redirect);
       console.log("Logged in and redirecting to", redirect);
@@ -95,19 +95,19 @@ app.controller('LoginController', ['$scope', '$rootScope', 'angularFire', '$rout
   /************* Click events ************/
 
   $scope.updateUserInfo = function(){
-    if($scope.currentCompany && $scope.currentCompany.name){
+    if($scope.activeCompany && $scope.activeCompany.name){
 
       // strip illegal characters in company name
-      var companyName = $scope.currentCompany.name;
-      var companyId = getValidIdentifier($scope.currentCompany.name);
+      var companyName = $scope.activeCompany.name;
+      var companyId = getValidIdentifier($scope.activeCompany.name);
 
       // create 2-way binding between FireBase and angular models
-      angularFire(companiesRef.child(companyId), $scope, "currentCompany").then(function(){
-        getOrCreateCurrentCompany(companyName).then(function(currentCompany){
-          $scope.currentCompany = currentCompany;
+      angularFire(companiesRef.child(companyId), $scope, "activeCompany").then(function(){
+        getOrCreateCurrentCompany(companyName).then(function(activeCompany){
+          $scope.activeCompany = activeCompany;
 
           // update users company
-          $rootScope.currentUser.company = companyId;
+          $rootScope.activeUser.company = companyId;
         });
       });
     }

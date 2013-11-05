@@ -24,8 +24,8 @@
 
   <h3>Current business</h3>
     <ul class="current-business">
-        <li ng-repeat="(company_id, company) in companies" ng-show="company_id !== currentUserCompany" >
-          <a ng-href="/#/activity/{{company_id}}/">
+        <li ng-repeat="(company_id, company) in companies" ng-show="company_id !== activeUserCompany" >
+          <a ng-href="/#/feed/{{company_id}}/">
               <span><i class="fa fa-exchange"></i></span>
               <span ng-bind="company.name" class="company-name"></span>
               <span class="amount">50.000 DKK</span>

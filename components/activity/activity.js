@@ -1,39 +1,39 @@
-app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '$rootScope', 'helpers', function ($scope, $routeParams, angularFire, $rootScope, helpers) {
+app.controller('ActivityController',
+  ['$scope', '$routeParams', 'angularFire', '$rootScope', 'helpers', 'documentService', function ($scope, $routeParams, angularFire, $rootScope, helpers, documentService) {
 
   'use strict';
 
-  var companyId             = $routeParams.company_id,
-      currentUserCompany    = $rootScope.currentUser.company,
-      activityId            = helpers.getActivityId($rootScope.currentUser.company, companyId),
+  var passiveCompanyId = $routeParams.company_id,
+      activeUserCompanyId = $rootScope.activeUser.company,
+      feedId = helpers.getActivityId($rootScope.activeUser.company, passiveCompanyId),
 
       // Get Firebase data
-      companyRef            = new Firebase($rootScope.fireBaseUrl + "/companies/" + companyId),
-      // currentUserCompanyRef = new Firebase($rootScope.fireBaseUrl + "/companies/" + currentUserCompany),
-      productsRef           = new Firebase($rootScope.fireBaseUrl + "/companies/" + currentUserCompany + "/products"),
-      activityRef           = new Firebase($rootScope.fireBaseUrl + "/activities/" + activityId),
-      usersRef              = new Firebase($rootScope.fireBaseUrl + "/users/");
+      passiveCompanyRef = new Firebase($rootScope.fireBaseUrl + "/companies/" + passiveCompanyId),
+      productsRef = new Firebase($rootScope.fireBaseUrl + "/companies/" + activeUserCompanyId + "/products"),
+      feedRef = new Firebase($rootScope.fireBaseUrl + "/feeds/" + feedId),
+      usersRef = new Firebase($rootScope.fireBaseUrl + "/users/");
 
   // Prepare scope variables
-  $scope.company = {};
-  $scope.activity = {};
+  $scope.passiveCompany = {};
+  $scope.feed = {};
   $scope.products = {};
   $scope.users = {};
   $scope.selectedPrice = 0;
-  $scope.currentUser = $rootScope.currentUser;
+  $scope.activeUser = $rootScope.activeUser;
   $scope.selectLinesForInvoiceMode = false;
   $scope.selectedLineIds = [];
   var clickedLineId = null;
 
   // Bind firebase to scope
-  angularFire(companyRef, $scope, 'company');
-  angularFire(activityRef, $scope, 'activity');
+  angularFire(passiveCompanyRef, $scope, 'passiveCompany');
+  angularFire(feedRef, $scope, 'feed');
   angularFire(productsRef, $scope, 'products');
   angularFire(usersRef, $scope, 'users');
 
   // Sune's stuff
   $scope.addItem = function() {
     $scope.newActivity = {
-      user: $rootScope.currentUser.id
+      user: $rootScope.activeUser.id
     };
     $('.picker').show();
   };
@@ -59,7 +59,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $scope.selectLinesForInvoiceMode = true;
 
     // select all lines from beginning
-    $scope.selectedLineIds = _.keys(this.activity.lines);
+    $scope.selectedLineIds = _.keys(this.feed.lines);
 
     //
     $scope.hidePickers();
@@ -68,7 +68,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   $scope.getSelectedLinesTotal = function(){
     var total = 0;
     _.each($scope.selectedLineIds, function(lineId){
-      var line = $scope.activity.lines[lineId];
+      var line = $scope.feed.lines[lineId];
       total += (line.product.quantity * line.product.custom_price);
     });
     return total;
@@ -76,7 +76,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
 
   $scope.getTotal = function(){
     var total = 0;
-    var lines = $scope.activity.lines;
+    var lines = $scope.feed.lines;
     _.each(lines, function(line){
       total += (line.product.quantity * line.product.custom_price);
     });
@@ -86,17 +86,24 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   // generate invoice from selected lines
   $scope.generateInvoice = function(){
 
-    var invoice = activityRef.child('invoices').push();
+    var invoice = feedRef.child('invoices').push();
 
     _.each($scope.selectedLineIds, function(lineId){
-      var line = $scope.activity.lines[lineId];
+      var line = $scope.feed.lines[lineId];
       invoice.push(line, function removeLine(error){
-        activityRef.child('lines').child(lineId).remove();
+        feedRef.child('lines').child(lineId).remove(function(){
+          documentService.getUuid({
+            invoice: $scope.feed.invoices[invoice.name()],
+            senderCompany: helpers.getCompany(activeUserCompanyId),
+            receiverCompany: helpers.getCompany(passiveCompanyId)
+          }).success(function(){
+
+          });
+        });
         $scope.selectLinesForInvoiceMode = false;
         $scope.selectedLineIds = [];
       });
     });
-
   };
 
   /*********** New Activity ***************/
@@ -114,8 +121,8 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   };
 
   $scope.saveNewActivity = function() {
-    // Save the activity
-    activityRef.child('lines').push($scope.newActivity);
+    // Save the feed
+    feedRef.child('lines').push($scope.newActivity);
     $scope.hidePickers();
   };
 
@@ -155,9 +162,9 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
 
   $scope.postComment = function() {
     var comment = $('.comment-form textarea').val();
-    activityRef.child('lines').child(clickedLineId).child('comments').push({
+    feedRef.child('lines').child(clickedLineId).child('comments').push({
       comment: comment,
-      user: $rootScope.currentUser.id
+      user: $rootScope.activeUser.id
     });
 
     $('.picker').hide();

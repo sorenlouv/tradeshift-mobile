@@ -11,7 +11,7 @@ app.config(function ($routeProvider) {
     when('/settings', {templateUrl: '/components/settings/template.html', controller: 'SettingsController'}).
 
     // Activity
-    when('/activity/:company_id', {templateUrl: '/components/activity/activity.html', controller: 'ActivityController'}).
+    when('/feed/:company_id', {templateUrl: '/components/feed/feed.html', controller: 'ActivityController'}).
 
     // Products
     when('/products', {templateUrl: '/components/products/template.html', controller: 'ProductController'}).
