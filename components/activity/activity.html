@@ -15,23 +15,22 @@
 </header>
 
 
-<div class="generateInvoice" ng-show="selectLinesForInvoice">
-  <p>5 items worth 120.000 excl tax (150.000 incl) selected</p>
-  <a class="button">
+<div class="generateInvoice" ng-show="selectLinesForInvoiceMode">
+  <p>{{selectedLineIds.length}} items worth {{getSelectedLinesTotal()}} selected</p>
+  <a class="button" ng-click="generateInvoice()">
     Generate invoice
     <i class='fa fa-cogs'></i>
   </a>
 </div>
 
 <div class="transactions">
-  <div
-    class="transaction"
-    ng-class="{selected: selectedLines.indexOf(lineId) > -1}"
+  <div class="timestamp">Today</div>
+  <div class="transaction"
+    ng-class="{selected: selectedLineIds.indexOf(lineId) > -1}"
     ng-repeat="(lineId, line) in activity.lines" ng-click="clickLine(lineId)">
     <div class="creator">
       <img ng-src="https://graph.facebook.com/{{line.user}}/picture?width=80&height=80" alt="">
     </div>
-    <!-- <input type="checkbox" class="to-be-settled"/> -->
     <div class="update">
       <div class="object">
         <span class="primary">{{line.product.title}}</span>
@@ -39,7 +38,7 @@
       </div>
       <div class="price">
         <span class="primary">{{(line.product.custom_price * line.product.quantity) | currency: line.product.currency}}</span>
-        <span class="secondary">{{line.product.quantity}} * {{line.product.custom_price | currency: line.product.currency}}</span>
+        <span class="secondary">{{line.product.quantity}}&nbsp;*&nbsp;{{line.product.custom_price | currency: line.product.currency}}</span>
       </div>
     </div>
     <div class="comments">
@@ -52,9 +51,14 @@
         <span class="content">{{comment.comment}}</span>
       </div>
     </div>
+
   </div>
+  <div class="timestamp">Yesterday</div>
   <div class="total">
-    <h2><span>Total due </span> 40.000</h2>
+    <h2>
+      <span>Total due </span>
+      {{getTotal() | currency: 'USD'}}
+    </h2>
   </div>
 </div>
 
@@ -255,9 +259,9 @@
           <h3>Comment</h3>
             <form class="comment-form" ng-submit="postComment()">
               <textarea></textarea>
-              <button type="submit">Post comment</button>
+              <button type="submit" class="button">Post comment</button>
             </form>
-          <br><br>
+          <br>
 
           <h3>Actions</h3>
           <li ng-click="showEdit()" ng-show="currentUser.id === clickedLine.user">

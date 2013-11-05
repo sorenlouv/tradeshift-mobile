@@ -1,3 +1,4 @@
+from copy import deepcopy
 from bottle import route, run, template, request, put, get, response
 import requests, uuid, json, random
 
@@ -23,6 +24,7 @@ def index(name='World'):
 @enable_cors
 def sendDocument():
 	documentJson = request.json
+	documentJson = mergeJson(documentJson)
 	docUUID = uuid.uuid1()
 	draftResponse = putDraft(docUUID, documentJson)
 	if draftResponse != 204:
@@ -31,7 +33,12 @@ def sendDocument():
 	sendResponse = dispatchDraft(docUUID, dispatchUUID)
 	if sendResponse != 201:
 		return sendResponse
-	return str(docUUID)
+	return '{"uuid": "'+str(docUUID)+'"}'
+
+def mergeJson(documentJson):
+	json_data=open('template.json')
+	data = json.load(json_data)
+	return dict_merge(data, documentJson)
 
 def putDraft(docUUID, documentJson):
 	url = 'http://localhost:8888/tradeshift-backend/rest/external/documents/'+str(docUUID)+'?documentProfileId=nes.p5.invoice.ubl.2.1.dk&draft=true'
@@ -56,5 +63,20 @@ def getPDF(docUUID):
 	if r.status_code != 200:
 		return r.status_code
 	return r._content
+
+def dict_merge(target, *args):
+  if len(args) > 1:
+    for obj in args:
+      dict_merge(target, obj)
+    return target
+  obj = args[0]
+  if not isinstance(obj, dict):
+    return obj
+  for k, v in obj.iteritems():
+    if k in target and isinstance(target[k], dict):
+      dict_merge(target[k], v)
+    else:
+      target[k] = deepcopy(v)
+  return target
 
 run(host='0.0.0.0', port=8081, debug=True)
