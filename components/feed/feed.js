@@ -25,6 +25,7 @@ app.controller('FeedController',
   $scope.selectedLineIds = [];
   var clickedLineId = null;
 
+  // Setup the days filter (Today, Yester & Older)
   $scope.dayfilter = [
     {
       name: 'Today',
@@ -179,7 +180,6 @@ app.controller('FeedController',
 
 
   $scope.clickLine = function(lineId) {
-    debugger
     var line = $scope.feed.lines[lineId];
 
     // click line to select/de-select for invoice
