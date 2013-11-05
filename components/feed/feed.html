@@ -46,8 +46,8 @@
         <span class="person">{{line.user | username}}</span>
         <span class="content">{{line.description}}</span>
       </div>
-      <div class="comment" ng-repeat="comment in line.comments">
-        <span class="person"><a href="#">{{comment.user | username}}</a></span>
+      <div class="comment" ng-repeat="comment in line.comments" ng-class="{true: 'commentUpdate'}[comment.type == 'update']">
+        <span class="person" ng-hide="comment.type == 'update'"><a href="#">{{comment.user | username}}</a></span>
         <span class="content">{{comment.comment}}</span>
       </div>
     </div>
@@ -245,7 +245,7 @@
     </div>
   </div>
 
-<!-- Sidebar: Add comment  -->
+  <!-- Sidebar: Add comment  -->
   <div class="lineActions-picker">
     <div class="picker-content">
       <div class="picker-header">
@@ -264,15 +264,108 @@
           <br>
 
           <h3>Actions</h3>
-          <li>
+          <li ng-click="showEdit()" ng-show="currentUser.id === clickedLine.user">
             <span>Edit</span>
             <i class="fa fa-chevron-right"></i>
           </li>
-          <li>
+          <li ng-show="currentUser.id === clickedLine.user">
             <span>Delete</span>
             <i class="fa fa-ban"></i>
           </li>
         </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Sidebar: Edit  -->
+  <div class="edit-picker">
+    <div class="picker-content">
+      <div class="picker-header">
+        <h1 ng-bind="clickedLine.product.title"></h1>
+        <a ng-click="hidePickers()">
+          <i class="fa fa-times"></i>
+        </a>
+      </div>
+      <div class="picker-data">
+        <form ng-submit="updateProduct()">
+
+          <h3>Select price</h3>
+          <ul>
+            <li
+              ng-class="{selected: clickedLine.product.custom_price == clickedLine.product.price}"
+              ng-click="setCustomPrice(clickedLine.product.price)" >
+              {{clickedLine.product.price | currency: clickedLine.product.currency}}
+            </li>
+            <li
+              ng-class="{selected: clickedLine.product.custom_price==(clickedLine.product.price * 0.9)}"
+              ng-click="setCustomPrice(clickedLine.product.price * 0.9)">
+              {{(clickedLine.product.price * 0.9) | currency: clickedLine.product.currency}}
+              <span class="discount">10% discount</span>
+            </li>
+            <li
+              ng-class="{selected: clickedLine.product.custom_price==(clickedLine.product.price * 0.8)}"
+              ng-click="setCustomPrice(clickedLine.product.price * 0.8)">
+              {{(clickedLine.product.price * 0.8) | currency: clickedLine.product.currency}}
+              <span class="discount">20% discount</span>
+            </li>
+            <li
+              ng-class="{selected: clickedLine.product.custom_price==(clickedLine.product.price * 0.7)}"
+              ng-click="setCustomPrice(clickedLine.product.price * 0.7)">
+              {{(clickedLine.product.price * 0.7) | currency: clickedLine.product.currency}}
+              <span class="discount">30% discount</span>
+            </li>
+            <li>
+              <span>{{clickedLine.product.currency}}</span>
+              <input type="number" placeholder="Other price" ng-model="clickedLine.product.custom_price">
+              <span class="discount"><span ng-bind="((1 - (clickedLine.product.custom_price/clickedLine.product.price)) * 100) | number: 0"></span>% discount</span>
+            </li>
+          </ul>
+
+          <h3>Quantity</h3>
+          <ul class="quantity">
+            <li
+              ng-class="{selected: clickedLine.product.quantity == 1}"
+              ng-click="setQuantity(1)">1</li>
+            <li
+              ng-class="{selected: clickedLine.product.quantity == 2}"
+              ng-click="setQuantity(2)">2</li>
+            <li
+              ng-class="{selected: clickedLine.product.quantity == 3}"
+              ng-click="setQuantity(3)">3</li>
+            <li
+              ng-class="{selected: clickedLine.product.quantity == 4}"
+              ng-click="setQuantity(4)">4</li>
+            <li
+              ng-class="{selected: clickedLine.product.quantity == 5}"
+              ng-click="setQuantity(5)">5</li>
+            <li
+              ng-class="{selected: clickedLine.product.quantity == 6}"
+              ng-click="setQuantity(6)">6</li>
+            <li
+              ng-class="{selected: clickedLine.product.quantity == 7}"
+              ng-click="setQuantity(7)">7</li>
+            <li
+              ng-class="{selected: clickedLine.product.quantity == 8}"
+              ng-click="setQuantity(8)">8</li>
+            <li
+              ng-class="{selected: clickedLine.product.quantity == 9}"
+              ng-click="setQuantity(9)">9</li>
+            <li
+              ng-class="{selected: clickedLine.product.quantity == 10}"
+              ng-click="setQuantity(10)">10</li>
+            <li>
+              <input type="number" placeholder="Other quantity" ng-model="clickedLine.product.quantity">
+            </li>
+          </ul>
+
+          <h3>Add optional comment</h3>
+          <div class="comment">
+            <input type="text" placeholder="Optional comment" ng-model="clickedLine.comment" class="_textual">
+          </div>
+          <button class="button" type="submit">Done</button>
+        </form>
       </div>
     </div>
   </div>

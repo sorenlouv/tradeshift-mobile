@@ -20,11 +20,13 @@ app.controller('ActivityController',
   $scope.users = {};
   $scope.selectedPrice = 0;
   $scope.activeUser = $rootScope.activeUser;
+  $scope.clickedActivity = {};
   $scope.selectLinesForInvoiceMode = false;
   $scope.selectedLineIds = [];
   var clickedLineId = null;
 
   // Bind firebase to scope
+
   angularFire(passiveCompanyRef, $scope, 'passiveCompany');
   angularFire(feedRef, $scope, 'feed');
   angularFire(productsRef, $scope, 'products');
@@ -32,19 +34,18 @@ app.controller('ActivityController',
 
   // Sune's stuff
   $scope.addItem = function() {
-    $scope.newActivity = {
-      user: $rootScope.activeUser.id
-    };
     $('.picker').show();
   };
 
   $scope.hidePickers = function() {
-
     $('.product-picker').hide();
     $('.select-picker').hide();
     $('.newProduct-picker').hide();
     $('.lineActions-picker').hide();
-     $('.picker').hide();
+    $('.edit-picker').hide();
+    $('.picker').hide();
+
+    $scope.newActivity = null;
   };
 
   $scope.addProduct = function() {
@@ -108,16 +109,27 @@ app.controller('ActivityController',
 
   /*********** New Activity ***************/
   $scope.setProduct = function(product) {
-    $scope.newActivity.product = angular.copy(product);
+    $scope.newActivity = {
+      user: $rootScope.currentUser.id,
+      product: angular.copy(product)
+    };
     $('.select-picker').show();
   };
 
   $scope.setCustomPrice = function(price, e) {
-    $scope.newActivity.product.custom_price = price;
+    if (typeof $scope.newActivity !== 'undefined' && $scope.newActivity !== null) {
+      $scope.newActivity.product.custom_price = price;
+    } else {
+      $scope.clickedLine.product.custom_price = price;
+    }
   };
 
   $scope.setQuantity = function(val) {
-    $scope.newActivity.product.quantity = val;
+    if (typeof $scope.newActivity !== 'undefined' && $scope.newActivity !== null) {
+      $scope.newActivity.product.quantity = val;
+    } else {
+      $scope.clickedLine.product.quantity = val;
+    }
   };
 
   $scope.saveNewActivity = function() {
@@ -141,8 +153,9 @@ app.controller('ActivityController',
       }
 
     // click line to edit/add comment
-    }else{
-      clickedLineId = lineId;
+    } else {
+      $scope.clickedLineId = lineId;
+      $scope.clickedLine = angular.copy($scope.feed.lines[lineId]);
       $('.picker').show();
       $('.lineActions-picker').show();
     }
@@ -160,14 +173,52 @@ app.controller('ActivityController',
     $('.newProduct-picker').hide();
   };
 
+  $scope.showEdit = function() {
+    $('.edit-picker').show();
+  };
+
   $scope.postComment = function() {
     var comment = $('.comment-form textarea').val();
     feedRef.child('lines').child(clickedLineId).child('comments').push({
       comment: comment,
+      type: 'comment',
       user: $rootScope.activeUser.id
     });
 
     $('.picker').hide();
+  };
+
+  $scope.updateProduct = function() {
+
+    // Link to the data we want to update
+    // var feedRef = new Firebase($rootScope.fireBaseUrl + "/activities/" + activityId + "/lines/" + clickedLineId);
+
+    feedRef.child('lines').child($scope.clickedLineId).child('product').set({
+      custom_price: $scope.clickedLine.product.custom_price,
+      quantity: $scope.clickedLine.product.quantity,
+      title: $scope.clickedLine.product.title,
+      currency: $scope.clickedLine.product.currency,
+      price: $scope.clickedLine.product.price,
+      tax: $scope.clickedLine.product.tax
+    });
+
+    var updateComment = $scope.users[$rootScope.currentUser.id].first_name + ' updated the product.';
+    feedRef.child('lines').child($scope.clickedLineId).child('comments').push({
+      comment: updateComment,
+      type: 'update',
+      user: $rootScope.currentUser.id
+    });
+
+    if(typeof $scope.clickedLine.comment !== 'undefined' && $scope.clickedLine.comment !== '') {
+      feedRef.child('lines').child($scope.clickedLineId).child('comments').push({
+        comment: $scope.clickedLine.comment,
+        type: 'comment',
+        user: $rootScope.currentUser.id
+      });
+    }
+
+    $scope.hidePickers();
+
   };
 
 }]);
