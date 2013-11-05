@@ -1510,6 +1510,9 @@ header i {
   padding-top: 1px;
   height: 100%;
 }
+.transactions .quote {
+  background-image: url('/images/stripe.png');
+}
 .transactions .timestamp {
   background-color: #ccc;
   font-size: 11px;
@@ -1609,10 +1612,6 @@ header i {
 .transactions .transaction .comments .comment .content {
   font-weight: 400;
 }
-.quote {
-  color: red !important;
-  background-color: red !important;
-}
 .total-feed {
   padding-bottom: 122px;
 }
@@ -1621,7 +1620,8 @@ header i {
   margin-right: 11px;
   margin-bottom: 0px;
   float: right;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 600;
 }
 .total-feed span {
   display: block;
@@ -1663,15 +1663,16 @@ header i {
 .business-intelligence .active-business .total h2 {
   margin: 8px 0px 0px 0px;
   border-bottom: 3px double #ccc;
-  font-size: 18px;
+  font-size: 16px;
   display: block;
   float: right;
+  font-weight: 600;
 }
 .business-intelligence .active-business .total h2 .left {
   margin-right: 11px;
 }
 .business-intelligence .active-business .total span {
-  font-size: 14px;
+  font-size: 12px;
 }
 .business-intelligence .past-business {
   margin-top: 22px;
