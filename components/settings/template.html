@@ -1,8 +1,38 @@
-<input type="text" ng-model="company.name" placeholder="Company name">
-<input type="text" ng-model="company.address.street" placeholder="Street">
-<input type="number" ng-model="company.address.zip" placeholder="Zipcode">
-<input type="text" ng-model="company.address.city" placeholder="City">
-<input type="text" ng-model="company.address.country" placeholder="Country">
+<header>
+  <div class="back">
+    <a href="/#/business-intelligence">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+  </div>
+  <div>
+      <h3>Settings</h3>
+  </div>
+  <div class="add"></div>
+</header>
+<div class="container">
+  <div class="business-intelligence">
 
+    <h3>Company Name</h3>
+    <input class="setting" type="text" ng-model="company.name" placeholder="Company name">
+    <br />
+    <br />
 
-{{company.address.street}}
+    <h3>Street Address</h3>
+    <input class="setting" type="text" ng-model="company.address.street" placeholder="Street">
+    <br />
+    <br />
+
+    <h3>Zipcode</h3>
+    <input class="setting" type="number" ng-model="company.address.zip" placeholder="Zipcode">
+    <br />
+    <br />
+
+    <h3>City</h3>
+    <input class="setting" type="text" ng-model="company.address.city" placeholder="City">
+    <br />
+    <br />
+
+    <h3>Country</h3>
+    <input class="setting" type="text" ng-model="company.address.country" placeholder="Country">
+  </div>
+</div>
