@@ -109,12 +109,12 @@ app.controller('FeedController',
       var line = $scope.feed.lines[lineId];
       invoice.push(line, function removeLine(error){
         feedRef.child('lines').child(lineId).remove(function(){
-          // documentService.getUuid({
-          //   invoice: $scope.feed.invoices[invoice.name()],
-          //   senderCompany: $scope.activeCompany,
-          //   receiverCompany: $scope.passiveCompany
-          // }).success(function(response){
-          // });
+          documentService.getUuid({
+            invoice: $scope.feed.invoices[invoice.name()],
+            senderCompany: $scope.activeCompany,
+            receiverCompany: $scope.passiveCompany
+          }).success(function(response){
+          });
         });
         $scope.selectLinesForInvoiceMode = false;
         $scope.selectedLineIds = [];
@@ -161,6 +161,7 @@ app.controller('FeedController',
 
 
   $scope.clickLine = function(lineId) {
+    debugger
     var line = $scope.feed.lines[lineId];
 
     // click line to select/de-select for invoice

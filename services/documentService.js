@@ -4,6 +4,7 @@ app.service('documentService', function ($http) {
   this.getUuid = function(json){
 
   var invoiceIndex = 0;
+  var invoiceLines = [];
   _.each(json.invoice, function(line, lineId){
     invoiceIndex++;
 
@@ -55,6 +56,8 @@ app.service('documentService', function ($http) {
                 }
             }
         };
+
+        invoiceLines.push(invoiceLine);
   });
 
 var invoiceMeta = {
@@ -126,7 +129,7 @@ var invoiceMeta = {
       "currencyID": "DKK"
     }
   },
-  "InvoiceLine": [ invoiceLines ]
+  "InvoiceLine": invoiceLines
 };
 
     return $http({
