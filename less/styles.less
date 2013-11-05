@@ -167,8 +167,9 @@ header {
 
 			.object {
 				float: left;
-				height: 44px;
 				margin-left: 6px;
+
+				padding-bottom: 11px;
 				.secondary {
 					float: left;
 				}
@@ -176,6 +177,7 @@ header {
 			.price {
 				display: block;
 				width: 30%;
+				min-width: 100px;
 				float: right;
 				text-align: right;
 
@@ -184,6 +186,7 @@ header {
 				}
 			}
 			.primary {
+				max-width: 120px;
 				font-size: 16px;
 				display: block;
 				line-height: 18px;
@@ -330,13 +333,20 @@ header {
 			display: inline-block;
 			height: 22px;
 			margin-bottom: 5px;
+
+			&:last-child {
+				width: 170px;
+				input {
+					width:175px;
+				}
+			}
 		}
 	}
 
 
 	ul {
 		padding: 0px;
-		margin: 0px 0px 22px 0px;
+		margin: 0px 0px 11px 0px;
 
 		.selected {
 			background-color: @tsblue !important;
@@ -392,6 +402,9 @@ header {
 		}
 		.comment {
 			margin-bottom: 22px;
+		}
+		.button {
+			width: 100% !important;
 		}
 	}
 	.picker-content {

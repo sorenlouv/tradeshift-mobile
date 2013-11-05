@@ -1516,8 +1516,8 @@ header i {
 }
 .transactions .transaction .update .object {
   float: left;
-  height: 44px;
   margin-left: 6px;
+  padding-bottom: 11px;
 }
 .transactions .transaction .update .object .secondary {
   float: left;
@@ -1525,6 +1525,7 @@ header i {
 .transactions .transaction .update .price {
   display: block;
   width: 30%;
+  min-width: 100px;
   float: right;
   text-align: right;
 }
@@ -1532,6 +1533,7 @@ header i {
   float: right;
 }
 .transactions .transaction .update .primary {
+  max-width: 120px;
   font-size: 16px;
   display: block;
   line-height: 18px;
@@ -1658,9 +1660,15 @@ header i {
   height: 22px;
   margin-bottom: 5px;
 }
+.picker .quantity li:last-child {
+  width: 170px;
+}
+.picker .quantity li:last-child input {
+  width: 175px;
+}
 .picker ul {
   padding: 0px;
-  margin: 0px 0px 22px 0px;
+  margin: 0px 0px 11px 0px;
 }
 .picker ul .selected {
   background-color: #20a0e9 !important;
@@ -1713,6 +1721,9 @@ header i {
 }
 .picker .picker-data .comment {
   margin-bottom: 22px;
+}
+.picker .picker-data .button {
+  width: 100% !important;
 }
 .picker .picker-content {
   z-index: 11;
