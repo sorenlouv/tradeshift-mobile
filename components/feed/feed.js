@@ -34,7 +34,7 @@ app.controller('ActivityController',
 
   // Sune's stuff
   $scope.addItem = function() {
-    $('.picker').show();
+    $('.pickers').show();
   };
 
   $scope.hidePickers = function() {
@@ -43,7 +43,7 @@ app.controller('ActivityController',
     $('.newProduct-picker').hide();
     $('.lineActions-picker').hide();
     $('.edit-picker').hide();
-    $('.picker').hide();
+    $('.pickers').hide();
 
     $scope.newActivity = null;
   };
@@ -56,11 +56,21 @@ app.controller('ActivityController',
     $('.newProduct-picker').show();
   };
 
+  var getActiveUserLineIds = function(){
+    var activeUserLineIds = [];
+    _.each($scope.feed.lines, function(line, lineId){
+      if(line.user === $rootScope.activeUser.id){
+        activeUserLineIds.push(lineId);
+      }
+    });
+    return activeUserLineIds;
+  };
+
   $scope.clickSelectLinesForInvoice = function() {
     $scope.selectLinesForInvoiceMode = true;
 
-    // select all lines from beginning
-    $scope.selectedLineIds = _.keys(this.feed.lines);
+    // select all lines that belong to the active user
+    $scope.selectedLineIds = getActiveUserLineIds();
 
     //
     $scope.hidePickers();
@@ -111,6 +121,7 @@ app.controller('ActivityController',
   $scope.setProduct = function(product) {
     $scope.newActivity = {
       user: $rootScope.activeUser.id,
+      description: '',
       product: angular.copy(product)
     };
     $('.select-picker').show();
@@ -140,8 +151,12 @@ app.controller('ActivityController',
 
 
   $scope.clickLine = function(lineId) {
-    // click line to select/unselect for invoice
+    // click line to select/de-select for invoice
     if($scope.selectLinesForInvoiceMode){
+
+      if($scope.feed.lines[lineId].user !== $rootScope.activeUser.id){
+        console.log("You can only select your own lines");
+      }
 
       var selectedIndex = $scope.selectedLineIds.indexOf(lineId);
       // the line was already selected - de-select it!
@@ -156,7 +171,7 @@ app.controller('ActivityController',
     } else {
       clickedLineId = lineId;
       $scope.clickedLine = angular.copy($scope.feed.lines[lineId]);
-      $('.picker').show();
+      $('.pickers').show();
       $('.lineActions-picker').show();
     }
   };
@@ -185,7 +200,7 @@ app.controller('ActivityController',
       user: $rootScope.activeUser.id
     });
 
-    $('.picker').hide();
+    $('.pickers').hide();
   };
 
   $scope.updateProduct = function() {
