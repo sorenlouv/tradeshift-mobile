@@ -14,6 +14,8 @@
   </div>
 </header>
 
+<div class="container">
+
 <div class="invoiceSent">
   <p>Konscript requested to send an invoice with 6 items worth 40.000, to be payed within 30 days.</p>
   <small>The items are listed below. If you don't do anything the invoice will be sent to you in 5 days.</small>
@@ -30,7 +32,7 @@
 
 <div class="generateInvoice" ng-show="selectLinesForInvoiceMode">
   <p>{{selectedLineIds.length}} items worth {{getSelectedLinesTotal()}} selected</p>
-  <small>Tap to unselect items you don't want to include in this invoice, and click generate invoice when you are ready to send.ª</small>
+  <small>Tap to unselect items you don't want to include in this invoice, and click 'Generate invoice' when you are ready to send.</small>
   <a class="button secondary" ng-click="generateInvoice()">
     Cancel
     <i class="fa fa-ban"></i>
@@ -390,3 +392,5 @@
     </div>
   </div>
 </section>
+
+</div>

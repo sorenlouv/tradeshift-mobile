@@ -1417,10 +1417,14 @@ canvas {
   background-color: #dc0000 !important;
 }
 header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 44px;
   background-color: #1e1e1e;
   text-align: center;
-  display: block;
+  overflow: hidden;
 }
 header h3 {
   text-transform: capitalize;
@@ -1467,6 +1471,9 @@ header .add a {
 header i {
   margin-top: 15px;
   color: white;
+}
+.container {
+  margin-top: 55px;
 }
 .generateInvoice,
 .invoiceSent {
