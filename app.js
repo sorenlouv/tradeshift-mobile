@@ -1,4 +1,4 @@
-var app = angular.module("tradeshift-mobile", ["firebase", "ngRoute", "safeApply", "usernameFilter", "angles"]);
+var app = angular.module("tradeshift-mobile", ["firebase", "ngRoute", "safeApply", "usernameFilter", "getLinesFromDaysAgo", "angles"]);
 
 // router
 app.config(function ($routeProvider) {

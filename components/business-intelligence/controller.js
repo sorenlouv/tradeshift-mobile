@@ -1,63 +1,37 @@
-app.controller('BusinessIntelligenceController', ['$scope', 'angularFire', '$rootScope', function ($scope, angularFire, $rootScope) {
+app.controller('BusinessIntelligenceController', ['$scope', 'angularFire', '$rootScope', 'helpers', '$q', function ($scope, angularFire, $rootScope, helpers, $q) {
   'use strict';
 
+
   // Companies
-  var companiesRef = new Firebase($rootScope.fireBaseUrl + "/companies"),
-      activeUserCompany    = $rootScope.activeUser.company;
+  var companiesRef = new Firebase($rootScope.fireBaseUrl + "/companies");
+  var companiesPromise = angularFire(companiesRef, $scope, 'companies');
 
-  $scope.companies = {};
-  angularFire(companiesRef, $scope, 'companies');
+  // Feeds
+  var feedsRef = new Firebase($rootScope.fireBaseUrl + "/feeds");
+  var feedsPromise = angularFire(feedsRef, $scope, 'feeds');
 
-  $scope.activeUserCompany = activeUserCompany;
+  // get totalts for each company
+  $q.all([companiesPromise, feedsPromise]).then(function(){
 
-  $scope.addCompany = function() {
-    console.log("hmm");
-  };
+    $scope.totalUnsettled = 0;
+    $scope.totaltUnsettledByCompany = {};
+    _.each($scope.companies, function(company, companyId){
 
+      var feedId = helpers.getFeedId(companyId, $rootScope.activeUser.company);
+      var feed = $scope.feeds[feedId];
 
-  $scope.chartData = {
-    labels : ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-    datasets : [
-      {
-        fillColor : "rgba(151,187,205,0)",
-        strokeColor : "#e67e22",
-        pointColor : "rgba(151,187,205,0)",
-        pointStrokeColor : "#e67e22",
-        data : [4, 3, 5, 4, 6]
-      },
-      {
-        fillColor : "rgba(151,187,205,0)",
-        strokeColor : "#f1c40f",
-        pointColor : "rgba(151,187,205,0)",
-        pointStrokeColor : "#f1c40f",
-        data : [8, 3, 2, 5, 4]
+      var total = 0;
+      if(feed !== undefined){
+        var lines = feed.lines;
+        _.each(lines, function(line){
+          total += (line.product.quantity * line.product.custom_price);
+        });
       }
-    ],
-  };
-  $scope.chartOptions = {
-    pointDot : false,
-    scaleLineColor : "rgba(0,0,0,1)",
-  }
-
-
-  var setupCanvas;
-  setupCanvas = function(canvas) {
-    var ctx, newWidth;
-    canvas = $(canvas);
-    newWidth = canvas.parent().width();
-    canvas.prop({
-      width: newWidth,
-      height: 200
+      $scope.totaltUnsettledByCompany[companyId] = total;
+      $scope.totalUnsettled += total;
     });
-    ctx = canvas.get(0).getContext("2d");
-    return new Chart(ctx).Line($scope.chartData);
-  };
+  });
 
-  (function(canvas) {
-    setupCanvas(canvas);
-    return $(window).resize(function() {
-      return setupCanvas(canvas);
-    });
-  })("#chart");
+
 
 }]);
