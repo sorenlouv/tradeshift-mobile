@@ -56,19 +56,24 @@ app.controller('FeedController',
     // watch for changes to requested invoices
     $scope.$watch("feed.requestedInvoices", function(value){
 
-      // filter out own (active users) invoice request
-      $scope.firstPendingInvoiceProposal = {};
+      $scope.activeUsersInvoiceRequestIds = [];
+      $scope.passiveUsersFirstInvoiceRequest = {};
       _.each($scope.feed.requestedInvoices, function(invoice, invoiceId){
+
+        // get passive users invoice requests
         if(invoice.user !== $rootScope.activeUser.id){
-          $scope.firstPendingInvoiceProposal.invoiceId = invoiceId;
-          $scope.firstPendingInvoiceProposal.invoice = invoice;
+          $scope.passiveUsersFirstInvoiceRequest.invoiceId = invoiceId;
+          $scope.passiveUsersFirstInvoiceRequest.invoice = invoice;
+
+          // select invoices in UI
+          $scope.selectedLineIds = invoice.selectedLineIds;
+
+        // get active users invoice requests
+        }else{
+          $scope.activeUsersInvoiceRequestIds = $scope.activeUsersInvoiceRequestIds.concat(invoice.selectedLineIds);
         }
       });
 
-      // mark items from the first invoice proposal
-      if($scope.firstPendingInvoiceProposal.invoice !== undefined){
-        $scope.selectedLineIds = $scope.firstPendingInvoiceProposal.invoice.selectedLineIds;
-      }
     });
   });
 
@@ -125,8 +130,10 @@ app.controller('FeedController',
   $scope.getSelectedLinesTotal = function(){
     var total = 0;
     _.each($scope.selectedLineIds, function(lineId){
-      var line = $scope.feed.lines[lineId];
-      total += (line.product.quantity * line.product.custom_price);
+      if($scope.feed.lines && $scope.feed.lines[lineId]){
+        var line = $scope.feed.lines[lineId];
+        total += (line.product.quantity * line.product.custom_price);
+      }
     });
     return total;
   };
@@ -174,9 +181,7 @@ app.controller('FeedController',
   $scope.acceptInvoice = function(){
 
     var invoice = feedRef.child('invoices').push();
-
-    debugger
-    _.each($scope.firstPendingInvoiceProposal.invoice.selectedLineIds, function(lineId){
+    _.each($scope.passiveUsersFirstInvoiceRequest.invoice.selectedLineIds, function(lineId){
       var line = $scope.feed.lines[lineId];
       invoice.push(line, function removeLine(error){
 
@@ -187,11 +192,12 @@ app.controller('FeedController',
             senderCompany: $scope.activeCompany,
             receiverCompany: $scope.passiveCompany
           }).success(function(response){
+            feedRef.child('invoices').child(invoice.name()).child('uuid').set(response.uuid);
           });
         });
 
         // deleted invoice request!
-        feedRef.child('requestedInvoices').child($scope.firstPendingInvoiceProposal.invoiceId).remove();
+        feedRef.child('requestedInvoices').child($scope.passiveUsersFirstInvoiceRequest.invoiceId).remove();
 
         // reset invoice mode
         $scope.selectLinesForInvoiceMode = false;

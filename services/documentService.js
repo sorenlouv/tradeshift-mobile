@@ -106,7 +106,7 @@ var invoiceMeta = {
       },
       "Contact": {
         "ID": {
-          "value": "5832d481-2e54-4574-9676-0f51fe6513df",
+          "value": "8ba90b5c-c287-4811-96e9-0b7bdf865d1b",
           "schemeURI": "http://tradeshift.com/api/1.0/userId"
         },
         "Name": {
