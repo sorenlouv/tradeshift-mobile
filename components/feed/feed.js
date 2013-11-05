@@ -104,13 +104,12 @@ app.controller('ActivityController',
       var line = $scope.feed.lines[lineId];
       invoice.push(line, function removeLine(error){
         feedRef.child('lines').child(lineId).remove(function(){
-          documentService.getUuid({
-            invoice: $scope.feed.invoices[invoice.name()],
-            senderCompany: $scope.activeCompany,
-            receiverCompany: $scope.passiveCompany
-          }).success(function(response){
-            debugger
-          });
+          // documentService.getUuid({
+          //   invoice: $scope.feed.invoices[invoice.name()],
+          //   senderCompany: $scope.activeCompany,
+          //   receiverCompany: $scope.passiveCompany
+          // }).success(function(response){
+          // });
         });
         $scope.selectLinesForInvoiceMode = false;
         $scope.selectedLineIds = [];
