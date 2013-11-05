@@ -1514,7 +1514,7 @@ header i {
   background-image: url('/images/stripe.png');
 }
 .transactions .timestamp {
-  background-color: #ccc;
+  background-color: #ddd;
   font-size: 11px;
   font-weight: 600;
   padding: 3px 6px;
@@ -1880,4 +1880,32 @@ input.setting {
   width: 100%;
   padding: 5px;
   box-sizing: border-box;
+}
+.invoice-requested {
+  overflow: hidden;
+  margin-top: 110px;
+  color: #ccc;
+  position: relative;
+  margin-top: 11px !important;
+  margin-bottom: 6px !important;
+}
+.invoice-requested img {
+  opacity: 0.5;
+}
+.invoice-requested:before {
+  display: inline-block;
+  width: 140px;
+  text-align: center;
+  -webkit-transform: rotate(45deg);
+  top: 10px;
+  right: -45px;
+  background-color: #f17c09;
+  position: absolute;
+  z-index: 1;
+  font-size: 12px;
+  padding-top: 11px;
+  height: 30px;
+  font-weight: 700;
+  color: #fff;
+  content: "Waiting";
 }
