@@ -50,11 +50,11 @@ app.controller('FeedController',
   angularFire(productsRef, $scope, 'products');
   angularFire(usersRef, $scope, 'users');
 
-  // watch for changes to proposed invoices
+  // watch for changes to requestd invoices
   feedPromise.then(function(){
-    $scope.$watch("feed.proposedInvoices", function(value){
+    $scope.$watch("feed.requestedInvoices", function(value){
       console.log("value", value);
-      $scope.pendingInvoiceProposals = _.filter($scope.feed.proposedInvoices, function(invoice, invoiceId){
+      $scope.pendingInvoiceProposals = _.filter($scope.feed.requestedInvoices, function(invoice, invoiceId){
         return invoice.user !== $rootScope.activeUser.id;
       });
     });
@@ -128,16 +128,9 @@ app.controller('FeedController',
     return total;
   };
 
-
-  // $scope.getProposedInvoices = function(){
-  //   feedPromise
-
-  //   return true;
-  // };
-
-  $scope.proposeInvoice = function(){
-    var proposedInvoice = feedRef.child('proposedInvoices').push();
-    proposedInvoice.set({
+  $scope.requestInvoice = function(){
+    var requestdInvoice = feedRef.child('requestedInvoices').push();
+    requestdInvoice.set({
       selectedLineIds: $scope.selectedLineIds,
       user: $rootScope.activeUser.id
     });
