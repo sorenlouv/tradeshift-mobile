@@ -154,7 +154,7 @@ app.controller('ActivityController',
 
     // click line to edit/add comment
     } else {
-      $scope.clickedLineId = lineId;
+      clickedLineId = lineId;
       $scope.clickedLine = angular.copy($scope.feed.lines[lineId]);
       $('.picker').show();
       $('.lineActions-picker').show();
@@ -193,7 +193,7 @@ app.controller('ActivityController',
     // Link to the data we want to update
     // var feedRef = new Firebase($rootScope.fireBaseUrl + "/activities/" + activityId + "/lines/" + clickedLineId);
 
-    feedRef.child('lines').child($scope.clickedLineId).child('product').set({
+    feedRef.child('lines').child(clickedLineId).child('product').set({
       custom_price: $scope.clickedLine.product.custom_price,
       quantity: $scope.clickedLine.product.quantity,
       title: $scope.clickedLine.product.title,
@@ -203,14 +203,14 @@ app.controller('ActivityController',
     });
 
     var updateComment = $scope.users[$rootScope.activeUser.id].first_name + ' updated the product.';
-    feedRef.child('lines').child($scope.clickedLineId).child('comments').push({
+    feedRef.child('lines').child(clickedLineId).child('comments').push({
       comment: updateComment,
       type: 'update',
       user: $rootScope.activeUser.id
     });
 
     if(typeof $scope.clickedLine.comment !== 'undefined' && $scope.clickedLine.comment !== '') {
-      feedRef.child('lines').child($scope.clickedLineId).child('comments').push({
+      feedRef.child('lines').child(clickedLineId).child('comments').push({
         comment: $scope.clickedLine.comment,
         type: 'comment',
         user: $rootScope.activeUser.id

@@ -160,7 +160,10 @@
             <li>
               <span></span>
               <input type="number" placeholder="Other price" ng-model="newActivity.product.custom_price">
-              <span class="discount"><span ng-bind="((1 - (newActivity.product.custom_price/newActivity.product.price)) * 100) | number: 0"></span>% discount</span>
+              <span class="discount">
+                <span ng-bind="((1 - (newActivity.product.custom_price/newActivity.product.price)) * 100) | number: 0"></span>
+                % discount
+              </span>
             </li>
           </ul>
 
