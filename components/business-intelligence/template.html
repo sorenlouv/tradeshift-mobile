@@ -9,15 +9,19 @@
 <!--         <span>It's a good day today!</span>
  -->    </div>
     <div class="add" >
-<!--       <a ng-click="addCompany()">
-        <i class="fa fa-plus-circle" ></i>
-      </a> -->
+      <a ng-click="editSettings()">
+        <i class="fa fa-cog"></i>
+      </a>
     </div>
 </header>
 
-<div class="business-intelligence">
+<div class="container">
 
+<div class="business-intelligence">
   <h3>Performance</h3>
+  <div class="chart">
+    <img src="/images/chart.png">
+  </div>
 
   {{companyTotals}}
 
@@ -34,8 +38,7 @@
         <h2><span>Total</span> {{totalUnsettled | currency: 'DKK'}}</h2>
       </div>
     </ul>
-
-  <ul class="past-business">
+    <ul class="past-business">
       <h3>Invoices</h3>
       <li>
           <a href="#">
@@ -56,3 +59,28 @@
       <a href="#" class="button">Load more</a>
   </div>
 </div>
+
+
+  <!-- Sidebar: Settings -->
+
+  <section class="pickers">
+  <div class="picker-bg" ng-click="hidePickers()"></div>
+  <div class="settings-picker">
+    <div class="picker-content">
+      <div class="picker-header">
+        <h1>Edit &hellip;</h1>
+        <a ng-click="hidePickers()">
+          <i class="fa fa-times"></i>
+        </a>
+      </div>
+      <div class="picker-data">
+        <ul>
+          <li ng-click="clickSelectLinesForInvoice()">Settings</li>
+          <li ng-click="clickSelectLinesForInvoice()">Profile</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  </div>
