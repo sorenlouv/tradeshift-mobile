@@ -5,17 +5,10 @@ angular.module('getLinesFromDaysAgo', []).filter('betweenDays', function() {
     if (typeof input === 'undefined') return false;
 
     // Create new date object
-    var date = new Date();
+    var date = new Date(),
+        result = {};
 
-    // return input.filter(function(line) {
-    //   console.log(line);
-    //   return (
-    //     line.updatedAt < (date.setDate(date.getDate() - minDays)) &&
-    //     line.updatedAt > (date.setDate(date.getDate() - maxDays))
-    //   );
-    // });
-
-    return _.filter(input, function(obj) {
+    _.each(input, function(obj, index) {
 
       var date = new Date(), date1, date2,
           updated_at = new Date(obj.updatedAt);
@@ -39,22 +32,16 @@ angular.module('getLinesFromDaysAgo', []).filter('betweenDays', function() {
       date2 = date2_year + '-' + (date2_month > 9 ? date2_month : '0'+date2_month) + '-' + (date2_date > 9 ? date2_date : '0'+date2_date);
 
       if (maxDays) {
-        // console.log('------------------------------------');
-        // console.log('Checing with params: ', minDays, maxDays);
-        // console.log('Updated At: ' + updated_date);
-        // console.log('Min date:   ' + date1);
-        // console.log('Max date:   ' + date2);
-        // console.log(updated_date + ' <= ' + date1+ ' - ' + (updated_date <= date1));
-        // console.log(updated_date + ' > ' + date2+ ' - ' + (updated_date > date2));
-        return (updated_date <= date1 && updated_date > date2);
+        if (updated_date <= date1 && updated_date > date2) {
+          result[index] = obj;
+        }
       } else {
-        // console.log('------------------------------------');
-        // console.log('Checing with params: ', minDays, maxDays);
-        // console.log('Updated At: ' + updated_date);
-        // console.log('Min date:   ' + date1);
-        // console.log(updated_date + ' <= ' + date1+ ' - ' + (updated_date <= date1));
-        return (updated_date <= date1);
+        if (updated_date <= date1) {
+          result[index] = obj;
+        }
       }
     });
+
+    return result;
   };
 });
