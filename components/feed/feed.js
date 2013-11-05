@@ -110,7 +110,7 @@ app.controller('ActivityController',
   /*********** New Activity ***************/
   $scope.setProduct = function(product) {
     $scope.newActivity = {
-      user: $rootScope.currentUser.id,
+      user: $rootScope.activeUser.id,
       product: angular.copy(product)
     };
     $('.select-picker').show();
@@ -202,18 +202,18 @@ app.controller('ActivityController',
       tax: $scope.clickedLine.product.tax
     });
 
-    var updateComment = $scope.users[$rootScope.currentUser.id].first_name + ' updated the product.';
+    var updateComment = $scope.users[$rootScope.activeUser.id].first_name + ' updated the product.';
     feedRef.child('lines').child($scope.clickedLineId).child('comments').push({
       comment: updateComment,
       type: 'update',
-      user: $rootScope.currentUser.id
+      user: $rootScope.activeUser.id
     });
 
     if(typeof $scope.clickedLine.comment !== 'undefined' && $scope.clickedLine.comment !== '') {
       feedRef.child('lines').child($scope.clickedLineId).child('comments').push({
         comment: $scope.clickedLine.comment,
         type: 'comment',
-        user: $rootScope.currentUser.id
+        user: $rootScope.activeUser.id
       });
     }
 
