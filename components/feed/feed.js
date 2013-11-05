@@ -25,6 +25,7 @@ app.controller('FeedController',
   $scope.selectedLineIds = [];
   var clickedLineId = null;
 
+  // Setup the days filter (Today, Yester & Older)
   $scope.dayfilter = [
     {
       name: 'Today',
