@@ -205,10 +205,10 @@
           </ul>
 
           <h3>Comment</h3>
-            <form class="comment-form" ng-submit="postComment()">
-              <textarea></textarea>
-              <button class="button" type="submit">Done</button>
-            </form>
+          <div class="comment">
+            <input type="text" placeholder="Optional comment" ng-model="newActivity.description" class="_textual">
+          </div>
+          <button class="button" type="submit">Done</button>
         </form>
       </div>
     </div>
