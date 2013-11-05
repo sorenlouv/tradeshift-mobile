@@ -1636,8 +1636,8 @@ header i {
   padding: 0px;
   margin: 0px;
 }
-.business-intelligence .chart {
-  margin: 11px 0px 22px 0px;
+.business-intelligence .chart img {
+  width: 300px;
 }
 .business-intelligence .active-business li {
   height: 44px;
