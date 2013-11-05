@@ -40,18 +40,11 @@
     </ul>
     <ul class="past-business">
       <h3>Invoices</h3>
-      <li>
+      <li ng-repeat="invoice in parsedInvoices">
           <a href="#">
-              <span><i class="fa fa-long-arrow-left"></i></span>
-              <span>YayArt, 12.01.13</span>
-              <span class="amount">50.000 DKK</span>
-          </a>
-      </li>
-      <li>
-          <a href="#">
-              <span><i class="fa fa-long-arrow-right"></i></span>
-              <span>YayArt, 12.01.13</span>
-              <span class="amount">50.000 DKK</span>
+              <span><i class="fa fa-long-arrow-{{invoice.direction}}"></i></span>
+              <span>{{invoice.company_id}}</span>
+              <span class="amount">{{invoice.price | currency: 'DKK'}}</span>
           </a>
       </li>
   </ul>
