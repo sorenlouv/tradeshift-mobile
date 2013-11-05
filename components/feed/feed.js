@@ -4,12 +4,13 @@ app.controller('ActivityController',
   'use strict';
 
   var passiveCompanyId = $routeParams.company_id,
-      activeUserCompanyId = $rootScope.activeUser.company,
+      activeCompanyId = $rootScope.activeUser.company,
       feedId = helpers.getActivityId($rootScope.activeUser.company, passiveCompanyId),
 
       // Get Firebase data
+      activeCompanyRef = new Firebase($rootScope.fireBaseUrl + "/companies/" + activeCompanyId),
       passiveCompanyRef = new Firebase($rootScope.fireBaseUrl + "/companies/" + passiveCompanyId),
-      productsRef = new Firebase($rootScope.fireBaseUrl + "/companies/" + activeUserCompanyId + "/products"),
+      productsRef = new Firebase($rootScope.fireBaseUrl + "/companies/" + activeCompanyId + "/products"),
       feedRef = new Firebase($rootScope.fireBaseUrl + "/feeds/" + feedId),
       usersRef = new Firebase($rootScope.fireBaseUrl + "/users/");
 
@@ -26,7 +27,7 @@ app.controller('ActivityController',
   var clickedLineId = null;
 
   // Bind firebase to scope
-
+  angularFire(activeCompanyRef, $scope, 'activeCompany');
   angularFire(passiveCompanyRef, $scope, 'passiveCompany');
   angularFire(feedRef, $scope, 'feed');
   angularFire(productsRef, $scope, 'products');
@@ -103,13 +104,12 @@ app.controller('ActivityController',
       var line = $scope.feed.lines[lineId];
       invoice.push(line, function removeLine(error){
         feedRef.child('lines').child(lineId).remove(function(){
-          documentService.getUuid({
-            invoice: $scope.feed.invoices[invoice.name()],
-            senderCompany: helpers.getCompany(activeUserCompanyId),
-            receiverCompany: helpers.getCompany(passiveCompanyId)
-          }).success(function(){
-
-          });
+          // documentService.getUuid({
+          //   invoice: $scope.feed.invoices[invoice.name()],
+          //   senderCompany: $scope.activeCompany,
+          //   receiverCompany: $scope.passiveCompany
+          // }).success(function(response){
+          // });
         });
         $scope.selectLinesForInvoiceMode = false;
         $scope.selectedLineIds = [];
