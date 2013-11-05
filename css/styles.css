@@ -1552,10 +1552,6 @@ header i {
   border-top: 1px dotted #eee;
   padding: 11px 0px;
 }
-.transactions .transaction .comments .comment.commentUpdate {
-  color: #20a0e9;
-  font-weight: bold;
-}
 .transactions .transaction .comments .comment .person {
   display: inline-block;
   min-width: 54px;
@@ -1593,27 +1589,27 @@ header i {
 .business-intelligence .chart {
   margin: 11px 0px 22px 0px;
 }
-.business-intelligence .current-business li {
+.business-intelligence .active-business li {
   height: 44px;
   border-bottom: 1px dotted #eee;
 }
-.business-intelligence .current-business li .amount {
+.business-intelligence .active-business li .amount {
   float: right;
 }
-.business-intelligence .current-business li span {
+.business-intelligence .active-business li span {
   display: inline-block;
   margin-top: 11px;
 }
-.business-intelligence .current-business li span:first-child {
+.business-intelligence .active-business li span:first-child {
   width: 20px;
 }
-.business-intelligence .current-business .total h2 {
+.business-intelligence .active-business .total h2 {
   margin: 8px 0px 0px 0px;
   border-bottom: 3px double #ccc;
   float: right;
   font-size: 18px;
 }
-.business-intelligence .current-business .total span {
+.business-intelligence .active-business .total span {
   font-size: 14px;
   margin-right: 5px;
 }
@@ -1772,12 +1768,6 @@ header i {
 .picker .newProduct-picker {
   display: none;
   z-index: 14;
-  position: relative;
-}
-
-.picker .edit-picker {
-  display: none;
-  z-index: 15;
   position: relative;
 }
 .picker .newProduct-picker input {
