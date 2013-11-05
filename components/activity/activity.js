@@ -207,6 +207,8 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
       user: $rootScope.currentUser.id
     });
 
+    $scope.hidePickers();
+
   }
 
 }]);
