@@ -18,25 +18,24 @@
 <div class="container">
 
 <div class="business-intelligence">
-
   <h3>Performance</h3>
   <div class="chart">
     <img src="/images/chart.png">
-
-<!--     <canvas id="chart" chart type="Line" options="chartOptions" data="chartData" width="100%" height="200"></canvas> -->
   </div>
+
+  {{companyTotals}}
 
   <h3>Current business</h3>
     <ul class="active-business">
-        <li ng-repeat="(company_id, company) in companies" ng-show="company_id !== activeUserCompany" >
-          <a ng-href="/#/feed/{{company_id}}/">
+        <li ng-repeat="(companyId, company) in companies" ng-show="companyId !== activeUser.company" >
+          <a ng-href="/#/feed/{{companyId}}/">
               <span><i class="fa fa-exchange"></i></span>
               <span ng-bind="company.name" class="company-name"></span>
-              <span class="amount">50.000 DKK</span>
+              <span class="amount">{{totaltUnsettledByCompany[companyId] | currency: 'DKK'}}</span>
           </a>
        </li>
       <div class="total">
-        <h2><span>Total</span> 40.000</h2>
+        <h2><span>Total</span> {{totalUnsettled | currency: 'DKK'}}</h2>
       </div>
     </ul>
     <ul class="past-business">

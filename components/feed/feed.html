@@ -42,14 +42,14 @@
     <i class='fa fa-cogs'></i>
   </a>
 </div>
-<div class="transactions">
-  <div class="timestamp">Upcoming invoice</div>
 
-  <div class="timestamp">Today</div>
+
+<div class="transactions" ng-repeat="days in dayfilter">
+  <div class="timestamp">{{days.name}}</div>
   <div class="transaction"
     ng-class="{selected: selectedLineIds.indexOf(lineId) > -1}"
     ng-class="{quote: line.type == 'quote' }"
-    ng-repeat="(lineId, line) in feed.lines" ng-click="clickLine(lineId)">
+    ng-repeat="(lineId, line) in feed.lines | betweenDays:days.min:days.max" ng-click="clickLine(lineId)">
     <h1>{{line.type}}</h1>
     <div class="creator">
       <img ng-src="https://graph.facebook.com/{{line.user}}/picture?width=80&height=80" alt="">
@@ -80,15 +80,13 @@
       </div>
     </div>
   </div>
-  <div class="timestamp">Yesterday</div>
-  <div class="timestamp">Older</div>
-  <div class="total">
-    <h2>
-      <span>Sales: 30.000</span>
-      <span>Purchases: 50.000</span>
-      Total {{getTotal() | currency: 'USD'}}
-    </h2>
-  </div>
+</div>
+<div class="total">
+  <h2>
+    <span>Sales: 30.000</span>
+    <span>Purchases: 50.000</span>
+    Total {{getTotal() | currency: 'USD'}}
+  </h2>
 </div>
 
 
