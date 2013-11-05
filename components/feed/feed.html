@@ -16,15 +16,15 @@
 
 <div class="container">
 
-<div class="invoiceSent">
+<div class="invoiceSent" ng-show="pendingInvoiceProposals.length > 0">
   <p>Konscript requested to send an invoice with 6 items worth 40.000, to be payed within 30 days.</p>
   <small>The items are listed below. If you don't do anything the invoice will be sent to you in 5 days.</small>
 
-  <a class="button secondary red" ng-click="generateInvoice()">
+  <a class="button secondary red" ng-click="rejectInvoice()">
     Reject
     <i class="fa fa-ban"></i>
   </a>
-  <a class="button green" ng-click="generateInvoice()">
+  <a class="button green" ng-click="acceptInvoice()">
     Accept invoice
     <i class="fa fa-check"></i>
   </a>
@@ -37,17 +37,18 @@
     Cancel
     <i class="fa fa-ban"></i>
   </a>
-  <a class="button green" ng-click="generateInvoice()">
+  <a class="button green" ng-click="requestInvoice()">
     Request invoice
-    <i class="fa fa-arrow-right"></i>
+    <i class='fa fa-cogs'></i>
   </a>
 </div>
 
-<div class="transactions" ng-repeat="days in dayfilter">
-  <div class="timestamp">{{days.name}}</div>
+
+<div class="transactions" ng-repeat="lineInterval in lineIntervals">
+  <div class="timestamp">{{lineInterval.name}}</div>
   <div class="transaction"
     ng-class="{selected: selectedLineIds.indexOf(lineId) > -1, quote: line.type == 'quote' }"
-    ng-repeat="(lineId, line) in feed.lines | betweenDays:days.min:days.max" ng-click="clickLine(lineId)">
+    ng-repeat="(lineId, line) in feed.lines | betweenDays:lineInterval.min:lineInterval.max" ng-click="clickLine(lineId)">
     <div class="creator">
       <img ng-src="https://graph.facebook.com/{{line.user}}/picture?width=80&height=80" alt="">
     </div>
@@ -80,9 +81,9 @@
 </div>
 <div class="total-feed">
   <h2>
-    <span>Sales: 30.000</span>
-    <span>Purchases: 50.000</span>
-    Total {{getTotal() | currency: 'USD'}}
+    <span>Sales: {{getTotalSales() | currency: '$'}}</span>
+    <span>Purchases: {{getTotalPurchases() | currency: '$'}}</span>
+    Total {{getTotal() | currency: '$'}}
   </h2>
 </div>
 

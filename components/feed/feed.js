@@ -25,8 +25,7 @@ app.controller('FeedController',
   $scope.selectedLineIds = [];
   var clickedLineId = null;
 
-  // Setup the days filter (Today, Yester & Older)
-  $scope.dayfilter = [
+  $scope.lineIntervals = [
     {
       name: 'Today',
       min: 0,
@@ -50,6 +49,16 @@ app.controller('FeedController',
   var feedPromise = angularFire(feedRef, $scope, 'feed');
   angularFire(productsRef, $scope, 'products');
   angularFire(usersRef, $scope, 'users');
+
+  // watch for changes to requestd invoices
+  feedPromise.then(function(){
+    $scope.$watch("feed.requestedInvoices", function(value){
+      console.log("value", value);
+      $scope.pendingInvoiceProposals = _.filter($scope.feed.requestedInvoices, function(invoice, invoiceId){
+        return invoice.user !== $rootScope.activeUser.id;
+      });
+    });
+  });
 
   // Sune's stuff
   $scope.addItem = function() {
@@ -110,17 +119,47 @@ app.controller('FeedController',
     return total;
   };
 
-  $scope.getTotal = function(){
-    var total = 0;
-    var lines = $scope.feed.lines;
-    _.each(lines, function(line){
-      total += (line.product.quantity * line.product.custom_price);
+  $scope.getTotalSales = function() {
+    var total = 0,
+        lines = $scope.feed.lines;
+
+    _.each(lines, function(line) {
+      if (line.user === $rootScope.activeUser.id) {
+        total += line.product.quantity * line.product.custom_price;
+      }
     });
     return total;
   };
 
+  $scope.getTotalPurchases = function() {
+    var total = 0,
+        lines = $scope.feed.lines;
+
+    _.each(lines, function(line) {
+      if (line.user !== $rootScope.activeUser.id) {
+        total += line.product.quantity * line.product.custom_price;
+      }
+    });
+    return total;
+  };
+
+  $scope.getTotal = function(){
+    return $scope.getTotalPurchases() + $scope.getTotalSales();
+  };
+
+  $scope.requestInvoice = function(){
+    var requestdInvoice = feedRef.child('requestedInvoices').push();
+    requestdInvoice.set({
+      selectedLineIds: $scope.selectedLineIds,
+      user: $rootScope.activeUser.id
+    });
+
+    $scope.selectLinesForInvoiceMode = false;
+    $scope.selectedLineIds = [];
+  };
+
   // generate invoice from selected lines
-  $scope.generateInvoice = function(){
+  $scope.createInvoice = function(){
 
     var invoice = feedRef.child('invoices').push();
 
@@ -188,6 +227,7 @@ app.controller('FeedController',
 
     // click line to select/de-select for invoice
     if($scope.selectLinesForInvoiceMode){
+
 
       if(!lineIsValidForSelection(line)){
         console.log("You can only select your own lines");
