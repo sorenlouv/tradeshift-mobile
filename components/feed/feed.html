@@ -49,10 +49,14 @@
   <div class="timestamp">Today</div>
   <div class="transaction"
     ng-class="{selected: selectedLineIds.indexOf(lineId) > -1}"
+    ng-class="{quote: line.type == 'quote' }"
     ng-repeat="(lineId, line) in feed.lines" ng-click="clickLine(lineId)">
+    <h1>{{line.type}}</h1>
     <div class="creator">
       <img ng-src="https://graph.facebook.com/{{line.user}}/picture?width=80&height=80" alt="">
     </div>
+
+    <!-- Line updates -->
     <div class="update">
       <div class="object">
         <span class="primary">{{line.product.title}}</span>
@@ -63,13 +67,16 @@
         <span class="secondary">{{line.product.quantity}}&nbsp;*&nbsp;{{line.product.custom_price | currency: line.product.currency}}</span>
       </div>
     </div>
+
+    <!-- Comments -->
     <div class="comments">
       <div class="comment" ng-hide="line.description === ''">
         <span class="person">{{line.user | username}}</span>
         <span class="content">{{line.description}}</span>
       </div>
-      <div class="comment" ng-repeat="comment in line.comments" ng-class="{true: 'commentUpdate'}[comment.type == 'update']">
-        <span class="person" ng-hide="comment.type == 'update'"><a href="#">{{comment.user | username}}</a></span>
+
+      <div class="comment" ng-repeat="comment in line.comments" ng-class="{commentUpdate: comment.type == 'update'}">
+        <span class="person"><a href="#">{{comment.user | username}}</a></span>
         <span class="content">{{comment.comment}}</span>
       </div>
     </div>
@@ -103,7 +110,7 @@
             <span>Product</span>
             <i class="fa fa-chevron-right"></i>
           </li>
-          <li>
+          <li ng-click="addQuote()">
             <span>Quote</span>
             <i class="fa fa-chevron-right"></i>
           </li>
@@ -127,7 +134,33 @@
       <div class="picker-data">
         <h3>Select existing</h3>
         <ul>
-          <li ng-repeat="product in products" ng-click="setProduct(product)">
+          <li ng-repeat="product in products" ng-click="setProduct(product, 'product')">
+              {{product.title}}
+              <i class="fa fa-chevron-right"></i>
+          </li>
+          <br>
+          <h3>Add new</h3>
+          <li ng-click="showAddNewProduct()">
+            Add new product
+            <i class="fa fa-chevron-right"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-picker">
+    <div class="picker-content">
+      <div class="picker-header">
+        <h1>Add Quote</h1>
+        <a ng-click="hidePickers()">
+          <i class="fa fa-times"></i>
+        </a>
+      </div>
+      <div class="picker-data">
+        <h3>Select existing</h3>
+        <ul>
+          <li ng-repeat="product in products" ng-click="setProduct(product, 'quote')">
               {{product.title}}
               <i class="fa fa-chevron-right"></i>
           </li>
@@ -146,43 +179,43 @@
   <div class="select-picker">
     <div class="picker-content">
       <div class="picker-header">
-        <h1>{{newActivity.product.title}}</h1>
+        <h1>{{newLine.product.title}}</h1>
         <a ng-click="hidePickers()">
           <i class="fa fa-times"></i>
         </a>
       </div>
       <div class="picker-data">
-        <form ng-submit="saveNewActivity()">
+        <form ng-submit="addLine()">
           <h3>Select price</h3>
           <ul>
             <li
-              ng-class="{selected: newActivity.product.custom_price == newActivity.product.price}"
-              ng-click="setCustomPrice(newActivity.product.price)" >
-              {{newActivity.product.price | currency: newActivity.product.currency}}
+              ng-class="{selected: newLine.product.custom_price == newLine.product.price}"
+              ng-click="setCustomPrice(newLine.product.price)" >
+              {{newLine.product.price | currency: newLine.product.currency}}
             </li>
             <li
-              ng-class="{selected: newActivity.product.custom_price==(newActivity.product.price * 0.9)}"
-              ng-click="setCustomPrice(newActivity.product.price * 0.9)">
-              {{(newActivity.product.price * 0.9) | currency: newActivity.product.currency}}
+              ng-class="{selected: newLine.product.custom_price==(newLine.product.price * 0.9)}"
+              ng-click="setCustomPrice(newLine.product.price * 0.9)">
+              {{(newLine.product.price * 0.9) | currency: newLine.product.currency}}
               <span class="discount">10% discount</span>
             </li>
             <li
-              ng-class="{selected: newActivity.product.custom_price==(newActivity.product.price * 0.8)}"
-              ng-click="setCustomPrice(newActivity.product.price * 0.8)">
-              {{(newActivity.product.price * 0.8) | currency: newActivity.product.currency}}
+              ng-class="{selected: newLine.product.custom_price==(newLine.product.price * 0.8)}"
+              ng-click="setCustomPrice(newLine.product.price * 0.8)">
+              {{(newLine.product.price * 0.8) | currency: newLine.product.currency}}
               <span class="discount">20% discount</span>
             </li>
             <li
-              ng-class="{selected: newActivity.product.custom_price==(newActivity.product.price * 0.7)}"
-              ng-click="setCustomPrice(newActivity.product.price * 0.7)">
-              {{(newActivity.product.price * 0.7) | currency: newActivity.product.currency}}
+              ng-class="{selected: newLine.product.custom_price==(newLine.product.price * 0.7)}"
+              ng-click="setCustomPrice(newLine.product.price * 0.7)">
+              {{(newLine.product.price * 0.7) | currency: newLine.product.currency}}
               <span class="discount">30% discount</span>
             </li>
             <li>
               <span></span>
-              <input type="number" placeholder="Other price" ng-model="newActivity.product.custom_price">
+              <input type="number" placeholder="Other price" ng-model="newLine.product.custom_price">
               <span class="discount">
-                <span ng-bind="((1 - (newActivity.product.custom_price/newActivity.product.price)) * 100) | number: 0"></span>
+                <span ng-bind="((1 - (newLine.product.custom_price/newLine.product.price)) * 100) | number: 0"></span>
                 % discount
               </span>
             </li>
@@ -191,45 +224,45 @@
           <h3>Quantity</h3>
           <ul class="quantity">
             <li
-              ng-class="{selected: newActivity.product.quantity == 1}"
+              ng-class="{selected: newLine.product.quantity == 1}"
               ng-click="setQuantity(1)">1</li>
             <li
-              ng-class="{selected: newActivity.product.quantity == 2}"
+              ng-class="{selected: newLine.product.quantity == 2}"
               ng-click="setQuantity(2)">2</li>
             <li
-              ng-class="{selected: newActivity.product.quantity == 3}"
+              ng-class="{selected: newLine.product.quantity == 3}"
               ng-click="setQuantity(3)">3</li>
             <li
-              ng-class="{selected: newActivity.product.quantity == 4}"
+              ng-class="{selected: newLine.product.quantity == 4}"
               ng-click="setQuantity(4)">4</li>
             <li
-              ng-class="{selected: newActivity.product.quantity == 5}"
+              ng-class="{selected: newLine.product.quantity == 5}"
               ng-click="setQuantity(5)">5</li>
             <li
-              ng-class="{selected: newActivity.product.quantity == 6}"
+              ng-class="{selected: newLine.product.quantity == 6}"
               ng-click="setQuantity(6)">6</li>
             <li
-              ng-class="{selected: newActivity.product.quantity == 7}"
+              ng-class="{selected: newLine.product.quantity == 7}"
               ng-click="setQuantity(7)">7</li>
             <li
-              ng-class="{selected: newActivity.product.quantity == 8}"
+              ng-class="{selected: newLine.product.quantity == 8}"
               ng-click="setQuantity(8)">8</li>
             <li
-              ng-class="{selected: newActivity.product.quantity == 9}"
+              ng-class="{selected: newLine.product.quantity == 9}"
               ng-click="setQuantity(9)">9</li>
             <li
-              ng-class="{selected: newActivity.product.quantity == 10}"
+              ng-class="{selected: newLine.product.quantity == 10}"
               ng-click="setQuantity(10)">10</li>
             <li>
-              <input type="number" placeholder="Other quantity" ng-model="newActivity.product.quantity">
+              <input type="number" placeholder="Other quantity" ng-model="newLine.product.quantity">
             </li>
           </ul>
 
           <h3>Comment</h3>
-            <form class="comment-form" ng-submit="postComment()">
-              <textarea></textarea>
-              <button class="button" type="submit">Done</button>
-            </form>
+          <div class="comment">
+            <input type="text" placeholder="Optional comment" ng-model="newActivity.description" class="_textual">
+          </div>
+          <button class="button" type="submit">Done</button>
         </form>
       </div>
     </div>
@@ -284,16 +317,18 @@
               <button type="submit" class="button">Post comment</button>
             </form>
           <br>
-
-          <h3>Actions</h3>
-          <li ng-click="showEdit()" ng-show="activeUser.id === clickedLine.user">
-            <span>Edit</span>
-            <i class="fa fa-chevron-right"></i>
-          </li>
-          <li ng-show="activeUser.id === clickedLine.user">
-            <span>Delete</span>
-            <i class="fa fa-ban"></i>
-          </li>
+          <div>
+            <h3>Actions</h3>
+            <li ng-click="showEdit()" ng-show="activeUser.id === clickedLine.user">
+              <span>Edit</span>
+              <i class="fa fa-chevron-right"></i>
+            </li>
+            <!-- Accept quote -->
+            <li ng-click="acceptQuote()" ng-show="activeUser.id !== clickedLine.user && clickedLine.type === 'quote'">
+              <span>Accept</span>
+              <i class="fa fa-ban"></i>
+            </li>
+          </div>
         </ul>
       </div>
     </div>
@@ -387,6 +422,10 @@
             <input type="text" placeholder="Optional comment" ng-model="clickedLine.comment" class="_textual">
           </div>
           <button class="button" type="submit">Done</button>
+
+          <br /><br />
+        <h3>Remove line?</h3>
+        <button class="button warning" ng-click="delete()" type="button">Delete <i class="fa fa-trash-o"></i></button>
         </form>
       </div>
     </div>
