@@ -20,31 +20,31 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   $scope.users = {};
   $scope.selectedPrice = 0;
   $scope.currentUser = $rootScope.currentUser;
+  $scope.clickedActivity = {};
   $scope.selectLinesForInvoiceMode = false;
   $scope.selectedLineIds = [];
   var clickedLineId = null;
 
   // Bind firebase to scope
   angularFire(companyRef, $scope, 'company');
-  angularFire(activityRef, $scope, 'activity');
+  var activityPromise = angularFire(activityRef, $scope, 'activity');
   angularFire(productsRef, $scope, 'products');
   angularFire(usersRef, $scope, 'users');
 
   // Sune's stuff
   $scope.addItem = function() {
-    $scope.newActivity = {
-      user: $rootScope.currentUser.id
-    };
     $('.picker').show();
   };
 
   $scope.hidePickers = function() {
-
     $('.product-picker').hide();
     $('.select-picker').hide();
     $('.newProduct-picker').hide();
     $('.lineActions-picker').hide();
-     $('.picker').hide();
+    $('.edit-picker').hide();
+    $('.picker').hide();
+
+    $scope.newActivity = null;
   };
 
   $scope.addProduct = function() {
@@ -74,6 +74,15 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     return total;
   };
 
+  $scope.getTotal = function(){
+    var total = 0;
+    var lines = $scope.activity.lines;
+    _.each(lines, function(line){
+      total += (line.product.quantity * line.product.custom_price);
+    });
+    return total;
+  };
+
   // generate invoice from selected lines
   $scope.generateInvoice = function(){
 
@@ -82,11 +91,9 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     _.each($scope.selectedLineIds, function(lineId){
       var line = $scope.activity.lines[lineId];
       invoice.push(line, function removeLine(error){
-        activityRef.child('lines').child(lineId).remove(function(error){
-          if(!error){
-            console.log("removed!");
-          }
-        });
+        activityRef.child('lines').child(lineId).remove();
+        $scope.selectLinesForInvoiceMode = false;
+        $scope.selectedLineIds = [];
       });
     });
 
@@ -94,16 +101,27 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
 
   /*********** New Activity ***************/
   $scope.setProduct = function(product) {
-    $scope.newActivity.product = angular.copy(product);
+    $scope.newActivity = {
+      user: $rootScope.currentUser.id,
+      product: angular.copy(product)
+    };
     $('.select-picker').show();
   };
 
   $scope.setCustomPrice = function(price, e) {
-    $scope.newActivity.product.custom_price = price;
+    if ($scope.newActivity !== null) {
+      $scope.newActivity.product.custom_price = price;
+    } else {
+      $scope.clickedLine.product.custom_price = price;
+    }
   };
 
   $scope.setQuantity = function(val) {
-    $scope.newActivity.product.quantity = val;
+    if ($scope.newActivity !== null) {
+      $scope.newActivity.product.quantity = val;
+    } else {
+      $scope.clickedLine.product.quantity = val;
+    }
   };
 
   $scope.saveNewActivity = function() {
@@ -127,8 +145,9 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
       }
 
     // click line to edit/add comment
-    }else{
-      clickedLineId = lineId;
+    } else {
+      $scope.clickedLineId = lineId;
+      $scope.clickedLine = angular.copy($scope.activity.lines[lineId]);
       $('.picker').show();
       $('.lineActions-picker').show();
     }
@@ -146,14 +165,48 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $('.newProduct-picker').hide();
   };
 
+  $scope.showEdit = function() {
+    $('.edit-picker').show();
+  }
+
   $scope.postComment = function() {
     var comment = $('.comment-form textarea').val();
     activityRef.child('lines').child(clickedLineId).child('comments').push({
       comment: comment,
+      type: 'comment',
       user: $rootScope.currentUser.id
     });
 
     $('.picker').hide();
   };
+
+  $scope.updateProduct = function() {
+
+    // Link to the data we want to update
+    // var activityRef = new Firebase($rootScope.fireBaseUrl + "/activities/" + activityId + "/lines/" + clickedLineId);
+
+    activityRef.child('lines').child($scope.clickedLineId).child('product').set({
+      custom_price: $scope.clickedLine.product.custom_price,
+      quantity: $scope.clickedLine.product.quantity,
+      title: $scope.clickedLine.product.title,
+      currency: $scope.clickedLine.product.currency,
+      price: $scope.clickedLine.product.price,
+      tax: $scope.clickedLine.product.tax
+    });
+
+    var updateComment = $scope.users[$rootScope.currentUser.id].first_name + ' updated the product.'
+    activityRef.child('lines').child($scope.clickedLineId).child('comments').push({
+      comment: updateComment,
+      type: 'update',
+      user: $rootScope.currentUser.id
+    });
+
+    activityRef.child('lines').child($scope.clickedLineId).child('comments').push({
+      comment: $scope.clickedLine.comment,
+      type: 'comment',
+      user: $rootScope.currentUser.id
+    });
+
+  }
 
 }]);

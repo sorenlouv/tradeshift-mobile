@@ -1554,6 +1554,10 @@ header i {
   border-top: 1px dotted #eee;
   padding: 11px 0px;
 }
+.transactions .transaction .comments .comment.commentUpdate {
+  color: #20a0e9;
+  font-weight: bold;
+}
 .transactions .transaction .comments .comment .person {
   display: inline-block;
   min-width: 54px;
@@ -1779,6 +1783,12 @@ header i {
 .picker .newProduct-picker {
   display: none;
   z-index: 14;
+  position: relative;
+}
+
+.picker .edit-picker {
+  display: none;
+  z-index: 15;
   position: relative;
 }
 .picker .newProduct-picker input {
