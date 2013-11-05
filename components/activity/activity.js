@@ -37,12 +37,12 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   };
 
   $scope.hidePickers = function() {
-    $('.picker').hide();
     $('.product-picker').hide();
     $('.select-picker').hide();
     $('.newProduct-picker').hide();
     $('.lineActions-picker').hide();
     $('.edit-picker').hide();
+     $('.picker').hide();
   };
 
   $scope.addProduct = function() {

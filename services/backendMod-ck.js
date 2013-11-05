@@ -1,1 +1,0 @@
-angular.module("backendMod",["ngResource"]).service("documentService",function(e){return e("http://10.0.1.141\\:8081/sendDocument",{},{update:{method:"PUT",params:{json:"@json"}}})});
