@@ -6,7 +6,6 @@
   </div>
   <div>
     <h3 ng-bind="company.name"></h3>
-    <span>To be invoiced: {{}}</span>
   </div>
   <div class="add" >
     <a ng-click="addItem()">
@@ -25,22 +24,21 @@
 </div>
 
 <div class="transactions">
-  <div
-    class="transaction"
+  <div class="timestamp">Today</div>
+  <div class="transaction"
     ng-class="{selected: selectedLineIds.indexOf(lineId) > -1}"
     ng-repeat="(lineId, line) in activity.lines" ng-click="clickLine(lineId)">
     <div class="creator">
       <img ng-src="https://graph.facebook.com/{{line.user}}/picture?width=80&height=80" alt="">
     </div>
-    <!-- <input type="checkbox" class="to-be-settled"/> -->
     <div class="update">
       <div class="object">
-        <span class="primary">{{line.product.quantity}} * {{line.product.title}}</span>
-        <span class="secondary">{{line.product.custom_price | currency: line.product.currency}} pr. piece</span>
+        <span class="primary">{{line.product.title}}</span>
+        <span class="secondary"></span>
       </div>
       <div class="price">
         <span class="primary">{{(line.product.custom_price * line.product.quantity) | currency: line.product.currency}}</span>
-        <span class="secondary">Total</span>
+        <span class="secondary">{{line.product.quantity}}&nbsp;*&nbsp;{{line.product.custom_price | currency: line.product.currency}}</span>
       </div>
     </div>
     <div class="comments">
@@ -53,8 +51,14 @@
         <span class="content">{{comment.comment}}</span>
       </div>
     </div>
+
+  </div>
+  <div class="timestamp">Yesterday</div>
+  <div class="total">
+    <h2><span>Total due </span> 40.000</h2>
   </div>
 </div>
+
 
 <section class="picker" >
   <div class="picker-bg" ng-click="hidePickers()"></div>
@@ -220,24 +224,19 @@
         <form ng-submit="addNewProduct()" class="newProduct">
           <ul>
             <li>
-              <h3>Title</h3>
-              <input type="text" name="title" placeholder="Title">
+              <input type="text" name="title" placeholder="Name">
             </li>
             <li>
-              <h3>Price</h3>
               <input type="number" name="price" placeholder="Price">
             </li>
             <li>
-              <h3>Currency</h3>
               <input type="text" name="currency" placeholder="Currency">
             </li>
             <li>
-              <h3>Select tax</h3>
-              <input type="number" placeholder="25" name="tax">
-              <span>%</span>
+                <input type="number" name="tax" placeholder="Tax %">
             </li>
           </ul>
-          <button type="submit">Save</button>
+          <button type="submit" class="button">Save</button>
         </form>
       </div>
     </div>
@@ -257,9 +256,9 @@
           <h3>Comment</h3>
             <form class="comment-form" ng-submit="postComment()">
               <textarea></textarea>
-              <button type="submit">Post comment</button>
+              <button type="submit" class="button">Post comment</button>
             </form>
-          <br><br>
+          <br>
 
           <h3>Actions</h3>
           <li>
