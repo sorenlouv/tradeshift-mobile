@@ -1554,10 +1554,6 @@ header i {
   border-top: 1px dotted #eee;
   padding: 11px 0px;
 }
-.transactions .transaction .comments .comment.commentUpdate {
-  color: #20a0e9;
-  font-weight: bold;
-}
 .transactions .transaction .comments .comment .person {
   display: inline-block;
   min-width: 54px;
@@ -1572,12 +1568,17 @@ header i {
 .transactions .total h2 {
   border-bottom: 3px double #ccc;
   margin-right: 11px;
+  margin-bottom: 0px;
   float: right;
   font-size: 18px;
 }
 .transactions .total span {
+  display: block;
   font-size: 14px;
   margin-right: 5px;
+  text-align: right;
+  font-weight: 300;
+  margin-bottom: 5px;
 }
 .business-intelligence {
   padding: 11px;
@@ -1612,8 +1613,12 @@ header i {
 .business-intelligence .current-business .total h2 {
   margin: 8px 0px 0px 0px;
   border-bottom: 3px double #ccc;
-  float: right;
   font-size: 18px;
+  display: block;
+  float: right;
+}
+.business-intelligence .current-business .total h2 .left {
+  margin-right: 11px;
 }
 .business-intelligence .current-business .total span {
   font-size: 14px;
@@ -1785,21 +1790,9 @@ header i {
   z-index: 14;
   position: relative;
 }
-
-.picker .edit-picker {
-  display: none;
-  z-index: 15;
-  position: relative;
-}
 .picker .newProduct-picker input {
   width: 100%;
 }
 .transaction.selected {
   background-color: lightblue;
-}
-
-.transactions .transaction .comments .comment.commentUpdate {
-  color: #bbb;
-  font-style: italic;
-  font-weight: 300 !important;
 }
