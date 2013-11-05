@@ -119,10 +119,13 @@ app.controller('ActivityController',
 
   /*********** New Activity ***************/
   $scope.setProduct = function(product) {
+    var date = new Date().toUTCString();
     $scope.newActivity = {
       user: $rootScope.activeUser.id,
       description: '',
-      product: angular.copy(product)
+      product: angular.copy(product),
+      createdAt: date,
+      updatedAt: date
     };
     $('.select-picker').show();
   };
@@ -145,6 +148,7 @@ app.controller('ActivityController',
 
   $scope.saveNewActivity = function() {
     // Save the feed
+
     feedRef.child('lines').push($scope.newActivity);
     $scope.hidePickers();
   };
@@ -205,16 +209,15 @@ app.controller('ActivityController',
 
   $scope.updateProduct = function() {
 
-    // Link to the data we want to update
-    // var feedRef = new Firebase($rootScope.fireBaseUrl + "/activities/" + activityId + "/lines/" + clickedLineId);
+    var date = new Date().toUTCString();
 
-    feedRef.child('lines').child(clickedLineId).child('product').set({
+    feedRef.child('lines').child(clickedLineId).update({
+      updatedAt: date
+    });
+
+    feedRef.child('lines').child(clickedLineId).child('product').update({
       custom_price: $scope.clickedLine.product.custom_price,
-      quantity: $scope.clickedLine.product.quantity,
-      title: $scope.clickedLine.product.title,
-      currency: $scope.clickedLine.product.currency,
-      price: $scope.clickedLine.product.price,
-      tax: $scope.clickedLine.product.tax
+      quantity: $scope.clickedLine.product.quantity
     });
 
     var updateComment = $scope.users[$rootScope.activeUser.id].first_name + ' updated the product.';
@@ -235,5 +238,11 @@ app.controller('ActivityController',
     $scope.hidePickers();
 
   };
+
+  $scope.delete = function() {
+    feedRef.child('lines').child(clickedLineId).remove();
+    $scope.hidePickers();
+    return false;
+  }
 
 }]);
