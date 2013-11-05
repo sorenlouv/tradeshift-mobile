@@ -1406,6 +1406,9 @@ canvas {
   border: none;
   box-sizing: border-box;
 }
+.button.warning {
+  background-color: red;
+}
 .button i {
   float: right;
   margin-top: 3px;

@@ -122,13 +122,17 @@ app.controller('FeedController',
     });
   };
 
+
   /*********** New Line ***************/
   $scope.setProduct = function(product, type) {
+    var date = new Date().toUTCString();
     $scope.newLine = {
       user: $rootScope.activeUser.id,
       description: '',
       product: angular.copy(product),
-      type: type
+      type: type,
+      createdAt: date,
+      updatedAt: date
     };
     $('.select-picker').show();
   };
@@ -202,7 +206,7 @@ app.controller('FeedController',
   };
 
   $scope.acceptQuote = function(){
-    $scope.feed.lines[clickedLineId].type = "product";
+    feedRef.child('lines').child(clickedLineId).update({type: 'product'});
     addLineComment(clickedLineId, "accepted the quote", "update");
     $scope.hidePickers();
   };
@@ -223,17 +227,16 @@ app.controller('FeedController',
   };
 
   $scope.updateProduct = function() {
+    var date = new Date().toUTCString();
 
-    // Link to the data we want to update
-    // var feedRef = new Firebase($rootScope.fireBaseUrl + "/feed/" + feedId + "/lines/" + clickedLineId);
+    // update timestamp
+    feedRef.child('lines').child(clickedLineId).update({
+      updatedAt: date
+    });
 
-    feedRef.child('lines').child(clickedLineId).child('product').set({
+    feedRef.child('lines').child(clickedLineId).child('product').update({
       custom_price: $scope.clickedLine.product.custom_price,
-      quantity: $scope.clickedLine.product.quantity,
-      title: $scope.clickedLine.product.title,
-      currency: $scope.clickedLine.product.currency,
-      price: $scope.clickedLine.product.price,
-      tax: $scope.clickedLine.product.tax
+      quantity: $scope.clickedLine.product.quantity
     });
 
     addLineComment(clickedLineId, "updated the product", "update");
@@ -244,6 +247,12 @@ app.controller('FeedController',
     }
 
     $scope.hidePickers();
+  };
+
+  $scope.delete = function() {
+    feedRef.child('lines').child(clickedLineId).remove();
+    $scope.hidePickers();
+    return false;
   };
 
 }]);
