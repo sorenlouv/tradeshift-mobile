@@ -10,5 +10,20 @@ app.controller('BusinessIntelligenceController', ['$scope', 'angularFire', '$roo
 
   $scope.activeUserCompany = activeUserCompany;
 
+  $scope.editSettings = function() {
+    $('.pickers').show();
+    $('.settings-picker').show();
+  };
+
+  $scope.hidePickers = function() {
+    $('.product-picker').hide();
+    $('.select-picker').hide();
+    $('.newProduct-picker').hide();
+    $('.lineActions-picker').hide();
+    $('.edit-picker').hide();
+    $('.pickers').hide();
+
+    $scope.newActivity = null;
+  };
 
 }]);
