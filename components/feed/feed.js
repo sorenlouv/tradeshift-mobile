@@ -50,13 +50,25 @@ app.controller('FeedController',
   angularFire(productsRef, $scope, 'products');
   angularFire(usersRef, $scope, 'users');
 
-  // watch for changes to requestd invoices
+
   feedPromise.then(function(){
+
+    // watch for changes to requested invoices
     $scope.$watch("feed.requestedInvoices", function(value){
-      console.log("value", value);
-      $scope.pendingInvoiceProposals = _.filter($scope.feed.requestedInvoices, function(invoice, invoiceId){
-        return invoice.user !== $rootScope.activeUser.id;
+
+      // filter out own (active users) invoice request
+      $scope.firstPendingInvoiceProposal = {};
+      _.each($scope.feed.requestedInvoices, function(invoice, invoiceId){
+        if(invoice.user !== $rootScope.activeUser.id){
+          $scope.firstPendingInvoiceProposal.invoiceId = invoiceId;
+          $scope.firstPendingInvoiceProposal.invoice = invoice;
+        }
       });
+
+      // mark items from the first invoice proposal
+      if($scope.firstPendingInvoiceProposal.invoice !== undefined){
+        $scope.selectedLineIds = $scope.firstPendingInvoiceProposal.invoice.selectedLineIds;
+      }
     });
   });
 
@@ -148,8 +160,8 @@ app.controller('FeedController',
   };
 
   $scope.requestInvoice = function(){
-    var requestdInvoice = feedRef.child('requestedInvoices').push();
-    requestdInvoice.set({
+    var requestedInvoice = feedRef.child('requestedInvoices').push();
+    requestedInvoice.set({
       selectedLineIds: $scope.selectedLineIds,
       user: $rootScope.activeUser.id
     });
@@ -159,14 +171,17 @@ app.controller('FeedController',
   };
 
   // generate invoice from selected lines
-  $scope.createInvoice = function(){
+  $scope.acceptInvoice = function(){
 
     var invoice = feedRef.child('invoices').push();
 
-    _.each($scope.selectedLineIds, function(lineId){
+    debugger
+    _.each($scope.firstPendingInvoiceProposal.invoice.selectedLineIds, function(lineId){
       var line = $scope.feed.lines[lineId];
       invoice.push(line, function removeLine(error){
-        feedRef.child('lines').child(lineId).remove(function(){
+
+        // remove old invoice
+        feedRef.child('lines').child(lineId).remove(function getUuid(){
           documentService.getUuid({
             invoice: $scope.feed.invoices[invoice.name()],
             senderCompany: $scope.activeCompany,
@@ -174,6 +189,11 @@ app.controller('FeedController',
           }).success(function(response){
           });
         });
+
+        // deleted invoice request!
+        feedRef.child('requestedInvoices').child($scope.firstPendingInvoiceProposal.invoiceId).remove();
+
+        // reset invoice mode
         $scope.selectLinesForInvoiceMode = false;
         $scope.selectedLineIds = [];
       });
