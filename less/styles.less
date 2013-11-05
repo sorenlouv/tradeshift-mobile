@@ -46,6 +46,7 @@ canvas{
 	cursor: pointer;
 	.rounded();
 	border: none;
+	box-sizing: border-box;
 
 	i {
 		float: right;
@@ -234,7 +235,6 @@ header {
 		span {
 			display: block;
 			font-size: 14px;
-			margin-right: 5px;
 			text-align: right;
 			font-weight: 300;
 			margin-bottom: 5px;
@@ -289,7 +289,6 @@ header {
 			}
 			span {
 				font-size: 14px;
-				margin-right: 5px;
 			}
 		}
 	}
@@ -416,6 +415,7 @@ header {
 		}
 		.button {
 			width: 100% !important;
+			box-sizing: border-box;
 		}
 	}
 	.picker-content {
@@ -465,11 +465,16 @@ header {
 		position: relative;
 		z-index: 13;
 	}
+	.edit-picker {
+		display: none;
+		position: relative;
+		z-index: 15;
+	}
 	.lineActions-picker {
 		display: none;
 
 		.button {
-			width: calc(~" 100% - 22px ");
+			box-sizing: border-box;
 		}
 	}
 	.newProduct-picker {
@@ -486,3 +491,10 @@ header {
 .transaction.selected {
 	background-color: lightblue;
 }
+
+.transactions .transaction .comments .comment.commentUpdate {
+  color: #ccc;
+  font-weight: 300 !important;
+  font-style: italic;
+}
+

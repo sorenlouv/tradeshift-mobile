@@ -1404,6 +1404,7 @@ canvas {
   cursor: pointer;
   border-radius: 3px;
   border: none;
+  box-sizing: border-box;
 }
 .button i {
   float: right;
@@ -1575,7 +1576,6 @@ header i {
 .transactions .total span {
   display: block;
   font-size: 14px;
-  margin-right: 5px;
   text-align: right;
   font-weight: 300;
   margin-bottom: 5px;
@@ -1622,7 +1622,6 @@ header i {
 }
 .business-intelligence .active-business .total span {
   font-size: 14px;
-  margin-right: 5px;
 }
 .business-intelligence .past-business {
   margin-top: 22px;
@@ -1733,6 +1732,7 @@ header i {
 }
 .picker .picker-data .button {
   width: 100% !important;
+  box-sizing: border-box;
 }
 .picker .picker-content {
   z-index: 11;
@@ -1779,11 +1779,16 @@ header i {
   position: relative;
   z-index: 13;
 }
+.picker .edit-picker {
+  display: none;
+  position: relative;
+  z-index: 15;
+}
 .picker .lineActions-picker {
   display: none;
 }
 .picker .lineActions-picker .button {
-  width: calc( 100% - 22px );
+  box-sizing: border-box;
 }
 .picker .newProduct-picker {
   display: none;
@@ -1795,4 +1800,9 @@ header i {
 }
 .transaction.selected {
   background-color: lightblue;
+}
+.transactions .transaction .comments .comment.commentUpdate {
+  color: #ccc;
+  font-weight: 300 !important;
+  font-style: italic;
 }
