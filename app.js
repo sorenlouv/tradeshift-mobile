@@ -10,8 +10,8 @@ app.config(function ($routeProvider) {
     // Settings
     when('/settings', {templateUrl: '/components/settings/template.html', controller: 'SettingsController'}).
 
-    // Activity
-    when('/feed/:company_id', {templateUrl: '/components/feed/feed.html', controller: 'ActivityController'}).
+    // Feed
+    when('/feed/:company_id', {templateUrl: '/components/feed/feed.html', controller: 'FeedController'}).
 
     // Products
     when('/products', {templateUrl: '/components/products/template.html', controller: 'ProductController'}).

@@ -1,11 +1,11 @@
-app.controller('ActivityController',
+app.controller('FeedController',
   ['$scope', '$routeParams', 'angularFire', '$rootScope', 'helpers', 'documentService', function ($scope, $routeParams, angularFire, $rootScope, helpers, documentService) {
 
   'use strict';
 
   var passiveCompanyId = $routeParams.company_id,
       activeCompanyId = $rootScope.activeUser.company,
-      feedId = helpers.getActivityId($rootScope.activeUser.company, passiveCompanyId),
+      feedId = helpers.getFeedId($rootScope.activeUser.company, passiveCompanyId),
 
       // Get Firebase data
       activeCompanyRef = new Firebase($rootScope.fireBaseUrl + "/companies/" + activeCompanyId),
@@ -21,7 +21,6 @@ app.controller('ActivityController',
   $scope.users = {};
   $scope.selectedPrice = 0;
   $scope.activeUser = $rootScope.activeUser;
-  $scope.clickedActivity = {};
   $scope.selectLinesForInvoiceMode = false;
   $scope.selectedLineIds = [];
   var clickedLineId = null;
@@ -39,6 +38,7 @@ app.controller('ActivityController',
   };
 
   $scope.hidePickers = function() {
+    $('.quote-picker').hide();
     $('.product-picker').hide();
     $('.select-picker').hide();
     $('.newProduct-picker').hide();
@@ -46,21 +46,30 @@ app.controller('ActivityController',
     $('.edit-picker').hide();
     $('.pickers').hide();
 
-    $scope.newActivity = null;
+    $scope.newLine = null;
   };
 
   $scope.addProduct = function() {
     $('.product-picker').show();
   };
 
+  $scope.addQuote = function() {
+    $('.quote-picker').show();
+  };
+
   $scope.showAddNewProduct = function() {
     $('.newProduct-picker').show();
   };
 
+  var lineIsValidForSelection = function(line){
+    return (line.user === $rootScope.activeUser.id && line.type == "product");
+  };
+
+  // select all lines that belong to the active user and are of type product (not "quote"!)
   var getActiveUserLineIds = function(){
     var activeUserLineIds = [];
     _.each($scope.feed.lines, function(line, lineId){
-      if(line.user === $rootScope.activeUser.id){
+      if(lineIsValidForSelection(line)){
         activeUserLineIds.push(lineId);
       }
     });
@@ -69,11 +78,7 @@ app.controller('ActivityController',
 
   $scope.clickSelectLinesForInvoice = function() {
     $scope.selectLinesForInvoiceMode = true;
-
-    // select all lines that belong to the active user
     $scope.selectedLineIds = getActiveUserLineIds();
-
-    //
     $scope.hidePickers();
   };
 
@@ -117,45 +122,49 @@ app.controller('ActivityController',
     });
   };
 
-  /*********** New Activity ***************/
-  $scope.setProduct = function(product) {
-    $scope.newActivity = {
+  /*********** New Line ***************/
+  $scope.setProduct = function(product, type) {
+    $scope.newLine = {
       user: $rootScope.activeUser.id,
       description: '',
-      product: angular.copy(product)
+      product: angular.copy(product),
+      type: type
     };
     $('.select-picker').show();
   };
 
   $scope.setCustomPrice = function(price, e) {
-    if (typeof $scope.newActivity !== 'undefined' && $scope.newActivity !== null) {
-      $scope.newActivity.product.custom_price = price;
+    if (typeof $scope.newLine !== 'undefined' && $scope.newLine !== null) {
+      $scope.newLine.product.custom_price = price;
     } else {
       $scope.clickedLine.product.custom_price = price;
     }
   };
 
   $scope.setQuantity = function(val) {
-    if (typeof $scope.newActivity !== 'undefined' && $scope.newActivity !== null) {
-      $scope.newActivity.product.quantity = val;
+    if (typeof $scope.newLine !== 'undefined' && $scope.newLine !== null) {
+      $scope.newLine.product.quantity = val;
     } else {
       $scope.clickedLine.product.quantity = val;
     }
   };
 
-  $scope.saveNewActivity = function() {
+  $scope.addLine = function() {
     // Save the feed
-    feedRef.child('lines').push($scope.newActivity);
+    feedRef.child('lines').push($scope.newLine);
     $scope.hidePickers();
   };
 
 
   $scope.clickLine = function(lineId) {
+    var line = $scope.feed.lines[lineId];
+
     // click line to select/de-select for invoice
     if($scope.selectLinesForInvoiceMode){
 
-      if($scope.feed.lines[lineId].user !== $rootScope.activeUser.id){
+      if(!lineIsValidForSelection(line)){
         console.log("You can only select your own lines");
+        return;
       }
 
       var selectedIndex = $scope.selectedLineIds.indexOf(lineId);
@@ -170,7 +179,7 @@ app.controller('ActivityController',
     // click line to edit/add comment
     } else {
       clickedLineId = lineId;
-      $scope.clickedLine = angular.copy($scope.feed.lines[lineId]);
+      $scope.clickedLine = angular.copy(line);
       $('.pickers').show();
       $('.lineActions-picker').show();
     }
@@ -192,21 +201,31 @@ app.controller('ActivityController',
     $('.edit-picker').show();
   };
 
+  $scope.acceptQuote = function(){
+    $scope.feed.lines[clickedLineId].type = "product";
+    addLineComment(clickedLineId, "accepted the quote", "update");
+    $scope.hidePickers();
+  };
+
   $scope.postComment = function() {
     var comment = $('.comment-form textarea').val();
-    feedRef.child('lines').child(clickedLineId).child('comments').push({
-      comment: comment,
-      type: 'comment',
-      user: $rootScope.activeUser.id
-    });
+    addLineComment(clickedLineId, comment, "comment");
 
     $('.pickers').hide();
+  };
+
+  var addLineComment = function(lineId, comment, type){
+    feedRef.child('lines').child(lineId).child('comments').push({
+      comment: comment,
+      type: type,
+      user: $rootScope.activeUser.id
+    });
   };
 
   $scope.updateProduct = function() {
 
     // Link to the data we want to update
-    // var feedRef = new Firebase($rootScope.fireBaseUrl + "/activities/" + activityId + "/lines/" + clickedLineId);
+    // var feedRef = new Firebase($rootScope.fireBaseUrl + "/feed/" + feedId + "/lines/" + clickedLineId);
 
     feedRef.child('lines').child(clickedLineId).child('product').set({
       custom_price: $scope.clickedLine.product.custom_price,
@@ -217,23 +236,14 @@ app.controller('ActivityController',
       tax: $scope.clickedLine.product.tax
     });
 
-    var updateComment = $scope.users[$rootScope.activeUser.id].first_name + ' updated the product.';
-    feedRef.child('lines').child(clickedLineId).child('comments').push({
-      comment: updateComment,
-      type: 'update',
-      user: $rootScope.activeUser.id
-    });
+    addLineComment(clickedLineId, "updated the product", "update");
 
-    if(typeof $scope.clickedLine.comment !== 'undefined' && $scope.clickedLine.comment !== '') {
-      feedRef.child('lines').child(clickedLineId).child('comments').push({
-        comment: $scope.clickedLine.comment,
-        type: 'comment',
-        user: $rootScope.activeUser.id
-      });
+    var comment = $scope.clickedLine.comment;
+    if(typeof comment !== 'undefined' && comment !== '') {
+      addLineComment(clickedLineId, comment, "comment");
     }
 
     $scope.hidePickers();
-
   };
 
 }]);

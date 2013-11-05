@@ -1774,6 +1774,11 @@ header i {
   position: relative;
   z-index: 12;
 }
+.pickers .quote-picker {
+  display: none;
+  position: relative;
+  z-index: 12;
+}
 .pickers .select-picker {
   display: none;
   position: relative;
