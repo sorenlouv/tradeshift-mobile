@@ -1863,7 +1863,7 @@ header i {
   z-index: 16;
 }
 .transaction.selected {
-  background-color: lightblue;
+  background-color: #d2e7f5;
 }
 .transactions .transaction .comments .comment.commentUpdate {
   color: #ddd;
@@ -1879,4 +1879,5 @@ input.setting {
   font-size: 15px;
   width: 100%;
   padding: 5px;
+  box-sizing: border-box;
 }
