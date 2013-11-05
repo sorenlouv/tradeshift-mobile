@@ -10,11 +10,6 @@ app.controller('BusinessIntelligenceController', ['$scope', 'angularFire', '$roo
 
   $scope.activeUserCompany = activeUserCompany;
 
-  $scope.addCompany = function() {
-    console.log("hmm");
-  };
-
-
   $scope.chartData = {
     labels : ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
     datasets : [
@@ -37,8 +32,23 @@ app.controller('BusinessIntelligenceController', ['$scope', 'angularFire', '$roo
   $scope.chartOptions = {
     pointDot : false,
     scaleLineColor : "rgba(0,0,0,1)",
-  }
+  };
 
+  $scope.editSettings = function() {
+    $('.pickers').show();
+    $('.settings-picker').show();
+  };
+
+  $scope.hidePickers = function() {
+    $('.product-picker').hide();
+    $('.select-picker').hide();
+    $('.newProduct-picker').hide();
+    $('.lineActions-picker').hide();
+    $('.edit-picker').hide();
+    $('.pickers').hide();
+
+    $scope.newActivity = null;
+  };
 
   var setupCanvas;
   setupCanvas = function(canvas) {

@@ -1410,6 +1410,12 @@ canvas {
   float: right;
   margin-top: 3px;
 }
+.green {
+  background-color: #72b148;
+}
+.red {
+  background-color: #dc0000 !important;
+}
 header {
   height: 44px;
   background-color: #1e1e1e;
@@ -1461,6 +1467,36 @@ header .add a {
 header i {
   margin-top: 15px;
   color: white;
+}
+.generateInvoice,
+.invoiceSent {
+  overflow: hidden;
+  padding: 22px;
+  margin: 11px;
+  background-color: #fdfed5;
+  clear: both;
+}
+.generateInvoice p,
+.invoiceSent p {
+  margin: 0px 0px 5px 0px;
+  padding: 0px;
+}
+.generateInvoice small,
+.invoiceSent small {
+  display: block;
+  margin-bottom: 11px;
+  color: #333;
+  font-style: italic;
+}
+.generateInvoice .secondary,
+.invoiceSent .secondary {
+  width: 38%;
+  float: left;
+}
+.generateInvoice .green,
+.invoiceSent .green {
+  width: 60%;
+  float: right;
 }
 .transactions {
   background-color: #eee;
@@ -1798,11 +1834,19 @@ header i {
 .pickers .newProduct-picker input {
   width: 100%;
 }
+.settings-picker {
+  display: none;
+  position: relative;
+  z-index: 16;
+}
 .transaction.selected {
   background-color: lightblue;
 }
 .transactions .transaction .comments .comment.commentUpdate {
-  color: #ccc;
+  color: #ddd;
   font-weight: 300 !important;
   font-style: italic;
+}
+.button.warning {
+  background-color: red;
 }

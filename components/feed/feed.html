@@ -14,16 +14,36 @@
   </div>
 </header>
 
+<div class="invoiceSent">
+  <p>Konscript requested to send an invoice with 6 items worth 40.000, to be payed within 30 days.</p>
+  <small>The items are listed below. If you don't do anything the invoice will be sent to you in 5 days.</small>
+
+  <a class="button secondary red" ng-click="generateInvoice()">
+    Reject
+    <i class="fa fa-ban"></i>
+  </a>
+  <a class="button green" ng-click="generateInvoice()">
+    Accept invoice
+    <i class="fa fa-check"></i>
+  </a>
+</div>
 
 <div class="generateInvoice" ng-show="selectLinesForInvoiceMode">
   <p>{{selectedLineIds.length}} items worth {{getSelectedLinesTotal()}} selected</p>
-  <a class="button" ng-click="generateInvoice()">
+  <small>Tap to unselect items you don't want to include in this invoice, and click generate invoice when you are ready to send.ª</small>
+  <a class="button secondary" ng-click="generateInvoice()">
+    Cancel
+    <i class="fa fa-ban"></i>
+  </a>
+  <a class="button green" ng-click="generateInvoice()">
     Generate invoice
     <i class='fa fa-cogs'></i>
   </a>
 </div>
 
 <div class="transactions">
+  <div class="timestamp">Upcoming invoice</div>
+
   <div class="timestamp">Today</div>
   <div class="transaction"
     ng-class="{selected: selectedLineIds.indexOf(lineId) > -1}"
@@ -34,7 +54,7 @@
     <div class="update">
       <div class="object">
         <span class="primary">{{line.product.title}}</span>
-        <span class="secondary">Product/service</span>
+        <span class="secondary">Excl. 25% moms</span>
       </div>
       <div class="price">
         <span class="primary">{{(line.product.custom_price * line.product.quantity) | currency: line.product.currency}}</span>
@@ -60,7 +80,6 @@
       <span>Purchases: 50.000</span>
       Total {{getTotal() | currency: 'USD'}}
     </h2>
-
   </div>
 </div>
 
@@ -87,7 +106,7 @@
             <i class="fa fa-chevron-right"></i>
           </li>
         </ul>
-        <h3>Other</h3>
+        <h3>Actions</h3>
         <ul>
           <li ng-click="clickSelectLinesForInvoice()">Generate invoice</li>
         </ul>
@@ -244,6 +263,7 @@
       </div>
     </div>
   </div>
+
 
   <!-- Sidebar: Add comment  -->
   <div class="lineActions-picker">
