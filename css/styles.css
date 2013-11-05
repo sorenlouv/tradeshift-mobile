@@ -1609,14 +1609,17 @@ header i {
 .transactions .transaction .comments .comment .content {
   font-weight: 400;
 }
-.transactions .total h2 {
+.total-feed {
+  padding-bottom: 122px;
+}
+.total-feed h2 {
   border-bottom: 3px double #ccc;
   margin-right: 11px;
   margin-bottom: 0px;
   float: right;
   font-size: 18px;
 }
-.transactions .total span {
+.total-feed span {
   display: block;
   font-size: 14px;
   text-align: right;
