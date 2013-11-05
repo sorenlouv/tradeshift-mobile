@@ -109,7 +109,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   };
 
   $scope.setCustomPrice = function(price, e) {
-    if ($scope.newActivity !== null) {
+    if (typeof $scope.newActivity !== 'undefined' && $scope.newActivity !== null) {
       $scope.newActivity.product.custom_price = price;
     } else {
       $scope.clickedLine.product.custom_price = price;
@@ -117,7 +117,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   };
 
   $scope.setQuantity = function(val) {
-    if ($scope.newActivity !== null) {
+    if (typeof $scope.newActivity !== 'undefined' && $scope.newActivity !== null) {
       $scope.newActivity.product.quantity = val;
     } else {
       $scope.clickedLine.product.quantity = val;
@@ -201,11 +201,13 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
       user: $rootScope.currentUser.id
     });
 
-    activityRef.child('lines').child($scope.clickedLineId).child('comments').push({
-      comment: $scope.clickedLine.comment,
-      type: 'comment',
-      user: $rootScope.currentUser.id
-    });
+    if(typeof $scope.clickedLine.comment !== 'undefined' && $scope.clickedLine.comment !== '') {
+      activityRef.child('lines').child($scope.clickedLineId).child('comments').push({
+        comment: $scope.clickedLine.comment,
+        type: 'comment',
+        user: $rootScope.currentUser.id
+      });
+    }
 
     $scope.hidePickers();
 
