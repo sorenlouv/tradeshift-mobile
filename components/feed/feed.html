@@ -32,7 +32,7 @@
 
 <div class="generateInvoice" ng-show="selectLinesForInvoiceMode">
   <p>{{selectedLineIds.length}} items worth {{getSelectedLinesTotal()}} selected</p>
-  <small>Tap to unselect items you don't want to include in this invoice, and click 'Generate invoice' when you are ready to send.</small>
+  <small>Tap to unselect items you don't want to include in this invoice, and click 'Propose invoice' when you are ready to send.</small>
   <a class="button secondary" ng-click="generateInvoice()">
     Cancel
     <i class="fa fa-ban"></i>
@@ -112,7 +112,7 @@
         </ul>
         <h3>Actions</h3>
         <ul>
-          <li ng-click="clickSelectLinesForInvoice()">Generate invoice</li>
+          <li ng-click="clickSelectLinesForInvoice()">Propose invoice</li>
         </ul>
       </div>
     </div>
