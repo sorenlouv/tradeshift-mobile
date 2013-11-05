@@ -74,6 +74,15 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     return total;
   };
 
+  $scope.getTotal = function(){
+    var total = 0;
+    var lines = $scope.activity.lines;
+    _.each(lines, function(line){
+      total += (line.product.quantity * line.product.custom_price);
+    });
+    return total;
+  };
+
   // generate invoice from selected lines
   $scope.generateInvoice = function(){
 
@@ -82,11 +91,9 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     _.each($scope.selectedLineIds, function(lineId){
       var line = $scope.activity.lines[lineId];
       invoice.push(line, function removeLine(error){
-        activityRef.child('lines').child(lineId).remove(function(error){
-          if(!error){
-            console.log("removed!");
-          }
-        });
+        activityRef.child('lines').child(lineId).remove();
+        $scope.selectLinesForInvoiceMode = false;
+        $scope.selectedLineIds = [];
       });
     });
 

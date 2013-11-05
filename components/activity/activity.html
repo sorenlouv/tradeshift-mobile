@@ -55,7 +55,10 @@
   </div>
   <div class="timestamp">Yesterday</div>
   <div class="total">
-    <h2><span>Total due </span> 40.000</h2>
+    <h2>
+      <span>Total due </span>
+      {{getTotal() | currency: 'USD'}}
+    </h2>
   </div>
 </div>
 
