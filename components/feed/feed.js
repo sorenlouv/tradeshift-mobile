@@ -130,8 +130,10 @@ app.controller('FeedController',
   $scope.getSelectedLinesTotal = function(){
     var total = 0;
     _.each($scope.selectedLineIds, function(lineId){
-      var line = $scope.feed.lines[lineId];
-      total += (line.product.quantity * line.product.custom_price);
+      if($scope.feed.lines && $scope.feed.lines[lineId]){
+        var line = $scope.feed.lines[lineId];
+        total += (line.product.quantity * line.product.custom_price);
+      }
     });
     return total;
   };
@@ -190,6 +192,7 @@ app.controller('FeedController',
             senderCompany: $scope.activeCompany,
             receiverCompany: $scope.passiveCompany
           }).success(function(response){
+            feedRef.child('invoices').child(invoice.name()).child('uuid').set(response.uuid);
           });
         });
 
