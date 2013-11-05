@@ -1638,7 +1638,7 @@ header i {
 .business-intelligence .load-more a {
   width: calc( 100% - 22px );
 }
-.picker {
+.pickers {
   z-index: 10;
   display: none;
   position: fixed;
@@ -1647,26 +1647,26 @@ header i {
   height: 100%;
   width: 100%;
 }
-.picker h3 {
+.pickers h3 {
   margin: 0px 0px 5px 0px;
   font-size: 11px;
   text-transform: uppercase;
   font-weight: 600;
 }
-.picker .quantity li {
+.pickers .quantity li {
   display: inline-block;
   height: 22px;
   margin-bottom: 5px;
 }
-.picker ul {
+.pickers ul {
   padding: 0px;
   margin: 0px 0px 22px 0px;
 }
-.picker ul .selected {
+.pickers ul .selected {
   background-color: #20a0e9 !important;
   color: white !important;
 }
-.picker ul li {
+.pickers ul li {
   color: #20a0e9;
   padding: 11px;
   margin-bottom: 1px;
@@ -1677,44 +1677,44 @@ header i {
   background-color: #ecf7fd;
   cursor: pointer;
 }
-.picker ul li i {
+.pickers ul li i {
   float: right;
   margin-top: 4px;
 }
-.picker ul li .discount {
+.pickers ul li .discount {
   float: right;
   color: #94d1f4;
   font-weight: 300;
 }
-.picker ul li input {
+.pickers ul li input {
   margin: -11px -11px -11px 0;
   height: 33px;
   border: none;
   background-color: transparent;
 }
-.picker textarea {
+.pickers textarea {
   width: calc( 100% - 8px );
   margin-bottom: 11px;
 }
-.picker .picker-bg {
+.pickers .picker-bg {
   position: relative;
   z-index: 9;
   width: 100%;
   height: 100%;
   background-color: rgba(50, 50, 50, 0.8);
 }
-.picker .picker-data {
+.pickers .picker-data {
   display: block;
   padding: 11px;
 }
-.picker .picker-data input {
+.pickers .picker-data input {
   background-color: #e6f5ff;
   border: none;
 }
-.picker .picker-data .comment {
+.pickers .picker-data .comment {
   margin-bottom: 22px;
 }
-.picker .picker-content {
+.pickers .picker-content {
   z-index: 11;
   width: 300px;
   position: fixed;
@@ -1724,20 +1724,20 @@ header i {
   height: 100%;
   overflow-y: auto;
 }
-.picker .picker-content .picker-header {
+.pickers .picker-content .picker-header {
   background-color: #20a0e9;
   height: 44px;
   width: 100%;
   overflow: hidden;
 }
-.picker .picker-content .picker-header h1 {
+.pickers .picker-content .picker-header h1 {
   margin-top: 9px;
   font-weight: 300;
   font-size: 18px;
   color: white;
   margin-left: 22px;
 }
-.picker .picker-content .picker-header a {
+.pickers .picker-content .picker-header a {
   width: 44px;
   height: 44px;
   display: inline-block;
@@ -1745,32 +1745,32 @@ header i {
   right: 0px;
   top: 0px;
 }
-.picker .picker-content .picker-header i {
+.pickers .picker-content .picker-header i {
   margin: 14px 0 0 16px;
   color: white;
 }
-.picker .product-picker {
+.pickers .product-picker {
   display: none;
   position: relative;
   z-index: 12;
 }
-.picker .select-picker {
+.pickers .select-picker {
   display: none;
   position: relative;
   z-index: 13;
 }
-.picker .lineActions-picker {
+.pickers .lineActions-picker {
   display: none;
 }
-.picker .lineActions-picker .button {
+.pickers .lineActions-picker .button {
   width: calc( 100% - 22px );
 }
-.picker .newProduct-picker {
+.pickers .newProduct-picker {
   display: none;
   z-index: 14;
   position: relative;
 }
-.picker .newProduct-picker input {
+.pickers .newProduct-picker input {
   width: 100%;
 }
 .transaction.selected {

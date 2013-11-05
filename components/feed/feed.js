@@ -34,7 +34,7 @@ app.controller('ActivityController',
 
   // Sune's stuff
   $scope.addItem = function() {
-    $('.picker').show();
+    $('.pickers').show();
   };
 
   $scope.hidePickers = function() {
@@ -43,7 +43,7 @@ app.controller('ActivityController',
     $('.newProduct-picker').hide();
     $('.lineActions-picker').hide();
     $('.edit-picker').hide();
-    $('.picker').hide();
+    $('.pickers').hide();
 
     $scope.newActivity = null;
   };
@@ -156,7 +156,7 @@ app.controller('ActivityController',
     } else {
       clickedLineId = lineId;
       $scope.clickedLine = angular.copy($scope.feed.lines[lineId]);
-      $('.picker').show();
+      $('.pickers').show();
       $('.lineActions-picker').show();
     }
   };
@@ -185,7 +185,7 @@ app.controller('ActivityController',
       user: $rootScope.activeUser.id
     });
 
-    $('.picker').hide();
+    $('.pickers').hide();
   };
 
   $scope.updateProduct = function() {
