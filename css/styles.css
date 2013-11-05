@@ -1404,6 +1404,7 @@ canvas {
   cursor: pointer;
   border-radius: 3px;
   border: none;
+  box-sizing: border-box;
 }
 .button i {
   float: right;
@@ -1516,8 +1517,8 @@ header i {
 }
 .transactions .transaction .update .object {
   float: left;
-  height: 44px;
   margin-left: 6px;
+  padding-bottom: 11px;
 }
 .transactions .transaction .update .object .secondary {
   float: left;
@@ -1525,6 +1526,7 @@ header i {
 .transactions .transaction .update .price {
   display: block;
   width: 30%;
+  min-width: 100px;
   float: right;
   text-align: right;
 }
@@ -1532,6 +1534,7 @@ header i {
   float: right;
 }
 .transactions .transaction .update .primary {
+  max-width: 120px;
   font-size: 16px;
   display: block;
   line-height: 18px;
@@ -1566,12 +1569,16 @@ header i {
 .transactions .total h2 {
   border-bottom: 3px double #ccc;
   margin-right: 11px;
+  margin-bottom: 0px;
   float: right;
   font-size: 18px;
 }
 .transactions .total span {
+  display: block;
   font-size: 14px;
-  margin-right: 5px;
+  text-align: right;
+  font-weight: 300;
+  margin-bottom: 5px;
 }
 .business-intelligence {
   padding: 11px;
@@ -1606,12 +1613,15 @@ header i {
 .business-intelligence .active-business .total h2 {
   margin: 8px 0px 0px 0px;
   border-bottom: 3px double #ccc;
-  float: right;
   font-size: 18px;
+  display: block;
+  float: right;
+}
+.business-intelligence .active-business .total h2 .left {
+  margin-right: 11px;
 }
 .business-intelligence .active-business .total span {
   font-size: 14px;
-  margin-right: 5px;
 }
 .business-intelligence .past-business {
   margin-top: 22px;
@@ -1658,9 +1668,15 @@ header i {
   height: 22px;
   margin-bottom: 5px;
 }
+.pickers .quantity li:last-child {
+  width: 170px;
+}
+.pickers .quantity li:last-child input {
+  width: 175px;
+}
 .pickers ul {
   padding: 0px;
-  margin: 0px 0px 22px 0px;
+  margin: 0px 0px 11px 0px;
 }
 .pickers ul .selected {
   background-color: #20a0e9 !important;
@@ -1714,6 +1730,10 @@ header i {
 .pickers .picker-data .comment {
   margin-bottom: 22px;
 }
+.pickers .picker-data .button {
+  width: 100% !important;
+  box-sizing: border-box;
+}
 .pickers .picker-content {
   z-index: 11;
   width: 300px;
@@ -1759,11 +1779,16 @@ header i {
   position: relative;
   z-index: 13;
 }
+.pickers .edit-picker {
+  display: none;
+  position: relative;
+  z-index: 15;
+}
 .pickers .lineActions-picker {
   display: none;
 }
 .pickers .lineActions-picker .button {
-  width: calc( 100% - 22px );
+  box-sizing: border-box;
 }
 .pickers .newProduct-picker {
   display: none;
@@ -1775,4 +1800,9 @@ header i {
 }
 .transaction.selected {
   background-color: lightblue;
+}
+.transactions .transaction .comments .comment.commentUpdate {
+  color: #ccc;
+  font-weight: 300 !important;
+  font-style: italic;
 }

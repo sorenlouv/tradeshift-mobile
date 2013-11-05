@@ -46,6 +46,7 @@ canvas{
 	cursor: pointer;
 	.rounded();
 	border: none;
+	box-sizing: border-box;
 
 	i {
 		float: right;
@@ -88,6 +89,7 @@ header {
 			display: inline-block;
 			height: 44px;
 			width: 44px;
+
 		}
 	}
 	.add {
@@ -167,8 +169,9 @@ header {
 
 			.object {
 				float: left;
-				height: 44px;
 				margin-left: 6px;
+
+				padding-bottom: 11px;
 				.secondary {
 					float: left;
 				}
@@ -176,6 +179,7 @@ header {
 			.price {
 				display: block;
 				width: 30%;
+				min-width: 100px;
 				float: right;
 				text-align: right;
 
@@ -184,6 +188,7 @@ header {
 				}
 			}
 			.primary {
+				max-width: 120px;
 				font-size: 16px;
 				display: block;
 				line-height: 18px;
@@ -224,12 +229,16 @@ header {
 		h2 {
 			border-bottom: 3px double #ccc;
 			margin-right: 11px;
+			margin-bottom: 0px;
 			float: right;
 			font-size: 18px;
 		}
 		span {
+			display: block;
 			font-size: 14px;
-			margin-right: 5px;
+			text-align: right;
+			font-weight: 300;
+			margin-bottom: 5px;
 		}
 	}
 }
@@ -272,10 +281,15 @@ header {
 				border-bottom: 3px double #ccc;
 				float: right;
 				font-size: 18px;
+				display: block;
+				float: right;
+
+				.left {
+					margin-right: 11px;
+				}
 			}
 			span {
 				font-size: 14px;
-				margin-right: 5px;
 			}
 		}
 	}
@@ -330,13 +344,20 @@ header {
 			display: inline-block;
 			height: 22px;
 			margin-bottom: 5px;
+
+			&:last-child {
+				width: 170px;
+				input {
+					width:175px;
+				}
+			}
 		}
 	}
 
 
 	ul {
 		padding: 0px;
-		margin: 0px 0px 22px 0px;
+		margin: 0px 0px 11px 0px;
 
 		.selected {
 			background-color: @tsblue !important;
@@ -393,6 +414,10 @@ header {
 		.comment {
 			margin-bottom: 22px;
 		}
+		.button {
+			width: 100% !important;
+			box-sizing: border-box;
+		}
 	}
 	.picker-content {
 		z-index: 11;
@@ -441,11 +466,16 @@ header {
 		position: relative;
 		z-index: 13;
 	}
+	.edit-picker {
+		display: none;
+		position: relative;
+		z-index: 15;
+	}
 	.lineActions-picker {
 		display: none;
 
 		.button {
-			width: calc(~" 100% - 22px ");
+			box-sizing: border-box;
 		}
 	}
 	.newProduct-picker {
@@ -462,3 +492,10 @@ header {
 .transaction.selected {
 	background-color: lightblue;
 }
+
+.transactions .transaction .comments .comment.commentUpdate {
+  color: #ccc;
+  font-weight: 300 !important;
+  font-style: italic;
+}
+
