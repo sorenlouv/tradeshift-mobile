@@ -21,18 +21,16 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   $scope.users = {};
   $scope.selectedPrice = 0;
   $scope.currentUser = $rootScope.currentUser;
+  $scope.clickedActivity = {};
 
   // Bind firebase to scope
   angularFire(companyRef, $scope, 'company');
-  angularFire(activityRef, $scope, 'activity');
+  var activityPromise = angularFire(activityRef, $scope, 'activity');
   angularFire(productsRef, $scope, 'products');
   angularFire(usersRef, $scope, 'users');
 
   // Sune's stuff
   $scope.addItem = function() {
-    $scope.newActivity = {
-      user: $rootScope.currentUser.id
-    };
     $('.picker').show();
   };
 
@@ -42,7 +40,9 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $('.newProduct-picker').hide();
     $('.lineActions-picker').hide();
     $('.edit-picker').hide();
-     $('.picker').hide();
+    $('.picker').hide();
+
+    $scope.newActivity = null;
   };
 
   $scope.addProduct = function() {
@@ -62,16 +62,27 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
 
   /*********** New Activity ***************/
   $scope.setProduct = function(product) {
-    $scope.newActivity.product = angular.copy(product);
+    $scope.newActivity = {
+      user: $rootScope.currentUser.id,
+      product: angular.copy(product)
+    };
     $('.select-picker').show();
   };
 
   $scope.setCustomPrice = function(price, e) {
-    $scope.newActivity.product.custom_price = price;
+    if ($scope.newActivity !== null) {
+      $scope.newActivity.product.custom_price = price;
+    } else {
+      $scope.clickedLine.product.custom_price = price;
+    }
   };
 
   $scope.setQuantity = function(val) {
-    $scope.newActivity.product.quantity = val;
+    if ($scope.newActivity !== null) {
+      $scope.newActivity.product.quantity = val;
+    } else {
+      $scope.clickedLine.product.quantity = val;
+    }
   };
 
   $scope.saveNewActivity = function() {
@@ -97,12 +108,9 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     // click line to edit/add comment
     } else {
       $scope.clickedLineId = lineId;
-
-      var clickedActivityRef = new Firebase($rootScope.fireBaseUrl + "/activities/" + activityId + "/lines/" + lineId);
-      angularFire(clickedActivityRef, $scope, 'clickedActivity').then(function() {
-        $('.picker').show();
-        $('.lineActions-picker').show();
-      });
+      $scope.clickedLine = angular.copy($scope.activity.lines[lineId]);
+      $('.picker').show();
+      $('.lineActions-picker').show();
     }
   };
 
@@ -126,10 +134,40 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     var comment = $('.comment-form textarea').val();
     activityRef.child('lines').child($scope.clickedLineId).child('comments').push({
       comment: comment,
+      type: 'comment',
       user: $rootScope.currentUser.id
     });
 
     $('.picker').hide();
   };
+
+  $scope.updateProduct = function() {
+
+    // Link to the data we want to update
+    // var activityRef = new Firebase($rootScope.fireBaseUrl + "/activities/" + activityId + "/lines/" + clickedLineId);
+
+    activityRef.child('lines').child($scope.clickedLineId).child('product').set({
+      custom_price: $scope.clickedLine.product.custom_price,
+      quantity: $scope.clickedLine.product.quantity,
+      title: $scope.clickedLine.product.title,
+      currency: $scope.clickedLine.product.currency,
+      price: $scope.clickedLine.product.price,
+      tax: $scope.clickedLine.product.tax
+    });
+
+    var updateComment = $scope.users[$rootScope.currentUser.id].first_name + ' updated the product.'
+    activityRef.child('lines').child($scope.clickedLineId).child('comments').push({
+      comment: updateComment,
+      type: 'update',
+      user: $rootScope.currentUser.id
+    });
+
+    activityRef.child('lines').child($scope.clickedLineId).child('comments').push({
+      comment: $scope.clickedLine.comment,
+      type: 'comment',
+      user: $rootScope.currentUser.id
+    });
+
+  }
 
 }]);
