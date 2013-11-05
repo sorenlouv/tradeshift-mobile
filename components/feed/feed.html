@@ -5,7 +5,7 @@
     </a>
   </div>
   <div>
-    <h3 ng-bind="company.name"></h3>
+    <h3 ng-bind="passiveCompany.name"></h3>
   </div>
   <div class="add" >
     <a ng-click="addItem()">
@@ -27,7 +27,7 @@
   <div class="timestamp">Today</div>
   <div class="transaction"
     ng-class="{selected: selectedLineIds.indexOf(lineId) > -1}"
-    ng-repeat="(lineId, line) in activity.lines" ng-click="clickLine(lineId)">
+    ng-repeat="(lineId, line) in feed.lines" ng-click="clickLine(lineId)">
     <div class="creator">
       <img ng-src="https://graph.facebook.com/{{line.user}}/picture?width=80&height=80" alt="">
     </div>
@@ -121,7 +121,7 @@
     </div>
   </div>
 
-  <!-- Sidebar: Add product to activity -->
+  <!-- Sidebar: Add product to feed -->
   <div class="select-picker">
     <div class="picker-content">
       <div class="picker-header">

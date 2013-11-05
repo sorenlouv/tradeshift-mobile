@@ -1,14 +1,14 @@
-app.controller('BusinessIntelligenceController', ['$scope', 'angularFire', '$rootScope', 'documentService', function ($scope, angularFire, $rootScope, documentService) {
+app.controller('BusinessIntelligenceController', ['$scope', 'angularFire', '$rootScope', function ($scope, angularFire, $rootScope) {
   'use strict';
 
   // Companies
   var companiesRef = new Firebase($rootScope.fireBaseUrl + "/companies"),
-      currentUserCompany    = $rootScope.currentUser.company;
+      activeUserCompany    = $rootScope.activeUser.company;
 
   $scope.companies = {};
   angularFire(companiesRef, $scope, 'companies');
 
-  $scope.currentUserCompany = currentUserCompany;
+  $scope.activeUserCompany = activeUserCompany;
 
   $scope.addCompany = function() {
     console.log("hmm");
