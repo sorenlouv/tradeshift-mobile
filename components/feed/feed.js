@@ -25,10 +25,28 @@ app.controller('FeedController',
   $scope.selectedLineIds = [];
   var clickedLineId = null;
 
+  $scope.dayfilter = [
+    {
+      name: 'Today',
+      min: 0,
+      max: 1
+    },
+    {
+      name: 'Yesterday',
+      min: 1,
+      max: 2
+    },
+    {
+      name: 'Older',
+      min: 2,
+      max: null
+    }
+  ];
+
   // Bind firebase to scope
   angularFire(activeCompanyRef, $scope, 'activeCompany');
   angularFire(passiveCompanyRef, $scope, 'passiveCompany');
-  angularFire(feedRef, $scope, 'feed');
+  var feedPromise = angularFire(feedRef, $scope, 'feed');
   angularFire(productsRef, $scope, 'products');
   angularFire(usersRef, $scope, 'users');
 
@@ -253,6 +271,22 @@ app.controller('FeedController',
     feedRef.child('lines').child(clickedLineId).remove();
     $scope.hidePickers();
     return false;
+  };
+
+  // Today: getLinesFromDaysAgo(0, 1)
+  // Yesterday: getLinesFromDaysAgo(1, 2)
+  // Older: getLinesFromDaysAgo(2)
+
+  $scope.getLinesFromDaysAgo = function(minDays, maxDays) {
+
+    $scope.feed.lines.filter(function(index, line) {
+      var date = new Date();
+      return (
+        line.updatedAt < (date.setDate(date.getDate() - minDays)) &&
+        line.updatedAt > (date.setDate(date.getDate() - maxDays))
+      );
+    });
+
   };
 
 }]);
