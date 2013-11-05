@@ -26,10 +26,8 @@
 <div class="transactions">
   <div class="timestamp">Today</div>
   <div class="transaction"
-    ng-class="{selected: selectedLineIds.indexOf(lineId) > -1}"
-    ng-class="{quote: line.type == 'quote' }"
+    ng-class="{selected: selectedLineIds.indexOf(lineId) > -1, quote: line.type == 'quote' }"
     ng-repeat="(lineId, line) in feed.lines" ng-click="clickLine(lineId)">
-    <h1>{{line.type}}</h1>
     <div class="creator">
       <img ng-src="https://graph.facebook.com/{{line.user}}/picture?width=80&height=80" alt="">
     </div>

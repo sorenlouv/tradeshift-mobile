@@ -134,6 +134,9 @@ app.controller('FeedController',
       createdAt: date,
       updatedAt: date
     };
+
+    $scope.newLine.product.custom_price = $scope.newLine.product.price;
+    $scope.newLine.product.quantity = 1;
     $('.select-picker').show();
   };
 
@@ -161,7 +164,6 @@ app.controller('FeedController',
 
 
   $scope.clickLine = function(lineId) {
-    debugger
     var line = $scope.feed.lines[lineId];
 
     // click line to select/de-select for invoice
