@@ -16,9 +16,9 @@
 
 <div class="container">
 
-<div class="invoiceSent" ng-show="pendingInvoiceProposals.length > 0">
-  <p>Konscript requested to send an invoice with 6 items worth 40.000, to be payed within 30 days.</p>
-  <small>The items are listed below. If you don't do anything the invoice will be sent to you in 5 days.</small>
+<div class="invoiceSent" ng-show="firstPendingInvoiceProposal.invoiceId !== undefined">
+  <p>{{firstPendingInvoiceProposal.invoice.user | username}} requested to send an invoice with {{firstPendingInvoiceProposal.invoice.selectedLineIds.length}} items worth 40.000, to be payed within 30 days.</p>
+  <small>The items are marked below. If you don't do anything the invoice will be sent to you in 5 days.</small>
 
   <a class="button secondary red" ng-click="rejectInvoice()">
     Reject
