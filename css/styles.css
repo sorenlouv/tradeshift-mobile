@@ -1799,6 +1799,7 @@ header i {
 }
 
 .transactions .transaction .comments .comment.commentUpdate {
-  color: #20a0e9;
-  font-weight: bold;
+  color: #bbb;
+  font-style: italic;
+  font-weight: 300 !important;
 }
