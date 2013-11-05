@@ -1609,6 +1609,10 @@ header i {
 .transactions .transaction .comments .comment .content {
   font-weight: 400;
 }
+.quote {
+  color: red !important;
+  background-color: red !important;
+}
 .total-feed {
   padding-bottom: 122px;
 }
