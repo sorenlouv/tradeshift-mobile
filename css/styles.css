@@ -1622,6 +1622,7 @@ header i {
   float: right;
   font-size: 16px;
   font-weight: 600;
+  text-align: right;
 }
 .total-feed span {
   display: block;

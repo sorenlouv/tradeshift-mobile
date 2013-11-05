@@ -48,7 +48,7 @@
   <div class="timestamp">{{lineInterval.name}}</div>
   <div class="transaction"
     ng-class="{selected: selectedLineIds.indexOf(lineId) > -1, quote: line.type == 'quote' }"
-    ng-repeat="(lineId, line) in feed.lines" ng-click="clickLine(lineId)">
+    ng-repeat="(lineId, line) in feed.lines | betweenDays:lineInterval.min:lineInterval.max" ng-click="clickLine(lineId)">
     <div class="creator">
       <img ng-src="https://graph.facebook.com/{{line.user}}/picture?width=80&height=80" alt="">
     </div>
@@ -81,9 +81,9 @@
 </div>
 <div class="total-feed">
   <h2>
-    <span>Sales: 30.000</span>
-    <span>Purchases: 50.000</span>
-    Total {{getTotal() | currency: 'USD'}}
+    <span>Sales: {{getTotalSales() | currency: '$'}}</span>
+    <span>Purchases: {{getTotalPurchases() | currency: '$'}}</span>
+    Total {{getTotal() | currency: '$'}}
   </h2>
 </div>
 

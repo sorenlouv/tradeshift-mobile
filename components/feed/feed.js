@@ -131,13 +131,32 @@ app.controller('FeedController',
     return total;
   };
 
-  $scope.getTotal = function(){
-    var total = 0;
-    var lines = $scope.feed.lines;
-    _.each(lines, function(line){
-      total += (line.product.quantity * line.product.custom_price);
+  $scope.getTotalSales = function() {
+    var total = 0,
+        lines = $scope.feed.lines;
+
+    _.each(lines, function(line) {
+      if (line.user === $rootScope.activeUser.id) {
+        total += line.product.quantity * line.product.custom_price;
+      }
     });
     return total;
+  };
+
+  $scope.getTotalPurchases = function() {
+    var total = 0,
+        lines = $scope.feed.lines;
+
+    _.each(lines, function(line) {
+      if (line.user !== $rootScope.activeUser.id) {
+        total += line.product.quantity * line.product.custom_price;
+      }
+    });
+    return total;
+  };
+
+  $scope.getTotal = function(){
+    return $scope.getTotalPurchases() + $scope.getTotalSales();
   };
 
   $scope.requestInvoice = function(){
