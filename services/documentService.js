@@ -4,15 +4,19 @@ app.service('documentService', function ($http) {
   this.getUuid = function(json){
 
   var invoiceIndex = 0;
+  var totalPrice = 0;
   var invoiceLines = [];
   _.each(json.invoice, function(line, lineId){
     invoiceIndex++;
+
+    totalPrice += line.product.custom_price * line.product.quantity;
 
     var invoiceLine = {
     "ID": {
             "value": lineId
             },
             "InvoicedQuantity": {
+                "unitCode": "EA",
                 "value": line.product.quantity
             },
             "LineExtensionAmount": {
@@ -72,6 +76,7 @@ app.service('documentService', function ($http) {
                     "currencyID": line.product.currency
                 },
                 "BaseQuantity": {
+                    "unitCode": "EA",
                     "value": line.product.quantity
                 }
             }
@@ -100,6 +105,10 @@ var invoiceMeta = {
         },
       },
       "Contact": {
+        "ID": {
+          "value": "5832d481-2e54-4574-9676-0f51fe6513df",
+          "schemeURI": "http://tradeshift.com/api/1.0/userId"
+        },
         "Name": {
           "value": json.senderCompany.name
         }
@@ -123,28 +132,23 @@ var invoiceMeta = {
         "PostalZone": {
           "value": json.receiverCompany.address.zip
         },
-      },
-      "Contact": {
-        "Name": {
-          "value": json.receiverCompany.name
-        }
       }
     }
   },
   "TaxTotal": [
         {
             "TaxAmount": {
-                "value": 30.75,
+                "value": totalPrice * 0.25,
                 "currencyID": "DKK"
             },
             "TaxSubtotal": [
                 {
                     "TaxableAmount": {
-                        "value": 123.00,
+                        "value": totalPrice,
                         "currencyID": "DKK"
                     },
                     "TaxAmount": {
-                        "value": 30.75,
+                        "value": totalPrice * 0.25,
                         "currencyID": "DKK"
                     },
                     "TaxCategory": {
@@ -171,22 +175,21 @@ var invoiceMeta = {
             ]
         }
     ],
-
   "LegalMonetaryTotal": {
     "LineExtensionAmount": {
-      "value": 123.00,
+      "value": totalPrice,
       "currencyID": "DKK"
     },
     "TaxExclusiveAmount": {
-      "value": 30.75,
+      "value": totalPrice * 0.25,
       "currencyID": "DKK"
     },
     "TaxInclusiveAmount": {
-      "value": 153.75,
+      "value": totalPrice + totalPrice * 0.25,
       "currencyID": "DKK"
     },
     "PayableAmount": {
-      "value": 153.75,
+      "value": totalPrice + totalPrice * 0.25,
       "currencyID": "DKK"
     }
   },
