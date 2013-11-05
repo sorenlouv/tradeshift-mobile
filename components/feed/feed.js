@@ -204,6 +204,7 @@ app.controller('FeedController',
 
   $scope.addLine = function() {
     // Save the feed
+    debugger;
     feedRef.child('lines').push($scope.newLine);
     $scope.hidePickers();
   };
