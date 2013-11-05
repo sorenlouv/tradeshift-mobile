@@ -23,46 +23,50 @@ def index(name='World'):
 @route('/sendDocument', method=['OPTIONS', 'PUT'])
 @enable_cors
 def sendDocument():
-	documentJson = request.json
-	documentJson = mergeJson(documentJson)
-	docUUID = uuid.uuid1()
-	draftResponse = putDraft(docUUID, documentJson)
-	if draftResponse != 204:
-		return draftResponse
-	dispatchUUID = uuid.uuid1()
-	sendResponse = dispatchDraft(docUUID, dispatchUUID)
-	if sendResponse != 201:
-		return sendResponse
-	return '{"uuid": "'+str(docUUID)+'"}'
+  documentJson = request.json
+  documentJson = mergeJson(documentJson)
+  docUUID = uuid.uuid1()
+  print str(docUUID)
+  print json.dumps(documentJson, sort_keys=True)
+  draftResponse = putDraft(docUUID, documentJson)
+  if draftResponse != 204:
+    return draftResponse
+  dispatchUUID = uuid.uuid1()
+  sendResponse = dispatchDraft(docUUID, dispatchUUID)
+  if sendResponse != 201:
+    return sendResponse
+  return '{"uuid": "'+str(docUUID)+'"}'
 
 def mergeJson(documentJson):
-	json_data=open('template.json')
-	data = json.load(json_data)
-	return dict_merge(data, documentJson)
+  json_data=open('template.json')
+  data = json.load(json_data)
+  return dict_merge(data, documentJson)
 
 def putDraft(docUUID, documentJson):
-	url = 'http://localhost:8888/tradeshift-backend/rest/external/documents/'+str(docUUID)+'?documentProfileId=nes.p5.invoice.ubl.2.1.dk&draft=true'
-	headers = {'X-Tradeshift-TenantId': '3fd7d621-7f89-481f-9647-b2edf2ee9a30', 'X-Tradeshift-ActorId': '5832d481-2e54-4574-9676-0f51fe6513df', 'Content-Type': 'application/json'}
-	randomId = random.choice('abcdefghij') + str(random.randrange(1000,10000))
-	documentJson['ID']['value'] = randomId
-	r = requests.put(url, data=json.dumps(documentJson), headers=headers)
-	return r.status_code
+  url = 'http://localhost:8888/tradeshift-backend/rest/external/documents/'+str(docUUID)+'?documentProfileId=nes.p5.invoice.ubl.2.1.dk&draft=true'
+  headers = {'X-Tradeshift-TenantId': '8ba90b5c-c287-4811-96e9-0b7bdf865d1b', 'X-Tradeshift-ActorId': '4ae44e7c-4d3c-4ba8-bf74-ddc0c60f0549', 'Content-Type': 'application/json'}
+  randomId = random.choice('abcdefghij') + str(random.randrange(1000,10000))
+  documentJson['ID']['value'] = randomId
+  r = requests.put(url, data=json.dumps(documentJson), headers=headers)
+  return r.status_code
 
 def dispatchDraft(docUUID, dispatchUUID):
     url = 'http://localhost:8888/tradeshift-backend/rest/external/documents/'+str(docUUID)+'/dispatches/'+str(dispatchUUID)
-    headers = {'X-Tradeshift-TenantId': '3fd7d621-7f89-481f-9647-b2edf2ee9a30', 'X-Tradeshift-ActorId': '5832d481-2e54-4574-9676-0f51fe6513df', 'Content-Type': 'application/json'}
-    data={'ConnectionId':'94977f3a-0e97-5e76-9f99-2e7d219fce64'}
+    headers = {'X-Tradeshift-TenantId': '8ba90b5c-c287-4811-96e9-0b7bdf865d1b', 'X-Tradeshift-ActorId': '4ae44e7c-4d3c-4ba8-bf74-ddc0c60f0549', 'Content-Type': 'application/json'}
+    data={'ConnectionId':'9d501ed9-d6c8-4ce0-84ec-2872c5d9b492'}
     r = requests.put(url, data=json.dumps(data), headers=headers)
     return r.status_code
 
 @get('/getPDF/<docUUID>')
 def getPDF(docUUID):
-	url = 'http://localhost:8888/tradeshift-backend/rest/external/documents/'+str(docUUID)
-	headers = {'X-Tradeshift-TenantId': '3fd7d621-7f89-481f-9647-b2edf2ee9a30', 'X-Tradeshift-ActorId': '5832d481-2e54-4574-9676-0f51fe6513df', 'Accept': 'application/pdf'}
-	r = requests.get(url, headers=headers)
-	if r.status_code != 200:
-		return r.status_code
-	return r._content
+  url = 'http://localhost:8888/tradeshift-backend/rest/external/documents/'+str(docUUID)
+  headers = {'X-Tradeshift-TenantId': '8ba90b5c-c287-4811-96e9-0b7bdf865d1b', 'X-Tradeshift-ActorId': '4ae44e7c-4d3c-4ba8-bf74-ddc0c60f0549', 'Accept': 'application/pdf'}
+  r = requests.get(url, headers=headers)
+  if r.status_code != 200:
+    return r.status_code
+  response.content_type = 'application/pdf'
+  response.body = r._content
+  return response
 
 def dict_merge(target, *args):
   if len(args) > 1:

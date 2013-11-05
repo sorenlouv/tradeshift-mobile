@@ -12,10 +12,10 @@
         "schemeAgencyID": "320"
     },
     "ID": {
-        "value": "02"
+        "value": "h5356"
     },
     "IssueDate": {
-        "value": "2013-11-03"
+        "value": "2013-11-05"
     },
     "InvoiceTypeCode": {
         "value": "380",
@@ -30,7 +30,7 @@
             "PartyIdentification": [
                 {
                     "ID": {
-                        "value": "3fd7d621-7f89-481f-9647-b2edf2ee9a30",
+                        "value": "8ba90b5c-c287-4811-96e9-0b7bdf865d1b",
                         "schemeID": "TS:ID"
                     }
                 }
@@ -38,7 +38,7 @@
             "PartyName": [
                 {
                     "Name": {
-                        "value": "Innocent Supplier"
+                        "value": "Konscript"
                     }
                 }
             ],
@@ -49,22 +49,22 @@
                     "listAgencyID": "320"
                 },
                 "StreetName": {
-                    "value": "Søper Street"
+                    "value": "Kon"
                 },
                 "AdditionalStreetName": {
                     "value": ""
                 },
                 "BuildingNumber": {
-                    "value": "5"
+                    "value": "15"
                 },
                 "MarkAttention": {
                     "value": ""
                 },
                 "CityName": {
-                    "value": "København"
+                    "value": "Kobenhavn"
                 },
                 "PostalZone": {
-                    "value": "1337"
+                    "value": "3221"
                 },
                 "CountrySubentity": {
                     "value": ""
@@ -77,11 +77,11 @@
             },
             "Contact": {
                 "ID": {
-                    "value": "5832d481-2e54-4574-9676-0f51fe6513df",
+                    "value": "4ae44e7c-4d3c-4ba8-bf74-ddc0c60f0549",
                     "schemeURI": "http://tradeshift.com/api/1.0/userId"
                 },
                 "Name": {
-                    "value": "Innocent Supplier"
+                    "value": "Konscript"
                 }
             }
         }
@@ -91,7 +91,7 @@
             "PartyIdentification": [
                 {
                     "ID": {
-                        "value": "b9524c21-e8ee-46a6-8d86-3708d4c5f619",
+                        "value": "cfe49a3f-d4bd-4f45-be64-765f7115236f",
                         "schemeID": "TS:ID"
                     }
                 }
@@ -99,7 +99,7 @@
             "PartyName": [
                 {
                     "Name": {
-                        "value": "Blue Beard Pirates"
+                        "value": "YayArt"
                     }
                 }
             ],
@@ -145,17 +145,17 @@
     "TaxTotal": [
         {
             "TaxAmount": {
-                "value": 1250,
+                "value": 0.25,
                 "currencyID": "DKK"
             },
             "TaxSubtotal": [
                 {
                     "TaxableAmount": {
-                        "value": 5000,
+                        "value": 1,
                         "currencyID": "DKK"
                     },
                     "TaxAmount": {
-                        "value": 1250,
+                        "value": 0.25,
                         "currencyID": "DKK"
                     },
                     "TaxCategory": {
@@ -184,19 +184,19 @@
     ],
     "LegalMonetaryTotal": {
         "LineExtensionAmount": {
-            "value": 5000,
+            "value": 1,
             "currencyID": "DKK"
         },
         "TaxExclusiveAmount": {
-            "value": 1250,
+            "value": 0.25,
             "currencyID": "DKK"
         },
         "TaxInclusiveAmount": {
-            "value": 6250,
+            "value": 1.25,
             "currencyID": "DKK"
         },
         "PayableAmount": {
-            "value": 6250,
+            "value": 1.25,
             "currencyID": "DKK"
         }
     },
@@ -206,27 +206,27 @@
                 "value": "1"
             },
             "InvoicedQuantity": {
-                "value": 50,
+                "value": 1,
                 "unitCode": "EA"
             },
             "LineExtensionAmount": {
-                "value": 5000,
+                "value": 1,
                 "currencyID": "DKK"
             },
             "TaxTotal": [
                 {
                     "TaxAmount": {
-                        "value": 1250,
+                        "value": 0.25,
                         "currencyID": "DKK"
                     },
                     "TaxSubtotal": [
                         {
                             "TaxableAmount": {
-                                "value": 5000,
+                                "value": 1,
                                 "currencyID": "DKK"
                             },
                             "TaxAmount": {
-                                "value": 1250,
+                                "value": 0.25,
                                 "currencyID": "DKK"
                             },
                             "TaxCategory": {
@@ -256,11 +256,11 @@
             "Item": {
                 "Description": [
                     {
-                        "value": "Pirate Soup"
+                        "value": "test"
                     }
                 ],
                 "Name": {
-                    "value": "Pirate Soup"
+                    "value": "test"
                 },
                 "SellersItemIdentification": {
                     "ID": {
@@ -272,7 +272,7 @@
             },
             "Price": {
                 "PriceAmount": {
-                    "value": 100,
+                    "value": 1,
                     "currencyID": "DKK"
                 },
                 "BaseQuantity": {
