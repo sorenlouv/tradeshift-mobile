@@ -25,7 +25,7 @@ app.controller('FeedController',
   $scope.selectedLineIds = [];
   var clickedLineId = null;
 
-  $scope.dayfilter = [
+  $scope.lineIntervals = [
     {
       name: 'Today',
       min: 0,
@@ -49,6 +49,16 @@ app.controller('FeedController',
   var feedPromise = angularFire(feedRef, $scope, 'feed');
   angularFire(productsRef, $scope, 'products');
   angularFire(usersRef, $scope, 'users');
+
+  // watch for changes to proposed invoices
+  feedPromise.then(function(){
+    $scope.$watch("feed.proposedInvoices", function(value){
+      console.log("value", value);
+      $scope.pendingInvoiceProposals = _.filter($scope.feed.proposedInvoices, function(invoice, invoiceId){
+        return invoice.user !== $rootScope.activeUser.id;
+      });
+    });
+  });
 
   // Sune's stuff
   $scope.addItem = function() {
@@ -118,8 +128,26 @@ app.controller('FeedController',
     return total;
   };
 
+
+  // $scope.getProposedInvoices = function(){
+  //   feedPromise
+
+  //   return true;
+  // };
+
+  $scope.proposeInvoice = function(){
+    var proposedInvoice = feedRef.child('proposedInvoices').push();
+    proposedInvoice.set({
+      selectedLineIds: $scope.selectedLineIds,
+      user: $rootScope.activeUser.id
+    });
+
+    $scope.selectLinesForInvoiceMode = false;
+    $scope.selectedLineIds = [];
+  };
+
   // generate invoice from selected lines
-  $scope.generateInvoice = function(){
+  $scope.createInvoice = function(){
 
     var invoice = feedRef.child('invoices').push();
 
@@ -186,6 +214,7 @@ app.controller('FeedController',
 
     // click line to select/de-select for invoice
     if($scope.selectLinesForInvoiceMode){
+
 
       if(!lineIsValidForSelection(line)){
         console.log("You can only select your own lines");
@@ -274,22 +303,6 @@ app.controller('FeedController',
     feedRef.child('lines').child(clickedLineId).remove();
     $scope.hidePickers();
     return false;
-  };
-
-  // Today: getLinesFromDaysAgo(0, 1)
-  // Yesterday: getLinesFromDaysAgo(1, 2)
-  // Older: getLinesFromDaysAgo(2)
-
-  $scope.getLinesFromDaysAgo = function(minDays, maxDays) {
-
-    $scope.feed.lines.filter(function(index, line) {
-      var date = new Date();
-      return (
-        line.updatedAt < (date.setDate(date.getDate() - minDays)) &&
-        line.updatedAt > (date.setDate(date.getDate() - maxDays))
-      );
-    });
-
   };
 
 }]);
