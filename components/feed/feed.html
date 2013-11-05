@@ -42,7 +42,7 @@
       </div>
     </div>
     <div class="comments">
-      <div class="comment">
+      <div class="comment" ng-hide="line.description === ''">
         <span class="person">{{line.user | username}}</span>
         <span class="content">{{line.description}}</span>
       </div>

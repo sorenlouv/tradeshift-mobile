@@ -121,6 +121,7 @@ app.controller('ActivityController',
   $scope.setProduct = function(product) {
     $scope.newActivity = {
       user: $rootScope.activeUser.id,
+      description: '',
       product: angular.copy(product)
     };
     $('.select-picker').show();
