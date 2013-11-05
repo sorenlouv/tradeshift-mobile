@@ -39,7 +39,7 @@
       </div>
       <div class="price">
         <span class="primary">{{(line.product.custom_price * line.product.quantity) | currency: line.product.currency}}</span>
-        <span class="secondary">{{line.product.quantity}} * {{line.product.custom_price | currency: line.product.currency}}</span>
+        <span class="secondary">{{line.product.quantity}}&nbsp;*&nbsp;{{line.product.custom_price | currency: line.product.currency}}</span>
       </div>
     </div>
     <div class="comments">
@@ -255,9 +255,9 @@
           <h3>Comment</h3>
             <form class="comment-form" ng-submit="postComment()">
               <textarea></textarea>
-              <button type="submit">Post comment</button>
+              <button type="submit" class="button">Post comment</button>
             </form>
-          <br><br>
+          <br>
 
           <h3>Actions</h3>
           <li>

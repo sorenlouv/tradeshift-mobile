@@ -1527,12 +1527,12 @@ header i {
   font-size: 16px;
   display: block;
   line-height: 18px;
-  font-weight: 400;
+  font-weight: 600;
 }
 .transactions .transaction .update .secondary {
   line-height: 18px;
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 11px;
+  font-weight: 300;
 }
 .transactions .transaction .comments {
   margin-left: 0px;
@@ -1546,7 +1546,7 @@ header i {
 }
 .transactions .transaction .comments .comment .person {
   display: inline-block;
-  min-width: 60px;
+  min-width: 54px;
 }
 .transactions .transaction .comments .comment .person a {
   font-weight: 300;
