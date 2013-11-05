@@ -42,6 +42,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $('.select-picker').hide();
     $('.newProduct-picker').hide();
     $('.lineActions-picker').hide();
+    $('.edit-picker').hide();
   };
 
   $scope.addProduct = function() {
@@ -94,10 +95,14 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
       }
 
     // click line to edit/add comment
-    }else{
+    } else {
       $scope.clickedLineId = lineId;
-      $('.picker').show();
-      $('.lineActions-picker').show();
+
+      var clickedActivityRef = new Firebase($rootScope.fireBaseUrl + "/activities/" + activityId + "/lines/" + lineId);
+      angularFire(clickedActivityRef, $scope, 'clickedActivity').then(function() {
+        $('.picker').show();
+        $('.lineActions-picker').show();
+      });
     }
   };
 
@@ -112,6 +117,10 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
     $('.newProduct input').val('');
     $('.newProduct-picker').hide();
   };
+
+  $scope.showEdit = function() {
+    $('.edit-picker').show();
+  }
 
   $scope.postComment = function() {
     var comment = $('.comment-form textarea').val();

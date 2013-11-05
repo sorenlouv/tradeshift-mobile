@@ -1763,6 +1763,12 @@ header i {
   position: relative;
 }
 
+.picker .edit-picker {
+  display: none;
+  z-index: 15;
+  position: relative;
+}
+
 canvas{
     width: 100% !important;
     max-width: 800px;

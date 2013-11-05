@@ -243,7 +243,7 @@
     </div>
   </div>
 
-<!-- Sidebar: Add comment  -->
+  <!-- Sidebar: Add comment  -->
   <div class="lineActions-picker">
     <div class="picker-content">
       <div class="picker-header">
@@ -262,7 +262,7 @@
           <br><br>
 
           <h3>Actions</h3>
-          <li>
+          <li ng-click="showEdit()" ng-show="currentUser.id === clickedActivity.user">
             <span>Edit</span>
             <i class="fa fa-chevron-right"></i>
           </li>
@@ -271,6 +271,35 @@
             <i class="fa fa-ban"></i>
           </li>
         </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Sidebar: Edit  -->
+  <div class="edit-picker">
+    <div class="picker-content">
+      <div class="picker-header">
+        <h1 ng-bind="editActivity.user"></h1>
+        <a ng-click="hidePickers()">
+          <i class="fa fa-times"></i>
+        </a>
+      </div>
+      <div class="picker-data">
+        <form>
+
+          <h3>Select price</h3>
+
+          <h3>Quantity</h3>
+
+
+          <h3>Comment</h3>
+          <div class="comment">
+            <input type="text" placeholder="Optional comment" ng-model="newActivity.description" class="_textual">
+          </div>
+          <button class="button" type="submit">Done</button>
+        </form>
       </div>
     </div>
   </div>
