@@ -54,11 +54,22 @@ canvas{
 	}
 }
 
+.green {
+	background-color: @action;
+}
+.red {
+	background-color: @danger !important;
+}
+
 header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
 	height: 44px;
 	background-color: @black;
 	text-align: center;
-	display: block;
+	overflow: hidden;
 
 	h3 {
 		text-transform: capitalize;
@@ -108,6 +119,38 @@ header {
 		margin-top: 15px;
 		color: white;
 	}
+}
+
+.container {
+	margin-top: 55px;
+}
+
+.generateInvoice, .invoiceSent {
+	overflow: hidden;
+	padding: 22px;
+	margin: 11px;
+	background-color: @info;
+	p {
+		margin: 0px 0px 5px 0px;
+		padding: 0px;
+	}
+	small {
+		display: block;
+		margin-bottom: 11px;
+		color: #333;
+		font-style: italic;
+	}
+	clear: both;
+	.secondary {
+		width: 38%;
+		float: left;
+
+	}
+	.green {
+		width: 60%;
+		float: right;
+	}
+
 }
 
 .transactions {
@@ -225,7 +268,10 @@ header {
 			}
 		}
 	}
-	.total {
+}
+
+.total-feed {
+	padding-bottom: 122px;
 		h2 {
 			border-bottom: 3px double #ccc;
 			margin-right: 11px;
@@ -241,10 +287,9 @@ header {
 			margin-bottom: 5px;
 		}
 	}
-}
 
 .business-intelligence {
-	padding: 11px;
+	padding: 0px 11px 11px 11px;
 	min-height: 500px;
 	h3 {
 		margin: 0px 0px 0px 0;
@@ -257,7 +302,9 @@ header {
 	}
 
 	.chart {
-		margin: 11px 0px 22px 0px;
+		img {
+			width: 300px;
+		}
 	}
 
 	.active-business {
@@ -493,14 +540,25 @@ header {
 	}
 }
 
+	.settings-picker {
+		display: none;
+		position: relative;
+		z-index: 16;
+	}
+
+
 // sqren temp styles
 .transaction.selected {
 	background-color: lightblue;
 }
 
 .transactions .transaction .comments .comment.commentUpdate {
-  color: #ccc;
+  color: #ddd;
   font-weight: 300 !important;
   font-style: italic;
+}
+
+.button.warning {
+  background-color: red;
 }
 

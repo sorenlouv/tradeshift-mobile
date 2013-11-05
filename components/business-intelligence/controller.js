@@ -3,6 +3,22 @@ app.controller('BusinessIntelligenceController', ['$scope', 'angularFire', '$roo
 
 
   // Companies
+
+  $scope.editSettings = function() {
+    $('.pickers').show();
+    $('.settings-picker').show();
+  };
+
+  $scope.hidePickers = function() {
+    $('.product-picker').hide();
+    $('.select-picker').hide();
+    $('.newProduct-picker').hide();
+    $('.lineActions-picker').hide();
+    $('.edit-picker').hide();
+    $('.pickers').hide();
+
+    $scope.newActivity = null;
+  };
   var companiesRef = new Firebase($rootScope.fireBaseUrl + "/companies");
   var companiesPromise = angularFire(companiesRef, $scope, 'companies');
 
@@ -31,7 +47,5 @@ app.controller('BusinessIntelligenceController', ['$scope', 'angularFire', '$roo
       $scope.totalUnsettled += total;
     });
   });
-
-
 
 }]);

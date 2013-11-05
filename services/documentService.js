@@ -22,7 +22,7 @@ app.service('documentService', function ($http) {
             "TaxTotal": [
                 {
                     "TaxAmount": {
-                        "value": line.product.tax
+                        "value": line.product.custom_price * 0.25
                     },
                     "TaxSubtotal": [
                         {
@@ -30,7 +30,27 @@ app.service('documentService', function ($http) {
                                 "value": line.product.custom_price
                             },
                             "TaxAmount": {
-                                "value": line.product.tax
+                                "value": line.product.custom_price * 0.25
+                            },                    
+                            "TaxCategory": {
+                              "ID": {
+                                  "value": "StandardRated",
+                                  "schemeID": "urn:oioubl:id:taxcategoryid-1.1",
+                                  "schemeAgencyID": "320"
+                              },
+                              "Percent": {
+                                  "value": 25
+                              },
+                              "TaxScheme": {
+                                  "ID": {
+                                      "value": "63",
+                                      "schemeID": "urn:oioubl:id:taxschemeid-1.1",
+                                      "schemeAgencyID": "320"
+                                  },
+                                  "Name": {
+                                      "value": "Moms"
+                                  }
+                              }
                             }
                         }
                     ]
@@ -111,21 +131,62 @@ var invoiceMeta = {
       }
     }
   },
+  "TaxTotal": [
+        {
+            "TaxAmount": {
+                "value": 30.75,
+                "currencyID": "DKK"
+            },
+            "TaxSubtotal": [
+                {
+                    "TaxableAmount": {
+                        "value": 123.00,
+                        "currencyID": "DKK"
+                    },
+                    "TaxAmount": {
+                        "value": 30.75,
+                        "currencyID": "DKK"
+                    },
+                    "TaxCategory": {
+                        "ID": {
+                            "value": "StandardRated",
+                            "schemeID": "urn:oioubl:id:taxcategoryid-1.1",
+                            "schemeAgencyID": "320"
+                        },
+                        "Percent": {
+                            "value": 25
+                        },
+                        "TaxScheme": {
+                            "ID": {
+                                "value": "63",
+                                "schemeID": "urn:oioubl:id:taxschemeid-1.1",
+                                "schemeAgencyID": "320"
+                            },
+                            "Name": {
+                                "value": "Moms"
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+
   "LegalMonetaryTotal": {
     "LineExtensionAmount": {
-      "value": 0,
+      "value": 123.00,
       "currencyID": "DKK"
     },
     "TaxExclusiveAmount": {
-      "value": 0,
+      "value": 30.75,
       "currencyID": "DKK"
     },
     "TaxInclusiveAmount": {
-      "value": 0,
+      "value": 153.75,
       "currencyID": "DKK"
     },
     "PayableAmount": {
-      "value": 0,
+      "value": 153.75,
       "currencyID": "DKK"
     }
   },
