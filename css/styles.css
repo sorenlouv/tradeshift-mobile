@@ -1773,3 +1773,6 @@ header i {
 .picker .newProduct-picker input {
   width: 100%;
 }
+.transaction.selected {
+  background-color: lightblue;
+}

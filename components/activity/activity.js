@@ -8,11 +8,10 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
 
       // Get Firebase data
       companyRef            = new Firebase($rootScope.fireBaseUrl + "/companies/" + companyId),
-      currentUserCompanyRef = new Firebase($rootScope.fireBaseUrl + "/companies/" + currentUserCompany),
+      // currentUserCompanyRef = new Firebase($rootScope.fireBaseUrl + "/companies/" + currentUserCompany),
       productsRef           = new Firebase($rootScope.fireBaseUrl + "/companies/" + currentUserCompany + "/products"),
       activityRef           = new Firebase($rootScope.fireBaseUrl + "/activities/" + activityId),
       usersRef              = new Firebase($rootScope.fireBaseUrl + "/users/");
-
 
   // Prepare scope variables
   $scope.company = {};
@@ -21,6 +20,9 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   $scope.users = {};
   $scope.selectedPrice = 0;
   $scope.currentUser = $rootScope.currentUser;
+  $scope.selectLinesForInvoiceMode = false;
+  $scope.selectedLineIds = [];
+  var clickedLineId = null;
 
   // Bind firebase to scope
   angularFire(companyRef, $scope, 'company');
@@ -54,10 +56,40 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
   };
 
   $scope.clickSelectLinesForInvoice = function() {
-    $scope.selectLinesForInvoice = true;
-    $scope.selectedLines = [];
+    $scope.selectLinesForInvoiceMode = true;
 
+    // select all lines from beginning
+    $scope.selectedLineIds = _.keys(this.activity.lines);
+
+    //
     $scope.hidePickers();
+  };
+
+  $scope.getSelectedLinesTotal = function(){
+    var total = 0;
+    _.each($scope.selectedLineIds, function(lineId){
+      var line = $scope.activity.lines[lineId];
+      total += (line.product.quantity * line.product.custom_price);
+    });
+    return total;
+  };
+
+  // generate invoice from selected lines
+  $scope.generateInvoice = function(){
+
+    var invoice = activityRef.child('invoices').push();
+
+    _.each($scope.selectedLineIds, function(lineId){
+      var line = $scope.activity.lines[lineId];
+      invoice.push(line, function removeLine(error){
+        activityRef.child('lines').child(lineId).remove(function(error){
+          if(!error){
+            console.log("removed!");
+          }
+        });
+      });
+    });
+
   };
 
   /*********** New Activity ***************/
@@ -83,20 +115,20 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
 
   $scope.clickLine = function(lineId) {
     // click line to select/unselect for invoice
-    if($scope.selectLinesForInvoice){
+    if($scope.selectLinesForInvoiceMode){
 
-      var selectedIndex = $scope.selectedLines.indexOf(lineId);
+      var selectedIndex = $scope.selectedLineIds.indexOf(lineId);
       // the line was already selected - de-select it!
       if(selectedIndex > -1){
-        $scope.selectedLines.splice(selectedIndex, 1);
+        $scope.selectedLineIds.splice(selectedIndex, 1);
       // select the line
       }else{
-        $scope.selectedLines.push(lineId);
+        $scope.selectedLineIds.push(lineId);
       }
 
     // click line to edit/add comment
     }else{
-      $scope.clickedLineId = lineId;
+      clickedLineId = lineId;
       $('.picker').show();
       $('.lineActions-picker').show();
     }
@@ -116,7 +148,7 @@ app.controller('ActivityController', ['$scope', '$routeParams', 'angularFire', '
 
   $scope.postComment = function() {
     var comment = $('.comment-form textarea').val();
-    activityRef.child('lines').child($scope.clickedLineId).child('comments').push({
+    activityRef.child('lines').child(clickedLineId).child('comments').push({
       comment: comment,
       user: $rootScope.currentUser.id
     });

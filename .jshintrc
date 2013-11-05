@@ -8,6 +8,7 @@
         "app": true,
         "Firebase": true,
         "FirebaseSimpleLogin": true,
-        "$": true
+        "$": true,
+        "_": true
     }
 }
