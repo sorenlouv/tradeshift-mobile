@@ -24,14 +24,13 @@
 </div>
 
 <div class="transactions">
-  <div
-    class="transaction"
+  <div class="timestamp">Today</div>
+  <div class="transaction"
     ng-class="{selected: selectedLines.indexOf(lineId) > -1}"
     ng-repeat="(lineId, line) in activity.lines" ng-click="clickLine(lineId)">
     <div class="creator">
       <img ng-src="https://graph.facebook.com/{{line.user}}/picture?width=80&height=80" alt="">
     </div>
-    <!-- <input type="checkbox" class="to-be-settled"/> -->
     <div class="update">
       <div class="object">
         <span class="primary">{{line.product.title}}</span>
@@ -52,7 +51,9 @@
         <span class="content">{{comment.comment}}</span>
       </div>
     </div>
+
   </div>
+  <div class="timestamp">Yesterday</div>
   <div class="total">
     <h2><span>Total due </span> 40.000</h2>
   </div>

@@ -110,8 +110,17 @@ header {
 
 .transactions {
 	background-color: #eee;
-	padding-top: 6px;
+	padding-top: 1px;
 	height: 100%;
+
+	.timestamp {
+		background-color: #ccc;
+		font-size: 11px;
+		font-weight: 600;
+		padding: 3px 6px;
+		margin: 6px 6px;
+		text-transform: uppercase;
+	}
 
 	.generate {
 		background-color: @info;
@@ -229,13 +238,17 @@ header {
 	padding: 11px;
 	min-height: 500px;
 	h3 {
-		margin: 0px;
+		margin: 0px 0px 0px 0;
 		padding-top: 0px;
 	}
 	ul {
 		overflow: hidden;
 		padding: 0px;
 		margin: 0px;
+	}
+
+	.chart {
+		margin: 11px 0px 22px 0px;
 	}
 
 	.current-business {

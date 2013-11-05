@@ -1463,8 +1463,16 @@ header i {
 }
 .transactions {
   background-color: #eee;
-  padding-top: 6px;
+  padding-top: 1px;
   height: 100%;
+}
+.transactions .timestamp {
+  background-color: #ccc;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 6px;
+  margin: 6px 6px;
+  text-transform: uppercase;
 }
 .transactions .generate {
   background-color: #fdfed5;
@@ -1570,13 +1578,16 @@ header i {
   min-height: 500px;
 }
 .business-intelligence h3 {
-  margin: 0px;
+  margin: 0px 0px 0px 0;
   padding-top: 0px;
 }
 .business-intelligence ul {
   overflow: hidden;
   padding: 0px;
   margin: 0px;
+}
+.business-intelligence .chart {
+  margin: 11px 0px 22px 0px;
 }
 .business-intelligence .current-business li {
   height: 44px;
