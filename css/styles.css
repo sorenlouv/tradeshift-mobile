@@ -1695,6 +1695,8 @@ header i {
   text-align: center;
   padding-top: 11px;
   display: block;
+  width: 50%;
+  margin-left: 25%;
 }
 .business-intelligence .load-more a {
   width: calc( 100% - 22px );
