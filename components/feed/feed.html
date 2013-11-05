@@ -47,8 +47,7 @@
 <div class="transactions" ng-repeat="days in dayfilter">
   <div class="timestamp">{{days.name}}</div>
   <div class="transaction"
-    ng-class="{selected: selectedLineIds.indexOf(lineId) > -1}"
-    ng-class="{quote: line.type == 'quote' }"
+    ng-class="{selected: selectedLineIds.indexOf(lineId) > -1, quote: line.type == 'quote' }"
     ng-repeat="(lineId, line) in feed.lines | betweenDays:days.min:days.max" ng-click="clickLine(lineId)">
     <div class="creator">
       <img ng-src="https://graph.facebook.com/{{line.user}}/picture?width=80&height=80" alt="">
