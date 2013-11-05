@@ -1406,9 +1406,6 @@ canvas {
   border: none;
   box-sizing: border-box;
 }
-.button.warning {
-  background-color: red;
-}
 .button i {
   float: right;
   margin-top: 3px;
@@ -1627,7 +1624,7 @@ header i {
   margin-bottom: 5px;
 }
 .business-intelligence {
-  padding: 11px;
+  padding: 0px 11px 11px 11px;
   min-height: 500px;
 }
 .business-intelligence h3 {
