@@ -1797,3 +1797,8 @@ header i {
 .transaction.selected {
   background-color: lightblue;
 }
+
+.transactions .transaction .comments .comment.commentUpdate {
+  color: #20a0e9;
+  font-weight: bold;
+}
