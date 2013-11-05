@@ -1762,9 +1762,6 @@ header i {
   z-index: 14;
   position: relative;
 }
-
-canvas{
-    width: 100% !important;
-    max-width: 800px;
-    height: auto !important;
+.transaction.selected {
+  background-color: lightblue;
 }

@@ -16,9 +16,9 @@
 </header>
 
 
-<div class="generateInvoice" ng-show="selectLinesForInvoice">
-  <p>5 items worth 120.000 excl tax (150.000 incl) selected</p>
-  <a class="button">
+<div class="generateInvoice" ng-show="selectLinesForInvoiceMode">
+  <p>{{selectedLineIds.length}} items worth {{getSelectedLinesTotal()}} selected</p>
+  <a class="button" ng-click="generateInvoice()">
     Generate invoice
     <i class='fa fa-cogs'></i>
   </a>
@@ -27,7 +27,7 @@
 <div class="transactions">
   <div
     class="transaction"
-    ng-class="{selected: selectedLines.indexOf(lineId) > -1}"
+    ng-class="{selected: selectedLineIds.indexOf(lineId) > -1}"
     ng-repeat="(lineId, line) in activity.lines" ng-click="clickLine(lineId)">
     <div class="creator">
       <img ng-src="https://graph.facebook.com/{{line.user}}/picture?width=80&height=80" alt="">
