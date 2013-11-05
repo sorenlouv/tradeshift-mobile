@@ -1486,6 +1486,7 @@ header i {
   background-color: white;
   margin: 0px 5px -5px 5px;
   min-height: 60px;
+  text-transform: capitalize;
 }
 .transactions .transaction .creator {
   float: left;
@@ -1758,9 +1759,6 @@ header i {
   z-index: 14;
   position: relative;
 }
-
-canvas{
-    width: 100% !important;
-    max-width: 800px;
-    height: auto !important;
+.picker .newProduct-picker input {
+  width: 100%;
 }
