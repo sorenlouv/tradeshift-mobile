@@ -177,6 +177,7 @@ app.controller('FeedController',
 
   $scope.addLine = function() {
     // Save the feed
+    debugger;
     feedRef.child('lines').push($scope.newLine);
     $scope.hidePickers();
   };
@@ -275,22 +276,6 @@ app.controller('FeedController',
     feedRef.child('lines').child(clickedLineId).remove();
     $scope.hidePickers();
     return false;
-  };
-
-  // Today: getLinesFromDaysAgo(0, 1)
-  // Yesterday: getLinesFromDaysAgo(1, 2)
-  // Older: getLinesFromDaysAgo(2)
-
-  $scope.getLinesFromDaysAgo = function(minDays, maxDays) {
-
-    $scope.feed.lines.filter(function(index, line) {
-      var date = new Date();
-      return (
-        line.updatedAt < (date.setDate(date.getDate() - minDays)) &&
-        line.updatedAt > (date.setDate(date.getDate() - maxDays))
-      );
-    });
-
   };
 
 }]);
