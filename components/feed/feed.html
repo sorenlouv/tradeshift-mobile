@@ -16,8 +16,8 @@
 
 <div class="container">
 
-<div class="invoiceSent" ng-show="firstPendingInvoiceProposal.invoiceId !== undefined">
-  <p>{{firstPendingInvoiceProposal.invoice.user | username}} requested to send an invoice with {{firstPendingInvoiceProposal.invoice.selectedLineIds.length}} items worth 40.000, to be payed within 30 days.</p>
+<div class="invoiceSent" ng-show="passiveUsersFirstInvoiceRequest.invoiceId !== undefined">
+  <p>{{passiveUsersFirstInvoiceRequest.invoice.user | username}} requested to send an invoice with {{passiveUsersFirstInvoiceRequest.invoice.selectedLineIds.length}} items worth 40.000, to be payed within 30 days.</p>
   <small>The items are marked below. If you don't do anything the invoice will be sent to you in 5 days.</small>
 
   <a class="button secondary red" ng-click="rejectInvoice()">
@@ -43,11 +43,10 @@
   </a>
 </div>
 
-
 <div class="transactions" ng-repeat="lineInterval in lineIntervals">
   <div class="timestamp">{{lineInterval.name}}</div>
   <div class="transaction"
-    ng-class="{selected: selectedLineIds.indexOf(lineId) > -1, quote: line.type == 'quote' }"
+    ng-class="{selected: selectedLineIds.indexOf(lineId) > -1, quote: line.type == 'quote', 'invoice-requested': activeUsersInvoiceRequestIds.indexOf(lineId) > -1 }"
     ng-repeat="(lineId, line) in feed.lines | betweenDays:lineInterval.min:lineInterval.max" ng-click="clickLine(lineId)">
     <div class="creator">
       <img ng-src="https://graph.facebook.com/{{line.user}}/picture?width=80&height=80" alt="">

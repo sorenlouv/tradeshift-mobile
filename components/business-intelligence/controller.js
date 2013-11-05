@@ -1,9 +1,7 @@
 app.controller('BusinessIntelligenceController', ['$scope', 'angularFire', '$rootScope', 'helpers', '$q', function ($scope, angularFire, $rootScope, helpers, $q) {
   'use strict';
 
-
   // Companies
-
   $scope.editSettings = function() {
     $('.pickers').show();
     $('.settings-picker').show();
