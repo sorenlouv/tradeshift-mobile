@@ -1,0 +1,240 @@
+{
+  "AccountingSupplierParty": {
+    "Party": {
+      "PartyIdentification": [{
+        "ID": {
+          "value": "3fd7d621-7f89-481f-9647-b2edf2ee9a30",
+          "schemeID": "TS:ID"
+        }
+      }],
+      "PartyName": [{
+        "Name": {
+          "value": "Innocent Supplier"
+        }
+      }],
+      "PostalAddress": {
+        "AddressFormatCode": {
+          "value": "StructuredDK",
+          "listID": "urn:oioubl:codelist:addressformatcode-1.1",
+          "listAgencyID": "320"
+        },
+        "StreetName": {
+          "value": "Søper Street"
+        },
+        "AdditionalStreetName": {
+          "value": ""
+        },
+        "BuildingNumber": {
+          "value": "5"
+        },
+        "MarkAttention": {
+          "value": ""
+        },
+        "CityName": {
+          "value": "København"
+        },
+        "PostalZone": {
+          "value": "1337"
+        },
+        "CountrySubentity": {
+          "value": ""
+        },
+        "Country": {
+          "IdentificationCode": {
+            "value": "DK"
+          }
+        }
+      },
+      "Contact": {
+        "ID": {
+          "value": "5832d481-2e54-4574-9676-0f51fe6513df",
+          "schemeURI": "http://tradeshift.com/api/1.0/userId"
+        },
+        "Name": {
+          "value": "Innocent Supplier"
+        }
+      }
+    }
+  },
+  "AccountingCustomerParty": {
+    "Party": {
+      "PartyIdentification": [{
+        "ID": {
+          "value": "b9524c21-e8ee-46a6-8d86-3708d4c5f619",
+          "schemeID": "TS:ID"
+        }
+      }],
+      "PartyName": [{
+        "Name": {
+          "value": "Blue Beard Pirates"
+        }
+      }],
+      "PostalAddress": {
+        "AddressFormatCode": {
+          "value": "StructuredDK",
+          "listID": "urn:oioubl:codelist:addressformatcode-1.1",
+          "listAgencyID": "320"
+        },
+        "StreetName": {
+          "value": ""
+        },
+        "AdditionalStreetName": {
+          "value": ""
+        },
+        "BuildingNumber": {
+          "value": ""
+        },
+        "MarkAttention": {
+          "value": ""
+        },
+        "CityName": {
+          "value": ""
+        },
+        "PostalZone": {
+          "value": ""
+        },
+        "CountrySubentity": {
+          "value": ""
+        },
+        "Country": {
+          "IdentificationCode": {
+            "value": "DK"
+          }
+        }
+      },
+      "Contact": {}
+    }
+  },
+  "Delivery": [{}],
+  "TaxTotal": [{
+    "TaxAmount": {
+      "value": 1250,
+      "currencyID": "DKK"
+    },
+    "TaxSubtotal": [{
+      "TaxableAmount": {
+        "value": 5000,
+        "currencyID": "DKK"
+      },
+      "TaxAmount": {
+        "value": 1250,
+        "currencyID": "DKK"
+      },
+      "TaxCategory": {
+        "ID": {
+          "value": "StandardRated",
+          "schemeID": "urn:oioubl:id:taxcategoryid-1.1",
+          "schemeAgencyID": "320"
+        },
+        "Percent": {
+          "value": 25
+        },
+        "TaxScheme": {
+          "ID": {
+            "value": "63",
+            "schemeID": "urn:oioubl:id:taxschemeid-1.1",
+            "schemeAgencyID": "320"
+          },
+          "Name": {
+            "value": "Moms"
+          }
+        }
+      }
+    }]
+  }],
+  "LegalMonetaryTotal": {
+    "LineExtensionAmount": {
+      "value": 5000,
+      "currencyID": "DKK"
+    },
+    "TaxExclusiveAmount": {
+      "value": 1250,
+      "currencyID": "DKK"
+    },
+    "TaxInclusiveAmount": {
+      "value": 6250,
+      "currencyID": "DKK"
+    },
+    "PayableAmount": {
+      "value": 6250,
+      "currencyID": "DKK"
+    }
+  },
+  "InvoiceLine": [{
+    "ID": {
+      "value": "1"
+    },
+    "InvoicedQuantity": {
+      "value": 50,
+      "unitCode": "EA"
+    },
+    "LineExtensionAmount": {
+      "value": 5000,
+      "currencyID": "DKK"
+    },
+    "TaxTotal": [{
+      "TaxAmount": {
+        "value": 1250,
+        "currencyID": "DKK"
+      },
+      "TaxSubtotal": [{
+        "TaxableAmount": {
+          "value": 5000,
+          "currencyID": "DKK"
+        },
+        "TaxAmount": {
+          "value": 1250,
+          "currencyID": "DKK"
+        },
+        "TaxCategory": {
+          "ID": {
+            "value": "StandardRated",
+            "schemeID": "urn:oioubl:id:taxcategoryid-1.1",
+            "schemeAgencyID": "320"
+          },
+          "Percent": {
+            "value": 25
+          },
+          "TaxScheme": {
+            "ID": {
+              "value": "63",
+              "schemeID": "urn:oioubl:id:taxschemeid-1.1",
+              "schemeAgencyID": "320"
+            },
+            "Name": {
+              "value": "Moms"
+            }
+          }
+        }
+      }]
+    }],
+    "Item": {
+      "Description": [{
+        "value": "Pirate Soup"
+      }],
+      "Name": {
+        "value": "Pirate Soup"
+      },
+      "SellersItemIdentification": {
+        "ID": {
+          "value": "1",
+          "schemeID": "GTIN",
+          "schemeAgencyID": "9"
+        }
+      }
+    },
+    "Price": {
+      "PriceAmount": {
+        "value": 100,
+        "currencyID": "DKK"
+      },
+      "BaseQuantity": {
+        "value": 1,
+        "unitCode": "EA"
+      },
+      "OrderableUnitFactorRate": {
+        "value": 1
+      }
+    }
+  }]
+}

@@ -1,6 +1,11 @@
-<div ng-show="currentUser">
-  Navn: {{currentUser.name}}
-  Email: {{currentUser.email}}
+<div ng-show="activeUser">
+  <form ng-submit="updateUserInfo()">
+    <p>Please update your info</p>
+    <input type="text" ng-model="activeUser.name" placeholder="Navn">
+    <input type="text" ng-model="activeUser.email" placeholder="Email">
+    <input type="text" ng-model="activeCompany.name" placeholder="Company">
+    <button type="submit">Save</button>
+  </form>
 </div>
 
-<button ng-click="login()" ng-hide="currentUser">Login with Facebook</button>
+<button ng-click="facebookLogin()" ng-hide="activeUser">Login with Facebook</button>

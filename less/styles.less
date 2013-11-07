@@ -2,8 +2,609 @@
 @import "_mixins.less";
 @import "_variables.less";
 @import "font-awesome/font-awesome.less";
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600);
 
 body {
 	font-family: 'Open Sans', sans-serif;
+	padding: 0px;
+	margin: 0px;
 }
+
+a {
+	text-decoration: none;
+	color: @black;
+	font-weight: 400;
+	cursor: pointer;
+}
+
+h3 {
+	margin-top: 11px;
+	padding-bottom: 5px;
+	font-weight: 600;
+	font-size: 11px;
+	text-transform: uppercase;
+	border-bottom: 1px dotted #333;
+}
+
+fieldset {
+	border: none;
+}
+
+canvas{
+    width: 100% !important;
+    max-width: 800px;
+    height: auto !important;
+}
+
+.button {
+	font-size: 14px;
+	color: white;
+	padding: 11px;
+	background-color: @tsblue;
+	width: 100%;
+	display: inline-block;
+	cursor: pointer;
+	.rounded();
+	border: none;
+	box-sizing: border-box;
+
+	i {
+		float: right;
+		margin-top: 3px;
+	}
+}
+
+.green {
+	background-color: @action;
+}
+.red {
+	background-color: @danger !important;
+}
+
+header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 44px;
+	background-color: @black;
+	text-align: center;
+	overflow: hidden;
+
+	h3 {
+		text-transform: capitalize;
+		color: white;
+		font-size: 14px;
+		font-weight: 400;
+		text-align: center;
+		display: block;
+		line-height: 0px;
+		padding: 22px 0px 0 0;
+		margin: 0px;
+		border-bottom: none;
+	}
+	span {
+		display: inline;
+		font-size: 11px;
+		color: white;
+		font-weight: 300;
+		color: #ccc;
+	}
+	.back {
+		position: absolute;
+		left: 0;
+		top: 0px;
+		width: 44px;
+
+		a {
+			display: inline-block;
+			height: 44px;
+			width: 44px;
+
+		}
+	}
+	.add {
+		position: absolute;
+		top: 0px;
+		right: 0;
+		float: right;
+		width: 44px;
+		a {
+			display: inline-block;
+			height: 44px;
+			width: 44px;
+		}
+	}
+	i {
+		margin-top: 15px;
+		color: white;
+	}
+}
+
+.container {
+	margin-top: 44px;
+}
+
+.generateInvoice, .invoiceSent {
+	overflow: hidden;
+	padding: 22px;
+	margin: 55px 11px 11px 11px;
+	background-color: @info;
+	p {
+		margin: 0px 0px 5px 0px;
+		padding: 0px;
+	}
+	small {
+		display: block;
+		margin-bottom: 11px;
+		color: #333;
+		font-style: italic;
+	}
+	clear: both;
+	.secondary {
+		width: 38%;
+		float: left;
+
+	}
+	.green {
+		width: 60%;
+		float: right;
+	}
+
+}
+
+.transactions {
+	background-color: #eee;
+	padding-top: 1px;
+	height: 100%;
+
+	.quote {
+		background-image: url('/images/stripe.png');
+	}
+
+	.timestamp {
+		background-color: #ddd;
+		font-size: 11px;
+		font-weight: 600;
+		padding: 3px 6px;
+		margin: 6px 6px;
+		text-transform: uppercase;
+	}
+
+	.generate {
+		background-color: @info;
+		margin: 11px;
+		padding:22px;
+		margin-top: 5px;
+
+		p {
+			margin: 0px;
+			font-size: 14px;
+			margin-bottom: 11px;
+		}
+	}
+
+	.transaction {
+		position: relative;
+		font-size: 16px;
+		font-weight: 300;
+		padding:11px 11px 0px 11px;
+		cursor: pointer;
+		background-color: white;
+		margin: 0px 5px -5px 5px;
+		min-height: 60px;
+		text-transform: capitalize;
+
+		.creator {
+			float: left;
+			height: 50px;
+			width: 50px;
+			img {
+				position: absolute;
+				left: 11px;
+				top:11px;
+				height: 45px;
+				.rounded(25px);
+				margin-right: 11px;
+			}
+		}
+
+		.update {
+			display: block;
+			overflow: hidden;
+			margin: 6px 0px 0px 6px;
+
+			.object {
+				float: left;
+				margin-left: 6px;
+
+				padding-bottom: 11px;
+				.secondary {
+					float: left;
+				}
+			}
+			.price {
+				display: block;
+				width: 30%;
+				min-width: 100px;
+				float: right;
+				text-align: right;
+
+				.secondary {
+					float: right;
+				}
+			}
+			.primary {
+				max-width: 120px;
+				font-size: 16px;
+				display: block;
+				line-height: 18px;
+				font-weight: 600;
+			}
+			.secondary {
+				line-height: 18px;
+				font-size: 11px;
+				font-weight: 300;
+			}
+		}
+
+		.comments {
+			margin-left:0px;
+			display: block;
+			font-size: 12px !important;
+			margin-bottom: 11px;
+
+			.comment {
+				border-top: 1px dotted #eee;
+				padding:11px 0px;
+
+				.person{
+					display: inline-block;
+					min-width: 54px;
+					a {
+						font-weight: 300;
+						color: #999;
+					}
+				}
+				.content {
+					font-weight: 400;
+				}
+			}
+		}
+	}
+}
+
+.total-feed {
+	padding-bottom: 122px;
+		h2 {
+			border-bottom: 3px double #ccc;
+			margin-right: 11px;
+			margin-bottom: 0px;
+			float: right;
+			font-size: 16px;
+			font-weight: 600;
+			text-align: right;
+		}
+		span {
+			display: block;
+			font-size: 14px;
+			text-align: right;
+			font-weight: 300;
+			margin-bottom: 5px;
+		}
+	}
+
+.business-intelligence {
+	padding: 11px 11px 11px 11px;
+	min-height: 500px;
+	h3 {
+		margin: 0px 0px 0px 0;
+		padding-top: 0px;
+	}
+	ul {
+		overflow: hidden;
+		padding: 0px;
+		margin: 0px;
+	}
+
+	.chart {
+		img {
+			width: 300px;
+		}
+	}
+
+	.active-business {
+		li {
+			height: 44px;
+			border-bottom: 1px dotted #eee;
+			.amount {
+				float: right;
+			}
+			span {
+				display: inline-block;
+				margin-top: 11px;
+				&:first-child {
+					width: 20px;
+				}
+			}
+		}
+		.total {
+			h2 {
+				margin: 8px 0px 0px 0px;
+				border-bottom: 3px double #ccc;
+				float: right;
+				font-size: 16px;
+				display: block;
+				float: right;
+				font-weight: 600;
+				.left {
+					margin-right: 11px;
+				}
+			}
+			span {
+				font-size: 12px;
+			}
+		}
+	}
+
+	.past-business {
+		margin-top: 22px;
+		li {
+			height: 44px;
+			border-bottom: 1px dotted #eee;
+			.amount {
+				float: right;
+			}
+			span {
+				display: inline-block;
+				margin-top: 11px;
+				&:first-child {
+					width: 20px;
+				}
+			}
+		}
+	}
+	.load-more {
+		text-align: center;
+		padding-top: 11px;
+		display: block;
+		width: 50%;
+		margin-left: 25%;
+
+		a {
+			width: calc(~" 100% - 22px ");
+		}
+	}
+}
+
+
+.pickers {
+	z-index: 10;
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+
+	h3 {
+		margin: 0px 0px 5px 0px;
+		font-size: 11px;
+		text-transform: uppercase;
+		font-weight: 600;
+	}
+	.quantity {
+
+		li {
+			display: inline-block;
+			height: 22px;
+			margin-bottom: 5px;
+
+			&:last-child {
+				width: 170px;
+				input {
+					width:175px;
+				}
+			}
+		}
+	}
+
+
+	ul {
+		padding: 0px;
+		margin: 0px 0px 11px 0px;
+
+		.selected {
+			background-color: @tsblue !important;
+			color: white !important;
+		}
+		li {
+			color: @tsblue;
+			padding: 11px;
+			margin-bottom: 1px;
+			height: 22px;
+			list-style: none;
+			margin-left: 0px;
+			font-size: 14px;
+			background-color: @activelitest;
+			cursor: pointer;
+
+			i {
+				float: right;
+				margin-top: 4px;
+			}
+			.discount {
+				float: right;
+				color: lighten(@active, 25%);
+				font-weight: 300;
+			}
+			input {
+				margin: -11px -11px -11px 0;
+				height: 33px;
+				border: none;
+				background-color: transparent;
+			}
+		}
+	}
+
+	textarea {
+		width: calc(~" 100% - 8px ");
+		margin-bottom: 11px;
+	}
+	.picker-bg {
+		position: relative;
+		z-index: 9;
+		width: 100%;
+		height: 100%;
+		background-color:rgba(50,50,50,0.8);
+	}
+	.picker-data {
+		display: block;
+		padding: 11px;
+
+		input {
+			background-color: @xliteliter;
+			border: none;
+		}
+		.comment {
+			margin-bottom: 22px;
+		}
+		.button {
+			width: 100% !important;
+			box-sizing: border-box;
+		}
+	}
+	.picker-content {
+		z-index: 11;
+		width: 300px;
+		position: fixed;
+		top: 0;
+		right: 0;
+		background-color: white;
+		height: 100%;
+		overflow-y: auto;
+
+		.picker-header {
+			background-color: @tsblue;
+			height: 44px;
+			width: 100%;
+			overflow: hidden;
+
+			h1 {
+				margin-top: 9px;
+				font-weight: 300;
+				font-size: 18px;
+				color: white;
+				margin-left: 22px;
+			}
+			a {
+				width: 44px;
+				height: 44px;
+				display: inline-block;
+				position: absolute;
+				right: 0px;
+				top: 0px;
+			}
+			i {
+				margin: 14px 0 0 16px;
+				color: white;
+			}
+		}
+	}
+	.product-picker {
+		display: none;
+		position: relative;
+		z-index: 12;
+	}
+	.quote-picker {
+		display: none;
+		position: relative;
+		z-index: 12;
+	}
+	.select-picker {
+		display: none;
+		position: relative;
+		z-index: 13;
+	}
+	.edit-picker {
+		display: none;
+		position: relative;
+		z-index: 15;
+	}
+	.lineActions-picker {
+		display: none;
+
+		.button {
+			box-sizing: border-box;
+		}
+	}
+	.newProduct-picker {
+		display: none;
+		z-index: 14;
+		position: relative;
+		input {
+			width: 100%;
+		}
+	}
+}
+
+	.settings-picker {
+		display: none;
+		position: relative;
+		z-index: 16;
+	}
+
+
+// sqren temp styles
+.transaction.selected {
+	background-color: @xlite;
+}
+
+.transactions .transaction .comments .comment.commentUpdate {
+  color: #ddd;
+  font-weight: 300 !important;
+  font-style: italic;
+}
+
+.button.warning {
+  background-color: red;
+}
+
+input.setting {
+  background-color: #e6f5ff;
+  border: none;
+  font-size: 15px;
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.invoice-requested {
+	overflow: hidden;
+	margin-top: 110px;
+	color: #ccc;
+	position: relative;
+	margin-top: 11px !important;
+	margin-bottom: 6px !important;
+	img {
+		opacity: 0.5;
+	}
+	&:before{
+		display: inline-block;
+		width: 140px;
+		text-align: center;
+		-webkit-transform:rotate(45deg);
+		top: 10px;
+		right: -45px;
+		background-color: #f17c09;
+		position: absolute;
+		z-index: 1;
+		font-size: 12px;
+		padding-top: 11px;
+		height: 30px;
+		font-weight: 700;
+		color: #fff;
+		content: "Waiting";
+	}
+}
+

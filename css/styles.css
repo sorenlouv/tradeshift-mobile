@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600);
 /* Colors .................................................... */
 /* Mixins .................................................................................. */
 /* height of the navigation/search bar containers */
@@ -1369,4 +1369,543 @@
 }
 body {
   font-family: 'Open Sans', sans-serif;
+  padding: 0px;
+  margin: 0px;
+}
+a {
+  text-decoration: none;
+  color: #1e1e1e;
+  font-weight: 400;
+  cursor: pointer;
+}
+h3 {
+  margin-top: 11px;
+  padding-bottom: 5px;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  border-bottom: 1px dotted #333;
+}
+fieldset {
+  border: none;
+}
+canvas {
+  width: 100% !important;
+  max-width: 800px;
+  height: auto !important;
+}
+.button {
+  font-size: 14px;
+  color: white;
+  padding: 11px;
+  background-color: #20a0e9;
+  width: 100%;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 3px;
+  border: none;
+  box-sizing: border-box;
+}
+.button i {
+  float: right;
+  margin-top: 3px;
+}
+.green {
+  background-color: #72b148;
+}
+.red {
+  background-color: #dc0000 !important;
+}
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 44px;
+  background-color: #1e1e1e;
+  text-align: center;
+  overflow: hidden;
+}
+header h3 {
+  text-transform: capitalize;
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  display: block;
+  line-height: 0px;
+  padding: 22px 0px 0 0;
+  margin: 0px;
+  border-bottom: none;
+}
+header span {
+  display: inline;
+  font-size: 11px;
+  color: white;
+  font-weight: 300;
+  color: #ccc;
+}
+header .back {
+  position: absolute;
+  left: 0;
+  top: 0px;
+  width: 44px;
+}
+header .back a {
+  display: inline-block;
+  height: 44px;
+  width: 44px;
+}
+header .add {
+  position: absolute;
+  top: 0px;
+  right: 0;
+  float: right;
+  width: 44px;
+}
+header .add a {
+  display: inline-block;
+  height: 44px;
+  width: 44px;
+}
+header i {
+  margin-top: 15px;
+  color: white;
+}
+.container {
+  margin-top: 44px;
+}
+.generateInvoice,
+.invoiceSent {
+  overflow: hidden;
+  padding: 22px;
+  margin: 55px 11px 11px 11px;
+  background-color: #fdfed5;
+  clear: both;
+}
+.generateInvoice p,
+.invoiceSent p {
+  margin: 0px 0px 5px 0px;
+  padding: 0px;
+}
+.generateInvoice small,
+.invoiceSent small {
+  display: block;
+  margin-bottom: 11px;
+  color: #333;
+  font-style: italic;
+}
+.generateInvoice .secondary,
+.invoiceSent .secondary {
+  width: 38%;
+  float: left;
+}
+.generateInvoice .green,
+.invoiceSent .green {
+  width: 60%;
+  float: right;
+}
+.transactions {
+  background-color: #eee;
+  padding-top: 1px;
+  height: 100%;
+}
+.transactions .quote {
+  background-image: url('/images/stripe.png');
+}
+.transactions .timestamp {
+  background-color: #ddd;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 6px;
+  margin: 6px 6px;
+  text-transform: uppercase;
+}
+.transactions .generate {
+  background-color: #fdfed5;
+  margin: 11px;
+  padding: 22px;
+  margin-top: 5px;
+}
+.transactions .generate p {
+  margin: 0px;
+  font-size: 14px;
+  margin-bottom: 11px;
+}
+.transactions .transaction {
+  position: relative;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 11px 11px 0px 11px;
+  cursor: pointer;
+  background-color: white;
+  margin: 0px 5px -5px 5px;
+  min-height: 60px;
+  text-transform: capitalize;
+}
+.transactions .transaction .creator {
+  float: left;
+  height: 50px;
+  width: 50px;
+}
+.transactions .transaction .creator img {
+  position: absolute;
+  left: 11px;
+  top: 11px;
+  height: 45px;
+  border-radius: 25px;
+  margin-right: 11px;
+}
+.transactions .transaction .update {
+  display: block;
+  overflow: hidden;
+  margin: 6px 0px 0px 6px;
+}
+.transactions .transaction .update .object {
+  float: left;
+  margin-left: 6px;
+  padding-bottom: 11px;
+}
+.transactions .transaction .update .object .secondary {
+  float: left;
+}
+.transactions .transaction .update .price {
+  display: block;
+  width: 30%;
+  min-width: 100px;
+  float: right;
+  text-align: right;
+}
+.transactions .transaction .update .price .secondary {
+  float: right;
+}
+.transactions .transaction .update .primary {
+  max-width: 120px;
+  font-size: 16px;
+  display: block;
+  line-height: 18px;
+  font-weight: 600;
+}
+.transactions .transaction .update .secondary {
+  line-height: 18px;
+  font-size: 11px;
+  font-weight: 300;
+}
+.transactions .transaction .comments {
+  margin-left: 0px;
+  display: block;
+  font-size: 12px !important;
+  margin-bottom: 11px;
+}
+.transactions .transaction .comments .comment {
+  border-top: 1px dotted #eee;
+  padding: 11px 0px;
+}
+.transactions .transaction .comments .comment .person {
+  display: inline-block;
+  min-width: 54px;
+}
+.transactions .transaction .comments .comment .person a {
+  font-weight: 300;
+  color: #999;
+}
+.transactions .transaction .comments .comment .content {
+  font-weight: 400;
+}
+.total-feed {
+  padding-bottom: 122px;
+}
+.total-feed h2 {
+  border-bottom: 3px double #ccc;
+  margin-right: 11px;
+  margin-bottom: 0px;
+  float: right;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: right;
+}
+.total-feed span {
+  display: block;
+  font-size: 14px;
+  text-align: right;
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+.business-intelligence {
+  padding: 11px 11px 11px 11px;
+  min-height: 500px;
+}
+.business-intelligence h3 {
+  margin: 0px 0px 0px 0;
+  padding-top: 0px;
+}
+.business-intelligence ul {
+  overflow: hidden;
+  padding: 0px;
+  margin: 0px;
+}
+.business-intelligence .chart img {
+  width: 300px;
+}
+.business-intelligence .active-business li {
+  height: 44px;
+  border-bottom: 1px dotted #eee;
+}
+.business-intelligence .active-business li .amount {
+  float: right;
+}
+.business-intelligence .active-business li span {
+  display: inline-block;
+  margin-top: 11px;
+}
+.business-intelligence .active-business li span:first-child {
+  width: 20px;
+}
+.business-intelligence .active-business .total h2 {
+  margin: 8px 0px 0px 0px;
+  border-bottom: 3px double #ccc;
+  font-size: 16px;
+  display: block;
+  float: right;
+  font-weight: 600;
+}
+.business-intelligence .active-business .total h2 .left {
+  margin-right: 11px;
+}
+.business-intelligence .active-business .total span {
+  font-size: 12px;
+}
+.business-intelligence .past-business {
+  margin-top: 22px;
+}
+.business-intelligence .past-business li {
+  height: 44px;
+  border-bottom: 1px dotted #eee;
+}
+.business-intelligence .past-business li .amount {
+  float: right;
+}
+.business-intelligence .past-business li span {
+  display: inline-block;
+  margin-top: 11px;
+}
+.business-intelligence .past-business li span:first-child {
+  width: 20px;
+}
+.business-intelligence .load-more {
+  text-align: center;
+  padding-top: 11px;
+  display: block;
+  width: 50%;
+  margin-left: 25%;
+}
+.business-intelligence .load-more a {
+  width: calc( 100% - 22px );
+}
+.pickers {
+  z-index: 10;
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+}
+.pickers h3 {
+  margin: 0px 0px 5px 0px;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.pickers .quantity li {
+  display: inline-block;
+  height: 22px;
+  margin-bottom: 5px;
+}
+.pickers .quantity li:last-child {
+  width: 170px;
+}
+.pickers .quantity li:last-child input {
+  width: 175px;
+}
+.pickers ul {
+  padding: 0px;
+  margin: 0px 0px 11px 0px;
+}
+.pickers ul .selected {
+  background-color: #20a0e9 !important;
+  color: white !important;
+}
+.pickers ul li {
+  color: #20a0e9;
+  padding: 11px;
+  margin-bottom: 1px;
+  height: 22px;
+  list-style: none;
+  margin-left: 0px;
+  font-size: 14px;
+  background-color: #ecf7fd;
+  cursor: pointer;
+}
+.pickers ul li i {
+  float: right;
+  margin-top: 4px;
+}
+.pickers ul li .discount {
+  float: right;
+  color: #94d1f4;
+  font-weight: 300;
+}
+.pickers ul li input {
+  margin: -11px -11px -11px 0;
+  height: 33px;
+  border: none;
+  background-color: transparent;
+}
+.pickers textarea {
+  width: calc( 100% - 8px );
+  margin-bottom: 11px;
+}
+.pickers .picker-bg {
+  position: relative;
+  z-index: 9;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(50, 50, 50, 0.8);
+}
+.pickers .picker-data {
+  display: block;
+  padding: 11px;
+}
+.pickers .picker-data input {
+  background-color: #e6f5ff;
+  border: none;
+}
+.pickers .picker-data .comment {
+  margin-bottom: 22px;
+}
+.pickers .picker-data .button {
+  width: 100% !important;
+  box-sizing: border-box;
+}
+.pickers .picker-content {
+  z-index: 11;
+  width: 300px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: white;
+  height: 100%;
+  overflow-y: auto;
+}
+.pickers .picker-content .picker-header {
+  background-color: #20a0e9;
+  height: 44px;
+  width: 100%;
+  overflow: hidden;
+}
+.pickers .picker-content .picker-header h1 {
+  margin-top: 9px;
+  font-weight: 300;
+  font-size: 18px;
+  color: white;
+  margin-left: 22px;
+}
+.pickers .picker-content .picker-header a {
+  width: 44px;
+  height: 44px;
+  display: inline-block;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+.pickers .picker-content .picker-header i {
+  margin: 14px 0 0 16px;
+  color: white;
+}
+.pickers .product-picker {
+  display: none;
+  position: relative;
+  z-index: 12;
+}
+.pickers .quote-picker {
+  display: none;
+  position: relative;
+  z-index: 12;
+}
+.pickers .select-picker {
+  display: none;
+  position: relative;
+  z-index: 13;
+}
+.pickers .edit-picker {
+  display: none;
+  position: relative;
+  z-index: 15;
+}
+.pickers .lineActions-picker {
+  display: none;
+}
+.pickers .lineActions-picker .button {
+  box-sizing: border-box;
+}
+.pickers .newProduct-picker {
+  display: none;
+  z-index: 14;
+  position: relative;
+}
+.pickers .newProduct-picker input {
+  width: 100%;
+}
+.settings-picker {
+  display: none;
+  position: relative;
+  z-index: 16;
+}
+.transaction.selected {
+  background-color: #d2e7f5;
+}
+.transactions .transaction .comments .comment.commentUpdate {
+  color: #ddd;
+  font-weight: 300 !important;
+  font-style: italic;
+}
+.button.warning {
+  background-color: red;
+}
+input.setting {
+  background-color: #e6f5ff;
+  border: none;
+  font-size: 15px;
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+}
+.invoice-requested {
+  overflow: hidden;
+  margin-top: 110px;
+  color: #ccc;
+  position: relative;
+  margin-top: 11px !important;
+  margin-bottom: 6px !important;
+}
+.invoice-requested img {
+  opacity: 0.5;
+}
+.invoice-requested:before {
+  display: inline-block;
+  width: 140px;
+  text-align: center;
+  -webkit-transform: rotate(45deg);
+  top: 10px;
+  right: -45px;
+  background-color: #f17c09;
+  position: absolute;
+  z-index: 1;
+  font-size: 12px;
+  padding-top: 11px;
+  height: 30px;
+  font-weight: 700;
+  color: #fff;
+  content: "Waiting";
 }

@@ -1,0 +1,288 @@
+{
+    "DocumentType": "InvoiceType",
+    "UBLVersionID": {
+        "value": "2.0"
+    },
+    "CustomizationID": {
+        "value": "OIOUBL-2.01"
+    },
+    "ProfileID": {
+        "value": "urn:www.nesubl.eu:profiles:profile5:ver2.0",
+        "schemeID": "urn:oioubl:id:profileid-1.2",
+        "schemeAgencyID": "320"
+    },
+    "ID": {
+        "value": "h5356"
+    },
+    "IssueDate": {
+        "value": "2013-11-05"
+    },
+    "InvoiceTypeCode": {
+        "value": "380",
+        "listID": "urn:oioubl:codelist:invoicetypecode-1.1",
+        "listAgencyID": "320"
+    },
+    "DocumentCurrencyCode": {
+        "value": "DKK"
+    },
+    "AccountingSupplierParty": {
+        "Party": {
+            "PartyIdentification": [
+                {
+                    "ID": {
+                        "value": "8ba90b5c-c287-4811-96e9-0b7bdf865d1b",
+                        "schemeID": "TS:ID"
+                    }
+                }
+            ],
+            "PartyName": [
+                {
+                    "Name": {
+                        "value": "Konscript"
+                    }
+                }
+            ],
+            "PostalAddress": {
+                "AddressFormatCode": {
+                    "value": "StructuredDK",
+                    "listID": "urn:oioubl:codelist:addressformatcode-1.1",
+                    "listAgencyID": "320"
+                },
+                "StreetName": {
+                    "value": "Kon"
+                },
+                "AdditionalStreetName": {
+                    "value": ""
+                },
+                "BuildingNumber": {
+                    "value": "15"
+                },
+                "MarkAttention": {
+                    "value": ""
+                },
+                "CityName": {
+                    "value": "Kobenhavn"
+                },
+                "PostalZone": {
+                    "value": "3221"
+                },
+                "CountrySubentity": {
+                    "value": ""
+                },
+                "Country": {
+                    "IdentificationCode": {
+                        "value": "DK"
+                    }
+                }
+            },
+            "Contact": {
+                "ID": {
+                    "value": "4ae44e7c-4d3c-4ba8-bf74-ddc0c60f0549",
+                    "schemeURI": "http://tradeshift.com/api/1.0/userId"
+                },
+                "Name": {
+                    "value": "Konscript"
+                }
+            }
+        }
+    },
+    "AccountingCustomerParty": {
+        "Party": {
+            "PartyIdentification": [
+                {
+                    "ID": {
+                        "value": "cfe49a3f-d4bd-4f45-be64-765f7115236f",
+                        "schemeID": "TS:ID"
+                    }
+                }
+            ],
+            "PartyName": [
+                {
+                    "Name": {
+                        "value": "YayArt"
+                    }
+                }
+            ],
+            "PostalAddress": {
+                "AddressFormatCode": {
+                    "value": "StructuredDK",
+                    "listID": "urn:oioubl:codelist:addressformatcode-1.1",
+                    "listAgencyID": "320"
+                },
+                "StreetName": {
+                    "value": ""
+                },
+                "AdditionalStreetName": {
+                    "value": ""
+                },
+                "BuildingNumber": {
+                    "value": ""
+                },
+                "MarkAttention": {
+                    "value": ""
+                },
+                "CityName": {
+                    "value": ""
+                },
+                "PostalZone": {
+                    "value": ""
+                },
+                "CountrySubentity": {
+                    "value": ""
+                },
+                "Country": {
+                    "IdentificationCode": {
+                        "value": "DK"
+                    }
+                }
+            },
+            "Contact": {}
+        }
+    },
+    "Delivery": [
+        {}
+    ],
+    "TaxTotal": [
+        {
+            "TaxAmount": {
+                "value": 0.25,
+                "currencyID": "DKK"
+            },
+            "TaxSubtotal": [
+                {
+                    "TaxableAmount": {
+                        "value": 1,
+                        "currencyID": "DKK"
+                    },
+                    "TaxAmount": {
+                        "value": 0.25,
+                        "currencyID": "DKK"
+                    },
+                    "TaxCategory": {
+                        "ID": {
+                            "value": "StandardRated",
+                            "schemeID": "urn:oioubl:id:taxcategoryid-1.1",
+                            "schemeAgencyID": "320"
+                        },
+                        "Percent": {
+                            "value": 25
+                        },
+                        "TaxScheme": {
+                            "ID": {
+                                "value": "63",
+                                "schemeID": "urn:oioubl:id:taxschemeid-1.1",
+                                "schemeAgencyID": "320"
+                            },
+                            "Name": {
+                                "value": "Moms"
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "LegalMonetaryTotal": {
+        "LineExtensionAmount": {
+            "value": 1,
+            "currencyID": "DKK"
+        },
+        "TaxExclusiveAmount": {
+            "value": 0.25,
+            "currencyID": "DKK"
+        },
+        "TaxInclusiveAmount": {
+            "value": 1.25,
+            "currencyID": "DKK"
+        },
+        "PayableAmount": {
+            "value": 1.25,
+            "currencyID": "DKK"
+        }
+    },
+    "InvoiceLine": [
+        {
+            "ID": {
+                "value": "1"
+            },
+            "InvoicedQuantity": {
+                "value": 1,
+                "unitCode": "EA"
+            },
+            "LineExtensionAmount": {
+                "value": 1,
+                "currencyID": "DKK"
+            },
+            "TaxTotal": [
+                {
+                    "TaxAmount": {
+                        "value": 0.25,
+                        "currencyID": "DKK"
+                    },
+                    "TaxSubtotal": [
+                        {
+                            "TaxableAmount": {
+                                "value": 1,
+                                "currencyID": "DKK"
+                            },
+                            "TaxAmount": {
+                                "value": 0.25,
+                                "currencyID": "DKK"
+                            },
+                            "TaxCategory": {
+                                "ID": {
+                                    "value": "StandardRated",
+                                    "schemeID": "urn:oioubl:id:taxcategoryid-1.1",
+                                    "schemeAgencyID": "320"
+                                },
+                                "Percent": {
+                                    "value": 25
+                                },
+                                "TaxScheme": {
+                                    "ID": {
+                                        "value": "63",
+                                        "schemeID": "urn:oioubl:id:taxschemeid-1.1",
+                                        "schemeAgencyID": "320"
+                                    },
+                                    "Name": {
+                                        "value": "Moms"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            ],
+            "Item": {
+                "Description": [
+                    {
+                        "value": "test"
+                    }
+                ],
+                "Name": {
+                    "value": "test"
+                },
+                "SellersItemIdentification": {
+                    "ID": {
+                        "value": "1",
+                        "schemeID": "GTIN",
+                        "schemeAgencyID": "9"
+                    }
+                }
+            },
+            "Price": {
+                "PriceAmount": {
+                    "value": 1,
+                    "currencyID": "DKK"
+                },
+                "BaseQuantity": {
+                    "value": 1,
+                    "unitCode": "EA"
+                },
+                "OrderableUnitFactorRate": {
+                    "value": 1
+                }
+            }
+        }
+    ]
+}

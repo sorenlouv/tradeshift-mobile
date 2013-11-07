@@ -2,10 +2,13 @@
     "unused": false,
     "quotmark": false,
     "globals": {
+        "alert": true,
         "console": true,
         "angular": true,
         "app": true,
         "Firebase": true,
-        "FirebaseSimpleLogin": true
+        "FirebaseSimpleLogin": true,
+        "$": true,
+        "_": true
     }
 }
