@@ -1909,3 +1909,20 @@ input.setting {
   color: #fff;
   content: "Waiting";
 }
+.login {
+  margin: 10px;
+}
+.login ul {
+  padding: 0;
+}
+.login ul li {
+  list-style-type: none;
+  overflow: hidden;
+  border-radius: 6px;
+}
+.login ul li input {
+  width: 100%;
+  background-color: #e6f5ff;
+  border: none;
+  padding: 10px;
+}

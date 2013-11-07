@@ -1,11 +1,20 @@
-<div ng-show="activeUser">
-  <form ng-submit="updateUserInfo()">
+<div class="login">
+  <form ng-submit="updateUserInfo()" ng-show="activeUser">
     <p>Please update your info</p>
-    <input type="text" ng-model="activeUser.name" placeholder="Navn">
-    <input type="text" ng-model="activeUser.email" placeholder="Email">
-    <input type="text" ng-model="activeCompany.name" placeholder="Company">
-    <button type="submit">Save</button>
+    <ul>
+      <li>
+        <input type="text" ng-model="activeUser.name" placeholder="Navn">
+      </li>
+      <li>
+        <input type="text" ng-model="activeUser.email" placeholder="Email">
+      </li>
+      <li>
+        <input type="text" ng-model="activeCompany.name" placeholder="Company">
+      </li>
+    </ul>
+    <button type="submit" class="button">Get started!</button>
   </form>
-</div>
 
-<button ng-click="facebookLogin()" ng-hide="activeUser">Login with Facebook</button>
+  <button class="button" ng-click="facebookLogin()" ng-hide="activeUser">Login with Facebook</button>
+
+</div>
