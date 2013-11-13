@@ -4,6 +4,10 @@
 @import "font-awesome/font-awesome.less";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600);
 
+@green : #00BE70;
+
+
+
 body {
 	font-family: 'Open Sans', sans-serif;
 	padding: 0px;
@@ -61,19 +65,38 @@ canvas{
 	background-color: @danger !important;
 }
 
+.move-menu {
+  transition: all 0.2s ease;
+  left: 270px !important;
+      -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+  -o-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+
+
 header {
+  transition: all 0.2s ease;
 	position: absolute;
 	top: 0;
-	left: 0;
+	left: 0px;
 	width: 100%;
 	height: 44px;
 	background-color: @black;
 	text-align: center;
-	overflow: hidden;
+  z-index: 0;
+
+  .menu-header {
+    width:  calc(~" 100% - 88px ");
+    text-align: center;
+    margin-left: 44px;
+  }
 
 	h3 {
 		text-transform: capitalize;
-		color: white;
+    color: white;
 		font-size: 14px;
 		font-weight: 400;
 		text-align: center;
@@ -91,9 +114,9 @@ header {
 		color: #ccc;
 	}
 	.back {
-		position: absolute;
-		left: 0;
-		top: 0px;
+		position: relative;
+    display: inline-block;
+    float: left;
 		width: 44px;
 
 		a {
@@ -117,12 +140,95 @@ header {
 	}
 	i {
 		margin-top: 15px;
-		color: white;
+		color: @tsblue;
 	}
 }
 
+.menu {
+    -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+  -o-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  transition: all 0.2s ease;
+  background-color: #333;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 270px;
+  z-index: -5;
+  overflow: hidden;
+  min-height: 500px;
+
+  ul {
+    margin:0px !important;
+    padding: 0px !important;
+    float: left;
+    width: 100%;
+    a {
+      color: #dddddd;
+    }
+    .favicon {
+      height: 20px;
+      float: left;
+      margin-right: 5px;
+
+    }
+    li {
+      padding: 11px;
+      list-style: none;
+      font-size: 14px;
+      background-color: #2b2b2b;
+      border-bottom: 1px solid #212121;
+      margin:0px;
+      width: 100%;
+      font-weight: 300;
+      i {
+        width: 26px;
+      }
+    }
+  }
+
+  .logo {
+    height: 44px;
+    background-color:#222;
+    img {
+      margin-top: 2px;
+      margin-right: 4px;
+      padding: 12px;
+      height: 16px;
+    }
+  }
+
+  .menu-section {
+    background-color: #373737;
+    font-size: 11px;
+    font-weight: 400;
+    color:#999;
+    padding: 3px 3px 3px 11px;
+    width: 100%;
+    float: left;
+    display: inline-block;
+    border-bottom: 1px solid #212121;
+  }
+}
+
 .container {
-	margin-top: 44px;
+  overflow: hidden;
+    -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+  -o-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  transition: all 0.2s ease;
+  position: absolute;
+  left: 0px;
+  top:44px;
+  width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  background-color: white;
 }
 
 .generateInvoice, .invoiceSent {
@@ -155,8 +261,8 @@ header {
 
 .transactions {
 	background-color: #eee;
-	padding-top: 1px;
-	height: 100%;
+	padding-top: 5px;
+
 
 	.quote {
 		background-image: url('/images/stripe.png');
@@ -167,7 +273,7 @@ header {
 		font-size: 11px;
 		font-weight: 600;
 		padding: 3px 6px;
-		margin: 6px 6px;
+		margin: 0px 5px 5px 5px;
 		text-transform: uppercase;
 	}
 
@@ -191,7 +297,7 @@ header {
 		padding:11px 11px 0px 11px;
 		cursor: pointer;
 		background-color: white;
-		margin: 0px 5px -5px 5px;
+		margin: 0px 5px 5px 5px;
 		min-height: 60px;
 		text-transform: capitalize;
 
@@ -236,10 +342,10 @@ header {
 			}
 			.primary {
 				max-width: 120px;
-				font-size: 16px;
+				font-size: 14px;
 				display: block;
 				line-height: 18px;
-				font-weight: 600;
+				font-weight: 400;
 			}
 			.secondary {
 				line-height: 18px;
@@ -301,6 +407,7 @@ header {
 		margin: 0px 0px 0px 0;
 		padding-top: 0px;
 	}
+
 	ul {
 		overflow: hidden;
 		padding: 0px;
@@ -314,8 +421,10 @@ header {
 	}
 
 	.active-business {
+    margin-bottom: 22px;
 		li {
 			height: 44px;
+      font-size: 14px;
 			border-bottom: 1px dotted #eee;
 			.amount {
 				float: right;
@@ -333,23 +442,86 @@ header {
 				margin: 8px 0px 0px 0px;
 				border-bottom: 3px double #ccc;
 				float: right;
-				font-size: 16px;
+				font-size: 14px;
 				display: block;
 				float: right;
-				font-weight: 600;
+				font-weight: 400;
 				.left {
 					margin-right: 11px;
 				}
 			}
 			span {
-				font-size: 12px;
+        text-transform: uppercase;
+				font-size: 11px;
+        color: #999;
+        font-weight: 300;
 			}
 		}
 	}
 
+	.contacts {
+    margin-top: 22px;
+    position: relative;
+
+    .list-all {
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      font-size: 11px;
+      font-weight: 600;
+
+    }
+
+		li {
+      height: 44px;
+      font-size: 14px;
+      border-bottom: 1px dotted #eee;
+      list-style: none;
+
+      img {
+        height: 35px !important;
+        .rounded(20px);
+        float: left;
+        margin-top: 5px;
+        margin-right: 8px;
+      }
+
+      .rating {
+        float: right;
+        margin-top: 6px;
+        // border: 1px solid #eee;
+        // background-color: #fbfbfb;
+        padding: 3px 3px 3px 9px;
+        .rounded(3px);
+        text-align: right;
+
+        .rating-score {
+          display: block;
+          margin-top: 2px;
+          float: right;
+          color: #333;
+        }
+
+        img {
+          height: 25px !important;
+          margin: 0px  0px 0px 5px !important;
+          float: right;
+        }
+
+      }
+      .company-name {
+        display: inline-block;
+        margin-top: 11px;
+      }
+    }
+	}
+
+
+
 	.past-business {
 		margin-top: 22px;
 		li {
+      font-size: 14px;
 			height: 44px;
 			border-bottom: 1px dotted #eee;
 			.amount {
@@ -372,7 +544,7 @@ header {
 		margin-left: 25%;
 
 		a {
-			width: calc(~" 100% - 22px ");
+			width: c(~" 100% - 22calpx ");
 		}
 	}
 }
@@ -548,13 +720,102 @@ header {
 	}
 }
 
-	.settings-picker {
-		display: none;
-		position: relative;
-		z-index: 16;
-	}
+.contact-list {
+  text-align: center;
+  padding: 11px;
+
+  .logo {
+    img {
+      width: 250px;
+    }
+  }
+
+  .people {
+
+    .person {
+      position: relative;
+      img {
+        margin-top: -6px;
+        float: left;
+        margin-right: 11px;
+        height: 35px;
+        .rounded(20px);
+      }
+      .title {
+        float: right;
+      }
+    }
+  }
+
+  .details {
+    position: relative;
+    margin: 3px 0px 22px 0px;
+    p {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin: -11px 0px 0px 0px;
+      padding: 0px;
+
+      img {
+        height: 25px !important;
+        position: absolute;
+        top: -3px;
+        margin-left: 5px;
+      }
+    }
+  }
+
+  .your-products {
+    position:relative;
+  }
+
+  .list-all {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  h3 {
+    text-align: left;
+    margin-bottom: 0px;
+  }
+  ul {
+    padding: 0px;
+    margin: 0px;
+    li {
+      font-size: 14px;
+      border-bottom: 1px dotted #eee;
+      text-align: left;
+      color: #333;
+      padding: 11px 0px;
+      margin-bottom: 1px;
+      height: 22px;
+      list-style: none;
+      margin-left: 0px;
+      cursor: pointer;
+
+      .price {
+        float: right;
+      }
+    }
+
+  }
+}
+.currency {
+  font-size: 11px;
+  font-weight: 300;
+  color: #999;
+}
 
 
+.settings-picker {
+	display: none;
+	position: relative;
+	z-index: 16;
+}
 // sqren temp styles
 .transaction.selected {
 	background-color: @xlite;
@@ -584,7 +845,7 @@ input.setting {
 	margin-top: 110px;
 	color: #ccc;
 	position: relative;
-	margin-top: 11px !important;
+
 	margin-bottom: 6px !important;
 	img {
 		opacity: 0.5;

@@ -1,6 +1,13 @@
 app.controller('BusinessIntelligenceController', ['$scope', 'angularFire', '$rootScope', 'helpers', '$q', function ($scope, angularFire, $rootScope, helpers, $q) {
   'use strict';
 
+
+  $scope.showMenu = function() {
+
+    $('.container').toggleClass('move-menu');
+    $('header').toggleClass('move-menu');
+  }
+
   // Companies
   $scope.editSettings = function() {
     $('.pickers').show();

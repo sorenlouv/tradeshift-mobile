@@ -1416,30 +1416,15 @@ canvas {
 .red {
   background-color: #dc0000 !important;
 }
-.move-menu {
-  transition: all 0.2s ease;
-  left: 270px !important;
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
-  -ms-transform: translate3d(0, 0, 0);
-  -o-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-}
 header {
-  transition: all 0.2s ease;
   position: absolute;
   top: 0;
-  left: 0px;
+  left: 0;
   width: 100%;
   height: 44px;
   background-color: #1e1e1e;
   text-align: center;
-  z-index: 0;
-}
-header .menu-header {
-  width: calc( 100% - 88px );
-  text-align: center;
-  margin-left: 44px;
+  overflow: hidden;
 }
 header h3 {
   text-transform: capitalize;
@@ -1461,9 +1446,9 @@ header span {
   color: #ccc;
 }
 header .back {
-  position: relative;
-  display: inline-block;
-  float: left;
+  position: absolute;
+  left: 0;
+  top: 0px;
   width: 44px;
 }
 header .back a {
@@ -1485,88 +1470,10 @@ header .add a {
 }
 header i {
   margin-top: 15px;
-  color: #20a0e9;
-}
-.menu {
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
-  -ms-transform: translate3d(0, 0, 0);
-  -o-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-  transition: all 0.2s ease;
-  background-color: #333;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  height: 100%;
-  width: 270px;
-  z-index: -5;
-  overflow: hidden;
-  min-height: 500px;
-}
-.menu ul {
-  margin: 0px !important;
-  padding: 0px !important;
-  float: left;
-  width: 100%;
-}
-.menu ul a {
-  color: #dddddd;
-}
-.menu ul .favicon {
-  height: 20px;
-  float: left;
-  margin-right: 5px;
-}
-.menu ul li {
-  padding: 11px;
-  list-style: none;
-  font-size: 14px;
-  background-color: #2b2b2b;
-  border-bottom: 1px solid #212121;
-  margin: 0px;
-  width: 100%;
-  font-weight: 300;
-}
-.menu ul li i {
-  width: 26px;
-}
-.menu .logo {
-  height: 44px;
-  background-color: #222;
-}
-.menu .logo img {
-  margin-top: 2px;
-  margin-right: 4px;
-  padding: 12px;
-  height: 16px;
-}
-.menu .menu-section {
-  background-color: #373737;
-  font-size: 11px;
-  font-weight: 400;
-  color: #999;
-  padding: 3px 3px 3px 11px;
-  width: 100%;
-  float: left;
-  display: inline-block;
-  border-bottom: 1px solid #212121;
+  color: white;
 }
 .container {
-  overflow: hidden;
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
-  -ms-transform: translate3d(0, 0, 0);
-  -o-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-  transition: all 0.2s ease;
-  position: absolute;
-  left: 0px;
-  top: 44px;
-  width: 100%;
-  min-width: 100%;
-  min-height: 100%;
-  background-color: white;
+  margin-top: 44px;
 }
 .generateInvoice,
 .invoiceSent {
@@ -1600,7 +1507,8 @@ header i {
 }
 .transactions {
   background-color: #eee;
-  padding-top: 5px;
+  padding-top: 1px;
+  height: 100%;
 }
 .transactions .quote {
   background-image: url('/images/stripe.png');
@@ -1610,7 +1518,7 @@ header i {
   font-size: 11px;
   font-weight: 600;
   padding: 3px 6px;
-  margin: 0px 5px 5px 5px;
+  margin: 6px 6px;
   text-transform: uppercase;
 }
 .transactions .generate {
@@ -1631,7 +1539,7 @@ header i {
   padding: 11px 11px 0px 11px;
   cursor: pointer;
   background-color: white;
-  margin: 0px 5px 5px 5px;
+  margin: 0px 5px -5px 5px;
   min-height: 60px;
   text-transform: capitalize;
 }
@@ -1673,10 +1581,10 @@ header i {
 }
 .transactions .transaction .update .primary {
   max-width: 120px;
-  font-size: 14px;
+  font-size: 16px;
   display: block;
   line-height: 18px;
-  font-weight: 400;
+  font-weight: 600;
 }
 .transactions .transaction .update .secondary {
   line-height: 18px;
@@ -1739,92 +1647,45 @@ header i {
 .business-intelligence .chart img {
   width: 300px;
 }
-.business-intelligence .active-business {
-  margin-bottom: 22px;
-}
-.business-intelligence .active-business li {
-  height: 44px;
-  font-size: 14px;
-  border-bottom: 1px dotted #eee;
-}
-.business-intelligence .active-business li .amount {
-  float: right;
-}
-.business-intelligence .active-business li span {
-  display: inline-block;
-  margin-top: 11px;
-}
-.business-intelligence .active-business li span:first-child {
-  width: 20px;
-}
-.business-intelligence .active-business .total h2 {
-  margin: 8px 0px 0px 0px;
-  border-bottom: 3px double #ccc;
-  font-size: 14px;
-  display: block;
-  float: right;
-  font-weight: 400;
-}
-.business-intelligence .active-business .total h2 .left {
-  margin-right: 11px;
-}
-.business-intelligence .active-business .total span {
-  text-transform: uppercase;
-  font-size: 11px;
-  color: #999;
-  font-weight: 300;
-}
-.business-intelligence .contacts {
-  margin-top: 22px;
-  position: relative;
-}
-.business-intelligence .contacts .list-all {
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  font-size: 11px;
-  font-weight: 600;
-}
+.business-intelligence .active-business li,
 .business-intelligence .contacts li {
   height: 44px;
-  font-size: 14px;
   border-bottom: 1px dotted #eee;
-  list-style: none;
 }
-.business-intelligence .contacts li img {
-  height: 35px !important;
-  border-radius: 20px;
-  float: left;
-  margin-top: 5px;
-  margin-right: 8px;
-}
-.business-intelligence .contacts li .rating {
-  float: right;
-  margin-top: 6px;
-  padding: 3px 3px 3px 9px;
-  border-radius: 3px;
-  text-align: right;
-}
-.business-intelligence .contacts li .rating .rating-score {
-  display: block;
-  margin-top: 2px;
-  float: right;
-  color: #333;
-}
-.business-intelligence .contacts li .rating img {
-  height: 25px !important;
-  margin: 0px  0px 0px 5px !important;
+.business-intelligence .active-business li .amount,
+.business-intelligence .contacts li .amount {
   float: right;
 }
-.business-intelligence .contacts li .company-name {
+.business-intelligence .active-business li span,
+.business-intelligence .contacts li span {
   display: inline-block;
   margin-top: 11px;
+}
+.business-intelligence .active-business li span:first-child,
+.business-intelligence .contacts li span:first-child {
+  width: 20px;
+}
+.business-intelligence .active-business .total h2,
+.business-intelligence .contacts .total h2 {
+  margin: 8px 0px 0px 0px;
+  border-bottom: 3px double #ccc;
+  font-size: 16px;
+  display: block;
+  float: right;
+  font-weight: 600;
+}
+.business-intelligence .active-business .total h2 .left,
+.business-intelligence .contacts .total h2 .left {
+  margin-right: 11px;
+}
+.business-intelligence .active-business .total span,
+.business-intelligence .contacts .total span {
+  font-size: 12px;
 }
 .business-intelligence .past-business {
   margin-top: 22px;
 }
 .business-intelligence .past-business li {
-  font-size: 14px;
   height: 44px;
   border-bottom: 1px dotted #eee;
 }
@@ -1846,7 +1707,7 @@ header i {
   margin-left: 25%;
 }
 .business-intelligence .load-more a {
-  width: c( 100% - 22calpx );
+  width: calc( 100% - 22px );
 }
 .pickers {
   z-index: 10;
@@ -2003,81 +1864,6 @@ header i {
 .pickers .newProduct-picker input {
   width: 100%;
 }
-.contact-list {
-  text-align: center;
-  padding: 11px;
-}
-.contact-list .logo img {
-  width: 250px;
-}
-.contact-list .people .person {
-  position: relative;
-}
-.contact-list .people .person img {
-  margin-top: -6px;
-  float: left;
-  margin-right: 11px;
-  height: 35px;
-  border-radius: 20px;
-}
-.contact-list .people .person .title {
-  float: right;
-}
-.contact-list .details {
-  position: relative;
-  margin: 3px 0px 22px 0px;
-}
-.contact-list .details p {
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  margin: -11px 0px 0px 0px;
-  padding: 0px;
-}
-.contact-list .details p img {
-  height: 25px !important;
-  position: absolute;
-  top: -3px;
-  margin-left: 5px;
-}
-.contact-list .your-products {
-  position: relative;
-}
-.contact-list .list-all {
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  font-size: 11px;
-  font-weight: 600;
-}
-.contact-list h3 {
-  text-align: left;
-  margin-bottom: 0px;
-}
-.contact-list ul {
-  padding: 0px;
-  margin: 0px;
-}
-.contact-list ul li {
-  font-size: 14px;
-  border-bottom: 1px dotted #eee;
-  text-align: left;
-  color: #333;
-  padding: 11px 0px;
-  margin-bottom: 1px;
-  height: 22px;
-  list-style: none;
-  margin-left: 0px;
-  cursor: pointer;
-}
-.contact-list ul li .price {
-  float: right;
-}
-.currency {
-  font-size: 11px;
-  font-weight: 300;
-  color: #999;
-}
 .settings-picker {
   display: none;
   position: relative;
@@ -2107,6 +1893,7 @@ input.setting {
   margin-top: 110px;
   color: #ccc;
   position: relative;
+  margin-top: 11px !important;
   margin-bottom: 6px !important;
 }
 .invoice-requested img {

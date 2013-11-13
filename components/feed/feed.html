@@ -1,91 +1,90 @@
 <header>
   <div class="back">
     <a href="/#/business-intelligence">
-      <i class="fa fa-arrow-left"></i>
+      <i class="fa fa-chevron-left"></i>
     </a>
   </div>
-  <div>
+  <div class="menu-header">
     <h3>{{passiveCompany.name}} & {{activeUser.company}}</h3>
   </div>
   <div class="add" >
     <a ng-click="addItem()">
-      <i class="fa fa-align-justify"></i>
+      <i class="fa">&#xf141;</i>
     </a>
   </div>
 </header>
 
-<div class="container">
+<div class="container feed-header">
+  <div class="invoiceSent" ng-show="passiveUsersFirstInvoiceRequest.invoiceId !== undefined">
+    <p>{{passiveUsersFirstInvoiceRequest.invoice.user | username}} requested to send an invoice with {{passiveUsersFirstInvoiceRequest.invoice.selectedLineIds.length}} items worth 40.000, to be payed within 30 days.</p>
+    <small>The items are marked below. If you don't do anything the invoice will be sent to you in 5 days.</small>
 
-<div class="invoiceSent" ng-show="passiveUsersFirstInvoiceRequest.invoiceId !== undefined">
-  <p>{{passiveUsersFirstInvoiceRequest.invoice.user | username}} requested to send an invoice with {{passiveUsersFirstInvoiceRequest.invoice.selectedLineIds.length}} items worth 40.000, to be payed within 30 days.</p>
-  <small>The items are marked below. If you don't do anything the invoice will be sent to you in 5 days.</small>
+    <a class="button secondary red" ng-click="rejectInvoice()">
+      Reject
+      <i class="fa fa-ban"></i>
+    </a>
+    <a class="button green" ng-click="acceptInvoice()">
+      Accept invoice
+      <i class="fa fa-check"></i>
+    </a>
+  </div>
 
-  <a class="button secondary red" ng-click="rejectInvoice()">
-    Reject
-    <i class="fa fa-ban"></i>
-  </a>
-  <a class="button green" ng-click="acceptInvoice()">
-    Accept invoice
-    <i class="fa fa-check"></i>
-  </a>
-</div>
+  <div class="generateInvoice" ng-show="selectLinesForInvoiceMode">
+    <p>{{selectedLineIds.length}} items worth {{getSelectedLinesTotal()}} selected</p>
+    <small>Tap to unselect items you don't want to include in this invoice, and click 'Request invoice' when you are ready to send.</small>
+    <a class="button secondary" ng-click="generateInvoice()">
+      Cancel
+      <i class="fa fa-ban"></i>
+    </a>
+    <a class="button green" ng-click="requestInvoice()">
+      Request invoice
+      <i class='fa fa-cogs'></i>
+    </a>
+  </div>
 
-<div class="generateInvoice" ng-show="selectLinesForInvoiceMode">
-  <p>{{selectedLineIds.length}} items worth {{getSelectedLinesTotal()}} selected</p>
-  <small>Tap to unselect items you don't want to include in this invoice, and click 'Request invoice' when you are ready to send.</small>
-  <a class="button secondary" ng-click="generateInvoice()">
-    Cancel
-    <i class="fa fa-ban"></i>
-  </a>
-  <a class="button green" ng-click="requestInvoice()">
-    Request invoice
-    <i class='fa fa-cogs'></i>
-  </a>
-</div>
-
-<div class="transactions" ng-repeat="lineInterval in lineIntervals">
-  <div class="timestamp">{{lineInterval.name}}</div>
-  <div class="transaction"
-    ng-class="{selected: selectedLineIds.indexOf(lineId) > -1, quote: line.type == 'quote', 'invoice-requested': activeUsersInvoiceRequestIds.indexOf(lineId) > -1 }"
-    ng-repeat="(lineId, line) in feed.lines | betweenDays:lineInterval.min:lineInterval.max" ng-click="clickLine(lineId)">
-    <div class="creator">
-      <img ng-src="https://graph.facebook.com/{{line.user}}/picture?width=80&height=80" alt="">
-    </div>
-
-    <!-- Line updates -->
-    <div class="update">
-      <div class="object">
-        <span class="primary">{{line.product.title}}</span>
-        <span class="secondary">Excl. 25% moms</span>
-      </div>
-      <div class="price">
-        <span class="primary">{{(line.product.custom_price * line.product.quantity) | currency: line.product.currency}}</span>
-        <span class="secondary">{{line.product.quantity}}&nbsp;*&nbsp;{{line.product.custom_price | currency: line.product.currency}}</span>
-      </div>
-    </div>
-
-    <!-- Comments -->
-    <div class="comments">
-      <div class="comment" ng-hide="line.description === ''">
-        <span class="person">{{line.user | username}}</span>
-        <span class="content">{{line.description}}</span>
+  <div class="transactions" ng-repeat="lineInterval in lineIntervals">
+    <div class="timestamp">{{lineInterval.name}}</div>
+    <div class="transaction"
+      ng-class="{selected: selectedLineIds.indexOf(lineId) > -1, quote: line.type == 'quote', 'invoice-requested': activeUsersInvoiceRequestIds.indexOf(lineId) > -1 }"
+      ng-repeat="(lineId, line) in feed.lines | betweenDays:lineInterval.min:lineInterval.max" ng-click="clickLine(lineId)">
+      <div class="creator">
+        <img ng-src="https://graph.facebook.com/{{line.user}}/picture?width=80&height=80" alt="">
       </div>
 
-      <div class="comment" ng-repeat="comment in line.comments" ng-class="{commentUpdate: comment.type == 'update'}">
-        <span class="person"><a href="#">{{comment.user | username}}</a></span>
-        <span class="content">{{comment.comment}}</span>
+      <!-- Line updates -->
+      <div class="update">
+        <div class="object">
+          <span class="primary">{{line.product.title}}</span>
+          <span class="secondary">Excl. 25% moms</span>
+        </div>
+        <div class="price">
+          <span class="primary">{{(line.product.custom_price * line.product.quantity) | currency: line.product.currency}}</span>
+          <span class="secondary">{{line.product.quantity}}&nbsp;*&nbsp;{{line.product.custom_price | currency: line.product.currency}}</span>
+        </div>
+      </div>
+
+      <!-- Comments -->
+      <div class="comments" ng-hide="line.description === ''">
+        <div class="comment" >
+          <span class="person">{{line.user | username}}</span>
+          <span class="content">{{line.description}}</span>
+        </div>
+
+        <div class="comment" ng-repeat="comment in line.comments" ng-class="{commentUpdate: comment.type == 'update'}">
+          <span class="person"><a href="#">{{comment.user | username}}</a></span>
+          <span class="content">{{comment.comment}}</span>
+        </div>
       </div>
     </div>
   </div>
+  <div class="total-feed">
+    <h2>
+      <span>Sales: {{getTotalSales() | currency: '$'}}</span>
+      <span>Purchases: {{getTotalPurchases() | currency: '$'}}</span>
+      Total {{getTotal() | currency: '$'}}
+    </h2>
+  </div>
 </div>
-<div class="total-feed">
-  <h2>
-    <span>Sales: {{getTotalSales() | currency: '$'}}</span>
-    <span>Purchases: {{getTotalPurchases() | currency: '$'}}</span>
-    Total {{getTotal() | currency: '$'}}
-  </h2>
-</div>
-
 
 <section class="pickers">
   <div class="picker-bg" ng-click="hidePickers()"></div>
@@ -98,20 +97,32 @@
         </a>
       </div>
       <div class="picker-data">
-        <h3>Add &hellip;</h3>
+        <h3>Sell</h3>
         <ul>
           <li ng-click="addProduct()">
-            <span>Product</span>
+            <span>Add Product</span>
             <i class="fa fa-chevron-right"></i>
           </li>
           <li ng-click="addQuote()">
-            <span>Quote</span>
+            <span>Add Quote</span>
+            <i class="fa fa-chevron-right"></i>
+          </li>
+        </ul>
+        <h3>Buy</h3>
+        <ul>
+          <li ng-click="addProduct()">
+            <span>Request Product</span>
+            <i class="fa fa-chevron-right"></i>
+          </li>
+          <li ng-click="addQuote()">
+            <span>Request Quote</span>
             <i class="fa fa-chevron-right"></i>
           </li>
         </ul>
         <h3>Actions</h3>
         <ul>
-          <li ng-click="clickSelectLinesForInvoice()">Request invoice</li>
+          <li ng-click="clickSelectLinesForInvoice()">Create invoice</li>
+          <li>Share products</li>
         </ul>
       </div>
     </div>
@@ -425,5 +436,3 @@
     </div>
   </div>
 </section>
-
-</div>
