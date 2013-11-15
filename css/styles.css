@@ -1565,14 +1565,14 @@ header i {
   top: 44px;
   width: 100%;
   min-width: 100%;
-  min-height: 100%;
+  min-height: calc( 100% - 44px );
   background-color: white;
 }
 .generateInvoice,
 .invoiceSent {
   overflow: hidden;
   padding: 22px;
-  margin: 55px 11px 11px 11px;
+  margin: 11px 11px 11px 11px;
   background-color: #fdfed5;
   clear: both;
 }
@@ -1704,6 +1704,112 @@ header i {
 .transactions .transaction .comments .comment .content {
   font-weight: 400;
 }
+.products {
+  padding: 11px;
+}
+.products input {
+  height: 33px;
+  border-radius: 17px;
+  border: 1px solid #eee;
+  width: calc( 100% - 11px );
+  padding-left: 11px;
+  margin-bottom: 11px;
+}
+.products h3 {
+  margin: 0px;
+}
+.products ul {
+  margin: 0px !important;
+  padding: 0px !important;
+  float: left;
+  width: 100%;
+}
+.products ul a {
+  color: #333;
+}
+.products ul .favicon {
+  height: 20px;
+  float: left;
+  margin-right: 5px;
+}
+.products ul li {
+  padding: 11px 0px;
+  list-style: none;
+  font-size: 14px;
+  border-bottom: 1px dotted #eee;
+  margin: 0px;
+  width: 100%;
+  font-weight: 300;
+}
+.products ul li i {
+  width: 26px;
+}
+.products .rating {
+  float: right;
+}
+.products .rating i {
+  width: 17px;
+}
+.contacts {
+  padding: 11px;
+}
+.contacts input {
+  height: 33px;
+  border-radius: 17px;
+  border: 1px solid #eee;
+  width: calc( 100% - 11px );
+  padding-left: 11px;
+  margin-bottom: 11px;
+  background-color: #fdfed5;
+}
+.contacts h3 {
+  margin: 0px;
+}
+.contacts ul {
+  margin: 0px !important;
+  padding: 0px !important;
+  float: left;
+  width: 100%;
+}
+.contacts ul a {
+  color: #333;
+}
+.contacts ul .favicon {
+  height: 20px;
+  float: left;
+  margin-right: 5px;
+}
+.contacts ul li {
+  padding: 11px 0px;
+  list-style: none;
+  font-size: 14px;
+  border-bottom: 1px dotted #eee;
+  margin: 0px;
+  width: 100%;
+  font-weight: 300;
+}
+.contacts ul li img {
+  margin-right: 6px;
+  float: left;
+  height: 35px;
+  border-radius: 20px;
+  margin-top: -6px;
+}
+.contacts ul li i {
+  width: 26px;
+}
+.contacts .rating {
+  float: right;
+  width: 60px;
+}
+.contacts .rating i {
+  width: 17px;
+}
+.contacts .rating img {
+  margin-top: -3px;
+  height: 25px !important;
+  float: right;
+}
 .total-feed {
   padding-bottom: 122px;
 }
@@ -1712,13 +1818,13 @@ header i {
   margin-right: 11px;
   margin-bottom: 0px;
   float: right;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   text-align: right;
 }
 .total-feed span {
   display: block;
-  font-size: 14px;
+  font-size: 12px;
   text-align: right;
   font-weight: 300;
   margin-bottom: 5px;
@@ -1808,7 +1914,7 @@ header i {
 .business-intelligence .contacts li .rating .rating-score {
   display: block;
   margin-top: 2px;
-  float: right;
+  float: left;
   color: #333;
 }
 .business-intelligence .contacts li .rating img {
@@ -2119,7 +2225,7 @@ input.setting {
   -webkit-transform: rotate(45deg);
   top: 10px;
   right: -45px;
-  background-color: #f17c09;
+  background-color: #20a0e9;
   position: absolute;
   z-index: 1;
   font-size: 12px;

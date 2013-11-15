@@ -9,9 +9,9 @@
 <!--         <span>It's a good day today!</span>
  -->    </div>
     <div class="add" >
-<!--       <a ng-click="editSettings()">
-        <i class="fa fa-cog"></i>
-      </a> -->
+      <a >
+        <i class="fa fa-plus"></i>
+      </a>
     </div>
 </header>
 
@@ -21,13 +21,13 @@
   </div>
   <span class="menu-section">COMPANY</span>
   <ul>
-    <a ng-href="/#/business-intelligence">
+    <a ng-href="/">
       <li><i class="fa fa-tachometer"></i>Overview</li>
     </a>
-    <a>
+    <a ng-href="/#/products">
       <li><i class="fa fa-truck"></i>Products</li>
     </a>
-    <a>
+    <a ng-href="/#/contacts">
       <li><i class="fa">&#xf0c0;</i>Contacts</li>
     </a>
     <a>
@@ -74,7 +74,7 @@
       <h3>Latest Contacts</h3>
       <!-- <div class="list-all"><a>SHOW ALL</a></div> -->
       <li  >
-        <a ng-href="/#/contacts">
+        <a ng-href="/#/contact">
           <img ng-src="/images/chinese-persona-2.png" alt="">
           <span class="company-name">盼盼珠宝</span>
           <span class="rating">
@@ -84,7 +84,7 @@
         </a>
       </li>
       <li  >
-        <a ng-href="/#/contacts">
+        <a ng-href="/#/contact">
           <img ng-src="/images/chinese-persona-3.jpg" alt="">
           <span class="company-name">百世鞋业</span>
           <span class="rating">
@@ -93,7 +93,7 @@
         </a>
       </li>
       <li  >
-        <a ng-href="/#/contacts">
+        <a ng-href="/#/contact">
           <img ng-src="/images/chinese-persona-4.jpg" alt="">
           <span class="company-name">Nike</span>
           <span class="rating">
@@ -103,8 +103,7 @@
         </a>
       </li>
     </ul>
-
-    <ul class="past-business">
+   <!--  <ul class="past-business">
       <h3>Invoices</h3>
       <li ng-repeat="invoice in parsedInvoices">
           <a href="#">
@@ -113,7 +112,7 @@
               <span class="amount">{{invoice.price | currency: 'DKK'}}</span>
           </a>
       </li>
-  </ul>
+    </ul> -->
 <!--   <div class="load-more">
       <a href="#" class="button">Load more</a>
   </div> -->
@@ -142,4 +141,4 @@
   </div>
   </section>
 
-  </div>
+</div>

@@ -5,6 +5,8 @@ app.config(function ($routeProvider) {
   'use strict';
   $routeProvider.
     when('/business-intelligence', {templateUrl: '/components/business-intelligence/template.html', controller: 'BusinessIntelligenceController'}).
+    when('/contact', {templateUrl: '/components/contact/template.html', controller: 'ContactController'}).
+
     when('/contacts', {templateUrl: '/components/contacts/template.html', controller: 'ContactsController'}).
 
     // Settings

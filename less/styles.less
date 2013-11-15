@@ -227,14 +227,14 @@ header {
   top:44px;
   width: 100%;
   min-width: 100%;
-  min-height: 100%;
+  min-height: calc(~" 100% - 44px ");
   background-color: white;
 }
 
 .generateInvoice, .invoiceSent {
 	overflow: hidden;
 	padding: 22px;
-	margin: 55px 11px 11px 11px;
+	margin: 11px 11px 11px 11px;
 	background-color: @info;
 	p {
 		margin: 0px 0px 5px 0px;
@@ -380,6 +380,123 @@ header {
 	}
 }
 
+.products {
+	padding: 11px;
+	input {
+		height: 33px;
+		.rounded(17px);
+		border: 1px solid #eee;
+		width: calc(~" 100% - 11px ");;
+		padding-left: 11px;
+    margin-bottom: 11px;
+	}
+
+  h3 {
+    margin: 0px;
+  }
+
+  ul {
+    margin:0px !important;
+    padding: 0px !important;
+    float: left;
+    width: 100%;
+    a {
+      color: #333;
+    }
+    .favicon {
+      height: 20px;
+      float: left;
+      margin-right: 5px;
+
+    }
+    li {
+      padding: 11px 0px;
+      list-style: none;
+      font-size: 14px;
+      border-bottom: 1px dotted #eee;
+      margin:0px;
+      width: 100%;
+      font-weight: 300;
+      i {
+        width: 26px;
+      }
+    }
+  }
+  .rating {
+    float: right;
+    i {
+      width: 17px;
+    }
+  }
+}
+
+.contacts {
+  padding: 11px;
+  input {
+    height: 33px;
+    .rounded(17px);
+    border: 1px solid #eee;
+    width: calc(~" 100% - 11px ");;
+    padding-left: 11px;
+    margin-bottom: 11px;
+    background-color: @info;
+  }
+
+  h3 {
+    margin: 0px;
+  }
+
+  ul {
+    margin:0px !important;
+    padding: 0px !important;
+    float: left;
+    width: 100%;
+    a {
+      color: #333;
+    }
+    .favicon {
+      height: 20px;
+      float: left;
+      margin-right: 5px;
+
+    }
+
+    li {
+      padding: 11px 0px;
+      list-style: none;
+      font-size: 14px;
+      border-bottom: 1px dotted #eee;
+      margin:0px;
+      width: 100%;
+      font-weight: 300;
+      img {
+        margin-right: 6px;
+        float: left;
+        height:35px;
+        .rounded(20px);
+        margin-top: -6px;
+      }
+
+      i {
+        width: 26px;
+      }
+    }
+  }
+  .rating {
+    float: right;
+    width: 60px;
+    i {
+      width: 17px;
+    }
+    img {
+      margin-top: -3px;
+      height: 25px !important;
+      float: right;
+    }
+  }
+}
+
+
 .total-feed {
 	padding-bottom: 122px;
 		h2 {
@@ -387,13 +504,13 @@ header {
 			margin-right: 11px;
 			margin-bottom: 0px;
 			float: right;
-			font-size: 16px;
+			font-size: 14px;
 			font-weight: 600;
 			text-align: right;
 		}
 		span {
 			display: block;
-			font-size: 14px;
+			font-size: 12px;
 			text-align: right;
 			font-weight: 300;
 			margin-bottom: 5px;
@@ -498,7 +615,7 @@ header {
         .rating-score {
           display: block;
           margin-top: 2px;
-          float: right;
+          float: left;
           color: #333;
         }
 
@@ -857,7 +974,8 @@ input.setting {
 		-webkit-transform:rotate(45deg);
 		top: 10px;
 		right: -45px;
-		background-color: #f17c09;
+		background-color: @active;
+
 		position: absolute;
 		z-index: 1;
 		font-size: 12px;

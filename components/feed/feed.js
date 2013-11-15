@@ -90,7 +90,6 @@ app.controller('FeedController',
     $('.lineActions-picker').hide();
     $('.edit-picker').hide();
     $('.pickers').hide();
-
     $scope.newLine = null;
   };
 

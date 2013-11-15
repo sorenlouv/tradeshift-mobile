@@ -1,0 +1,123 @@
+<header>
+  <div class="back">
+    <a href="/#/business-intelligence">
+      <i class="fa fa-chevron-left"></i>
+    </a>
+  </div>
+  <div class="menu-header">
+    <h3>Nike</h3>
+	</div>
+  <div class="add" >
+    <a>
+      <i class="fa">&#xf141;</i>
+    </a>
+  </div>
+
+</header>
+
+<div class="container ">
+  <div class="contact-list">
+
+	<div class="logo">
+		<img src="/images/nike-logo.jpg">
+	</div>
+	<div class="details">
+		<p>Dragon Index: 120 &nbsp;&nbsp; Verified: <img src="/images/verified-02.png"> </p>
+	</div>
+
+  <ul class="people">
+    <h3>People</h3>
+    <li class="person">
+      <img src="/images/chinese-persona-2.png" alt="">
+      <span>黄百世</span>
+      <spa class="title">CEO</span>
+    </li>
+    <li class="person">
+     <img src="/images/chinese-persona-1.jpg" alt="">
+    <span>黄百世</span>
+    <span class="title">CFO</span>
+    </li>
+
+  </ul>
+
+  <br>
+
+  <div class="your-products">
+    <h3>Products you have shared</h3>
+    <div class="list-all"><a>ADD</a></div>
+    <ul class="">
+
+      <li>
+        <span>手链</span>
+        <span class="price"><span class="currency">RMB</span> 1.000,00</span>
+      </li>
+      <li>
+        <span>项链</span>
+        <span class="price"><span class="currency">RMB</span> 200,00</span>
+      </li>
+      <li>
+        <span>戒指</span>
+        <span class="price"><span class="currency">RMB</span> 30,00</span>
+      </li>
+      <li>
+        <span>耳环</span>
+        <span class="price"><span class="currency">RMB</span> 340,00</span>
+      </li>
+      <li>
+        <span>腰带</span>
+        <span class="price"><span class="currency">RMB</span> 90,00</span>
+      </li>
+    </ul>
+  </div>
+
+  <br>
+
+  <h3>Products Nike have shared</h3>
+  <ul>
+    <li>
+      <span>女鞋</span>
+      <span class="price"><span class="currency">RMB</span> 1.600,00</span>
+    </li>
+    <li>
+      <span>男鞋</span>
+      <span class="price"><span class="currency">RMB</span> 800,00</span>
+    </li>
+    <li>
+      <span>童鞋</span>
+      <span class="price"><span class="currency">RMB</span> 450,00</span>
+    </li>
+  </ul>
+  </div>
+
+</div>
+
+
+
+<section class="pickers">
+  <div class="product-picker">
+    <div class="picker-content">
+      <div class="picker-header">
+        <h1>Add product</h1>
+        <a ng-click="hidePickers()">
+          <i class="fa fa-times"></i>
+        </a>
+      </div>
+      <div class="picker-data">
+        <h3>Select existing</h3>
+        <ul>
+          <li ng-repeat="product in products" ng-click="setProduct(product, 'product')">
+              {{product.title}}
+              <i class="fa fa-chevron-right"></i>
+          </li>
+          <br>
+          <h3>Add new</h3>
+          <li ng-click="showAddNewProduct()">
+            Add new product
+            <i class="fa fa-chevron-right"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</section>
