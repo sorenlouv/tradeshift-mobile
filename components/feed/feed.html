@@ -48,8 +48,7 @@
       ng-class="{selected: selectedLineIds.indexOf(lineId) > -1, quote: line.type == 'quote', 'invoice-requested': activeUsersInvoiceRequestIds.indexOf(lineId) > -1 }"
       ng-repeat="(lineId, line) in feed.lines | betweenDays:lineInterval.min:lineInterval.max" ng-click="clickLine(lineId)">
       <div class="creator">
-        <!-- <img ng-src="https://graph.facebook.com/{{line.user}}/picture?width=80&height=80" alt=""> -->
-        <img ng-src="/images/chinese-persona-2.png" alt="">
+        <img ng-src="https://graph.facebook.com/{{line.user}}/picture?width=80&height=80" alt="">
       </div>
 
       <!-- Line updates -->
